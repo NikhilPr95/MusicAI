@@ -3,4 +3,7 @@ from musicai.main.lib.input_vectors import sequence_vectors
 
 file = directories.PROC_CHORDS + '/demons.csv.formatted'
 
-sequence_vectors(file)
+data, labels = sequence_vectors(file)
+
+for row in zip(data, labels):
+    print(row)
