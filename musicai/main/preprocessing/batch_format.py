@@ -1,4 +1,9 @@
 import os
 import glob
-list(map(lambda song : os.system("python3 chord_creation.py " + song),glob.glob("../../data/processed/*.csv.formatted")))
 
+try:
+    list(map(lambda song: os.system("python3 chord_creation.py " + song),
+             glob.glob("../../data/processed/*.csv.formatted")))
+except:
+    list(map(lambda song: os.system("python3 chord_creation.py " + song),
+             glob.glob("../../data/processed/*.csv.formatted")))
