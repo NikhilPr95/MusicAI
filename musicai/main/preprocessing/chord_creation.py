@@ -35,5 +35,3 @@ for line in g.readlines():
 
 
 
-
-
