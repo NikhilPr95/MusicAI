@@ -31,7 +31,7 @@ def sequence_vectors(csvfilepath):
             print(csvfilepath)
             if csvfile.endswith('csv.formatted'):
                 maxlen = getdata(csvfilepath+'/'+csvfile, data, labels, maxlen)
-
+    print(data)
     for bar in data:
         if len(bar) < maxlen:
             bar.extend([0]*(maxlen-len(bar)))
