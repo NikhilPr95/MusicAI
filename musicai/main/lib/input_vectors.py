@@ -9,7 +9,7 @@ def sequence_vectors(csvfilepath):
 
         for row in rows:
             left_note_inputs = row[1].split('-')
-            bar = [note_val.split('|')[0] for note_val in left_note_inputs if note_val.split('|')[1] != '0']
+            bar = [int(note_val.split('|')[0]) for note_val in left_note_inputs if note_val.split('|')[1] != '0']
 
             if len(bar) > maxlen:
                 maxlen = len(bar)
