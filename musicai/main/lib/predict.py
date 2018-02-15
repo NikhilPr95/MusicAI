@@ -3,8 +3,8 @@
 # completes prediction depending upon algorithm and
 # writes to shared memory
 
-from lib.knn import knn_predict
-from lib.omm import omm_predict
+from musicai.main.lib.knn import knn_predict
+from musicai.main.lib.omm import omm_predict
 
 def predict(prev_bar):
 	if len(prev_bar) < 10:
@@ -12,6 +12,6 @@ def predict(prev_bar):
 	if len(prev_bar) > 10:
 		pass	# crop perhaps	
 	
-	# push to shared memory instead of returning here	
+	# push to shared memory instead of returning here
 	return omm_predict(knn_predict(prev_bar)[0])
 	

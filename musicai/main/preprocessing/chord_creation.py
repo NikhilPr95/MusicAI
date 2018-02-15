@@ -24,7 +24,7 @@ for line in g.readlines():
             if i in left_hand_notes:
                 lhBitMap[i] = "1"
 
-        lhBitMap = lhBitMap[2:]+lhBitMap[:2] #account for C is starting in that Bach dataset.
+        #lhBitMap = lhBitMap[2:]+lhBitMap[:2] #account for C is starting in that Bach dataset.
         chord = "".join(lhBitMap)
         if chord in chords:
             new_file.write(line.strip() + ","+chords[chord] + "\n")
@@ -35,7 +35,7 @@ for line in g.readlines():
                 for i in range(12):
                     if i in left_hand_notes:
                         lhBitMap[i] = "1"
-                lhBitMap = lhBitMap[2:] + lhBitMap[:2]
+                #lhBitMap = lhBitMap[2:] + lhBitMap[:2]
 
             if "".join(lhBitMap) in chords:
                 new_file.write(line.strip() + "," + chords["".join(lhBitMap)] + "\n")
