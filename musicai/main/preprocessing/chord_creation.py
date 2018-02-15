@@ -24,12 +24,26 @@ for line in g.readlines():
             if i in left_hand_notes:
                 lhBitMap[i] = "1"
 
+        lhBitMap = lhBitMap[2:]+lhBitMap[:2] #account for C is starting in that Bach dataset.
         chord = "".join(lhBitMap)
         if chord in chords:
             new_file.write(line.strip() + ","+chords[chord] + "\n")
         else:
-            chord_poss = difflib.get_close_matches(chord, chords.keys(), 1)
-            new_file.write(line.strip() + "," + chords[chord_poss[0]] + "\n")
+            while "".join(lhBitMap) not in chords and len(left_hand_notes) != 0:
+                left_hand_notes = left_hand_notes[:-1]
+                lhBitMap = ["0"] * 12
+                for i in range(12):
+                    if i in left_hand_notes:
+                        lhBitMap[i] = "1"
+                lhBitMap = lhBitMap[2:] + lhBitMap[:2]
+
+            if "".join(lhBitMap) in chords:
+                new_file.write(line.strip() + "," + chords["".join(lhBitMap)] + "\n")
+            else:
+                chord_poss = difflib.get_close_matches(chord, chords.keys(), 1)
+                new_file.write(line.strip() + "," + chords[chord_poss[0]] + "\n")
+
+
     except ValueError:
         print("Exception occured, Value error")
 
