@@ -4,7 +4,7 @@
 # writes to shared memory
 
 from musicai.main.lib.knn import knn_predict
-from musicai.main.lib.omm import omm_predict
+from musicai.main.lib.markov import omm_predict
 
 def predict(prev_bar):
 	if len(prev_bar) < 10:
