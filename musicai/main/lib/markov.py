@@ -9,7 +9,7 @@ from pickle import *
 from musicai.main.lib.input_vectors import sequence_vectors
 
 
-def get_transition_matrices(sequences):
+def transition_matrices(sequences):
 	start_probs = {}
 	transition_probs = {}
 
@@ -35,13 +35,27 @@ def get_transition_matrices(sequences):
 	return [start_probs, transition_probs]
 
 
+def emission_matrix(state_sequence, labels):
+	emission_probs = dict()
+
+	for state, label in zip(state_sequence, labels):
+		emission_probs.setdefault(state, {})
+		emission_probs[state].setdefault(label, 0)
+		emission_probs[state][label] += 1
+
+	emission_probs = {
+		state: {label: count/sum(emission_probs[state].values()) for label, count in emission_probs[state].items()}
+		for state in emission_probs}
+
+	return emission_probs
+
 def omm_train():
 	chord_sequences = []
 	for file_name in glob.glob("musicai/data/processed_chords/*"):
 		data = sequence_vectors(file_name)
 		chord_sequences.append(data[1])
 
-	return get_transition_matrices(chord_sequences)
+	return transition_matrices(chord_sequences)
 
 
 def omm_predict(chord):
