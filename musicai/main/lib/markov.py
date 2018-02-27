@@ -37,7 +37,7 @@ def get_transition_matrices(sequences):
 
 def omm_train():
 	chord_sequences = []
-	for file_name in glob.glob("../../data/processed_chords/*"):
+	for file_name in glob.glob("musicai/data/processed_chords/*"):
 		data = sequence_vectors(file_name)
 		chord_sequences.append(data[1])
 
@@ -45,11 +45,11 @@ def omm_train():
 
 
 def omm_predict(chord):
-	if glob.glob("omm.pkl"):
-		data = load(open("../pickles/omm.pkl", "rb"))
+	if glob.glob("musicai/main/pickles/omm.pkl"):
+		data = load(open("musicai/main/pickles/omm.pkl", "rb"))
 	else:
 		data = omm_train()
-		dump(data, open("../pickles/omm.pkl", "wb"))
+		dump(data, open("musicai/main/pickles/omm.pkl", "wb"))
 
 	max = 0
 	key = "X"
