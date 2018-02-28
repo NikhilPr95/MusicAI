@@ -16,36 +16,18 @@ def sendOutput():
         continue
     print(chordsToPlay)
     while (not (chordsToPlay[0] == -1.0)):
-        chord = chordsToPlay[0]
-        notes = getNotes(chord)
-        for i in range(4):
-            print(notes[i])
-            out.note_on(int(notes[i]), velocity=60)
+        for i in range(len(chordsToPlay)):
+            print(chordsToPlay[i])
+            out.note_on(48 + int(chordsToPlay[i]), velocity=60)
             time.sleep((60 / tempo))
             print("OUT")
-            out.note_off(int(notes[i]), velocity=0)
-
-def getNotes(chord):
-    chords_dataset = open("../../data/chords/chords.data", "r")
-    chords = {}
-    for chord_temp in chords_dataset:
-        chord_arr = chord_temp.split(",")
-        chords[chord_arr[-1].strip()] = "".join(list(map(lambda x: "1" if x == "YES" else "0", chord_arr[2:14])))
-
-    notes = chords[chord]
-    notes = [i for i in range(len(chords)) if chords[i] == "1"] # starting with c
-    #apply broken chords logic
-
-    notes[:] = random.shuffle(notes)
-    return notes
-
-
+            out.note_off(48 + int(chordsToPlay[i]), velocity=0)
+	
 if __name__ == "__main__":
-    tempo = 175.0 #define
+    tempo = 80 #define
     pygame.midi.init()
+    print("test")
     chordsToPlay = sa.attach("shm://notes")
-    for i in range(0, len(chordsToPlay)):
-        chordsToPlay[i] = 0.0
     out = pygame.midi.Output(2)
     sendOutput()
     del out

@@ -7,10 +7,12 @@ from musicai.main.lib.knn import knn_predict
 from musicai.main.lib.markov import omm_predict
 
 def predict(prev_bar):
-	if len(prev_bar) < 10:
-		pass 	# pad with zeros
-	if len(prev_bar) > 10:
-		pass	# crop perhaps	
+	MAX_NOTES = 10
+	
+	if len(prev_bar) < MAX_NOTES:
+		prev_bar += [0] * (MAX_NOTES - len(prev_bar)) 	# pad with zeros
+	if len(prev_bar) > MAX_NOTES:
+		prev_bar = prev_bar[:MAX_NOTES]	# crop perhaps	
 	
 	# push to shared memory instead of returning here
 	return omm_predict(knn_predict(prev_bar)[0])
