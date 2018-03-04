@@ -4,6 +4,7 @@ import glob
 from pickle import load, dump
 from musicai.main.constants.directories import *
 
+
 def knn_predict(right_hand_notes):
 	if glob.glob("musicai/main/pickles/knn.pkl") :
 		clf = load(open("musicai/main/pickles/knn.pkl","rb"))

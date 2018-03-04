@@ -16,4 +16,3 @@ def predict(prev_bar):
 	
 	# push to shared memory instead of returning here
 	return omm_predict(knn_predict(prev_bar)[0])
-	

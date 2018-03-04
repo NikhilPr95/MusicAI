@@ -5,7 +5,10 @@
 import glob
 from pickle import *
 
-# from musicai.main.lib.input_vectors import *
+import os
+
+from hmmlearn import hmm
+from musicai.main.constants import directories
 from musicai.main.lib.input_vectors import sequence_vectors
 
 
@@ -49,6 +52,7 @@ def emission_matrix(state_sequence, labels):
 
 	return emission_probs
 
+
 def omm_train():
 	chord_sequences = []
 	for file_name in glob.glob("musicai/data/processed_chords/*"):
@@ -59,7 +63,7 @@ def omm_train():
 
 
 def omm_predict(chord):
-	if glob.glob("musicai/main/pickles/omm.pkl"):
+	if glob.glob("musicai/main/pickles/omm.pkl"):  # change to os.path.join(directories.MAIN, 'pickles', omm.pkl')
 		data = load(open("musicai/main/pickles/omm.pkl", "rb"))
 	else:
 		data = omm_train()
@@ -73,3 +77,27 @@ def omm_predict(chord):
 			max = data[1][chord][each_chord]
 
 	return key
+
+
+def hmm_train():
+	data, chord_sequences = sequence_vectors(directories.PROCESSED_CHORDS)
+	first_notes = [d[0] for d in data]
+
+	model = hmm.MultinomialHMM(len(set(chord_sequences)))
+
+	model.startprob, model.transmat = transition_matrices(first_notes)
+	model.emissionprob = emission_matrix(first_notes, chord_sequences)
+	model.fit(first_notes)
+
+	return model
+
+
+def hmm_predict(note):
+	if glob.glob(os.path.join(directories.PICKLES, 'hmm.pkl')):
+		model = load(open(os.path.join(directories.PICKLES, 'hmm.pkl', "rb")))
+	else:
+		model = hmm_train()
+		dump(model, open(os.path.join(directories.PICKLES, 'hmm.pkl', "wb")))
+
+	logprob, val = model.decode(note)
+	return logprob, val
