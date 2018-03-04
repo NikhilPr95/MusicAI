@@ -1,17 +1,18 @@
 import sys
+from musicai.main.constants.directories import *
 f = open(sys.argv[1])
 
 tempo = int(f.readline().strip().split(",")[1])
 
 bar_length = (60.0/(tempo/4.0)) * 1000 # in milliseconds
 
-g = open("../../data/processed/" + sys.argv[1].split("/")[-1] + ".formatted","w")
+g = open(PROCESSED + os.path.basename(sys.argv[1]) + ".formatted","w")
 
 header = "Tempo=" + str(tempo) + ",BarLength=" + str(bar_length)
 g.write("Right Hand Notes, Left Hand Notes," + header + "\n")
 
 
-SPLIT_POINT = 60
+SPLIT_POINT = 62
 bar_count = 1
 bars = []
 

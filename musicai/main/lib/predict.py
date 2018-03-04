@@ -7,7 +7,7 @@ from musicai.main.lib.knn import knn_predict
 from musicai.main.lib.markov import omm_predict
 
 def predict(prev_bar):
-	MAX_NOTES = 10
+	MAX_NOTES = 15
 	
 	if len(prev_bar) < MAX_NOTES:
 		prev_bar += [0] * (MAX_NOTES - len(prev_bar)) 	# pad with zeros

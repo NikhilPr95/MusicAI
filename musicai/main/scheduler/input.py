@@ -6,8 +6,13 @@ from pygame.locals import *
 import signal
 import SharedArray as sa
 import numpy as np
+import sys
 from musicai.main.lib.predict import predict
 from musicai.utils.chords import get_notes, get_chord_mapping
+
+if sys.argv[1] == "--test":
+	print(predict([1,2,3,4,5,6,7]))
+	sys.exit()
 
 if sa.list():
 	sa.delete("shm://notes")	

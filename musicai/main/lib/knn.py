@@ -8,7 +8,7 @@ def knn_predict(right_hand_notes):
 	if glob.glob("musicai/main/pickles/knn.pkl") :
 		clf = load(open("musicai/main/pickles/knn.pkl","rb"))
 	else:
-		data = sequence_vectors("musicai/data/processed_chords")
+		data = sequence_vectors("musicai/data/processed_chords", padding = 15)
 		X = data[0]
 		y = data[1]
 		
