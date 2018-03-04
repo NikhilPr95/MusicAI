@@ -3,7 +3,7 @@ import csv
 import os
 
 
-def sequence_vectors(csvfilepath):
+def sequence_vectors(csvfilepath, padding = 0):	# padding is the len of the vector required
     def getdata(csvfile, data, labels, maxlen):
         rows = csv.reader(open(csvfile, "r"))
 
@@ -28,12 +28,13 @@ def sequence_vectors(csvfilepath):
         
     elif os.path.isdir(csvfilepath):
         for csvfile in os.listdir(csvfilepath):
-            print(csvfilepath)
+            #print(csvfilepath)
             if csvfile.endswith('csv.formatted'):
                 maxlen = getdata(csvfilepath+'/'+csvfile, data, labels, maxlen)
-
-    for bar in data:
-        if len(bar) < maxlen:
-            bar.extend([0]*(maxlen-len(bar)))
-    
+    if padding:
+        for bar in data:
+            if len(bar) < padding:
+                bar.extend([0]*(padding-len(bar)))
+            else:
+                bar = bar[:padding]
     return data, labels

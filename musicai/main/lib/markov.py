@@ -12,7 +12,7 @@ from musicai.main.lib.input_vectors import sequence_vectors
 def transition_matrices(sequences):
 	start_probs = {}
 	transition_probs = {}
-
+	
 	for sequence in sequences:
 		if sequence[0] not in start_probs:
 			start_probs[sequence[0]] = 0
@@ -54,7 +54,7 @@ def omm_train():
 	for file_name in glob.glob("musicai/data/processed_chords/*"):
 		data = sequence_vectors(file_name)
 		chord_sequences.append(data[1])
-
+	
 	return transition_matrices(chord_sequences)
 
 
