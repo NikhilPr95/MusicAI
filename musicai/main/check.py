@@ -1,3 +1,4 @@
+import numpy as np
 from musicai.main.constants import directories
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data
 # from musicai.main.lib.markov import transition_matrices
@@ -55,6 +56,9 @@ f_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
 # print(c)
 # print(len(f), len(c))
 
-# hmm_train()
-for f in f_notes:
-	print(f)
+# print(np.concatenate([f for f in f_notes]))
+
+hmm_train()
+
+# for f in f_notes:
+# 	print(f)

@@ -3,6 +3,7 @@
 # has a function, called by predict.py
 # takes a chord, returns next chord in sequence
 import glob
+from collections import OrderedDict
 from pickle import *
 
 import os
@@ -11,7 +12,7 @@ import numpy as np
 from hmmlearn import hmm
 from musicai.main.constants import directories
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data
-from musicai.utils.general import flatten
+from musicai.utils.general import flatten, make_nparray_from_dict
 
 
 def transition_matrices(sequences):
@@ -43,9 +44,12 @@ def transition_matrices(sequences):
 def emission_matrix(state_sequence, labels):
 	emission_probs = dict()
 
-	for state, label in zip(state_sequence, labels):
+	for state in set(state_sequence):
 		emission_probs.setdefault(state, {})
-		emission_probs[state].setdefault(label, 0)
+		for label in set(labels):
+			emission_probs[state].setdefault(label, 0)
+
+	for state, label in zip(state_sequence, labels):
 		emission_probs[state][label] += 1
 
 	emission_probs = {
@@ -103,8 +107,11 @@ def hmm_train():
 	print('tm:', model.transmat)
 	print('em:', emission_dict)
 
-	first_notes = np.array(first_notes)
-	model.fit(first_notes)
+	model.emissionprob, notes, chords = make_nparray_from_dict(emission_dict)
+
+	f_note_array = np.concatenate([f for f in first_notes])
+	f_note_lengths = [len(f) for f in first_notes]
+	model.fit(f_note_array.reshape(-1, 1), lengths=f_note_lengths)
 
 	return model
 
