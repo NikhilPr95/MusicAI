@@ -7,9 +7,11 @@ from pickle import *
 
 import os
 
+import numpy as np
 from hmmlearn import hmm
 from musicai.main.constants import directories
-from musicai.main.lib.input_vectors import sequence_vectors
+from musicai.main.lib.input_vectors import sequence_vectors, parse_data
+from musicai.utils.general import flatten
 
 
 def transition_matrices(sequences):
@@ -80,13 +82,28 @@ def omm_predict(chord):
 
 
 def hmm_train():
-	data, chord_sequences = sequence_vectors(directories.PROCESSED_CHORDS)
-	first_notes = [d[0] for d in data]
+	bar_sequences, chord_sequences = parse_data(directories.PROCESSED_CHORDS)
 
-	model = hmm.MultinomialHMM(len(set(chord_sequences)))
+	print(bar_sequences)
+	first_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
+	for b in bar_sequences:
+		print(b)
+	print('fn:', first_notes)
+	print('cs:', chord_sequences)
+	all_chords = flatten(chord_sequences)
+	all_notes = flatten(first_notes)
+	num_chords = len(set(all_chords))
+	print('NUMCHORDS', num_chords)
+
+	model = hmm.MultinomialHMM(num_chords)
 
 	model.startprob, model.transmat = transition_matrices(first_notes)
-	model.emissionprob = emission_matrix(first_notes, chord_sequences)
+	emission_dict = emission_matrix(all_notes, all_chords)
+	print('sp:', model.startprob)
+	print('tm:', model.transmat)
+	print('em:', emission_dict)
+
+	first_notes = np.array(first_notes)
 	model.fit(first_notes)
 
 	return model

@@ -6,6 +6,7 @@ def get_chord_mapping():
 		chords[chord_arr[-1].strip()] = "".join(list(map(lambda x: "1" if x == "YES" else "0", chord_arr[2:14])))
 	return chords	
 
+
 def get_notes(chord, chords):
 	import random
 	notes = chords[chord]
