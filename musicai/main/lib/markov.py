@@ -90,10 +90,10 @@ def hmm_train():
 
 	print(bar_sequences)
 	first_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
-	for b in bar_sequences:
-		print(b)
-	print('fn:', first_notes)
-	print('cs:', chord_sequences)
+	# for b in bar_sequences:
+	# 	print(b)
+	# print('fn:', first_notes)
+	# print('cs:', chord_sequences)
 	all_chords = flatten(chord_sequences)
 	all_notes = flatten(first_notes)
 	num_chords = len(set(all_chords))
@@ -111,17 +111,22 @@ def hmm_train():
 
 	f_note_array = np.concatenate([f for f in first_notes])
 	f_note_lengths = [len(f) for f in first_notes]
+	print('notes:', notes)
+	print('chords:', chords)
+
+	f_note_array = np.array([(f-62) for f in f_note_array])
+
 	model.fit(f_note_array.reshape(-1, 1), lengths=f_note_lengths)
 
 	return model
 
 
-def hmm_predict(note):
+def hmm_predict(notes):
 	if glob.glob(os.path.join(directories.PICKLES, 'hmm.pkl')):
-		model = load(open(os.path.join(directories.PICKLES, 'hmm.pkl', "rb")))
+		model = load(open(os.path.join(directories.PICKLES, 'hmm.pkl'), "rb"))
 	else:
 		model = hmm_train()
-		dump(model, open(os.path.join(directories.PICKLES, 'hmm.pkl', "wb")))
+		dump(model, open(os.path.join(directories.PICKLES, 'hmm.pkl'), "wb"))
 
-	logprob, val = model.decode(note)
+	logprob, val = model.decode(notes)
 	return logprob, val

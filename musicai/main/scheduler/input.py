@@ -15,7 +15,7 @@ if sys.argv[1] == "--test":
 	sys.exit()
 
 if sa.list():
-	sa.delete("shm://notes")	
+	sa.delete("shm://notes")
 queue = sa.create("shm://notes", 4)
 for i in range(0, len(queue)):
 	queue[i] = 0.0
@@ -34,17 +34,17 @@ def push_notes(signum, frame):
 	global notes_of_bar, chords
 	#print("NOTES OF BAR : ", notes_of_bar)
 	prediction = predict(notes_of_bar)
-	
+
 	print(prediction)
 	notes = get_notes(prediction, chords)
 	print(notes)
 	for i in range(len(notes)):
 		queue[i] = notes[i]
-	
+
 	notes_of_bar = []
 	signal.alarm(bar_length)
 
-notes_of_bar = []	
+notes_of_bar = []
 
 signal.signal(signal.SIGALRM, push_notes)
 signal.alarm(bar_length)
