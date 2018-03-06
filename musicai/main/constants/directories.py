@@ -1,7 +1,10 @@
 import os
 
-MUSICAI = 'musicai'
-MAIN = os.path.join(MUSICAI, 'main')
-PICKLES = os.path.join(MAIN, 'pickles')
-DATA = os.path.join(MUSICAI, 'data')
-PROCESSED_CHORDS = os.path.join(DATA, 'processed_chords')
+MUSICAI = os.path.join('musicai',"")
+DATA = os.path.join(MUSICAI, 'data',"")
+RAW = os.path.join(DATA, "raw","")
+MAIN = os.path.join(MUSICAI, "main","")
+PREPROCESSING = os.path.join(MAIN,"preprocessing","")
+PROCESSED = os.path.join(DATA, "processed","")
+CHORDS = os.path.join(DATA,"chords","")
+PROCESSED_CHORDS = os.path.join(DATA, 'processed_chords',"")

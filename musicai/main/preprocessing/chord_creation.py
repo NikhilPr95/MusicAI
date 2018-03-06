@@ -1,8 +1,9 @@
 import sys, difflib
-
-g = open("../../data/processed/" + sys.argv[1].split("/")[-1], "r")
-new_file = open("../../data/processed_chords/"+sys.argv[1].split("/")[-1], "w+")
-chords_dataset = open("../../data/chords/chords.data", "r")
+from musicai.main.constants.directories import *
+print(PROCESSED + os.path.basename(sys.argv[1]))
+g = open(PROCESSED + os.path.basename(sys.argv[1]), "r")
+new_file = open(PROCESSED_CHORDS+os.path.basename(sys.argv[1]), "w+")
+chords_dataset = open(os.path.join(CHORDS,"chords.data"), "r")
 chords = {}
 for chord in chords_dataset:
     chord_arr = chord.split(",")
@@ -45,7 +46,8 @@ for line in g.readlines():
 
 
     except ValueError:
+        print(line)
         print("Exception occured, Value error")
-
+new_file.close()
 
 
