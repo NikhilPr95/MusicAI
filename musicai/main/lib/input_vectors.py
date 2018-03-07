@@ -11,9 +11,7 @@ def sequence_vectors(csvfilepath, padding = 0):	# padding is the len of the vect
 		rows = csv.reader(open(csvfile, "r"))
 
 		for row in rows:
-			print(row)
 			right_note_inputs = row[0].split('-')
-			print('rn:', right_note_inputs)
 			if right_note_inputs[0] != '':
 				bar = [int(note_val.split('|')[0]) for note_val in right_note_inputs if note_val.split('|')[1] != '0']
 
@@ -46,7 +44,7 @@ def sequence_vectors(csvfilepath, padding = 0):	# padding is the len of the vect
 	return data, labels
 
 
-def parse_data(csvfilepath):
+def parse_data(csvfilepath, padding=0):
 	"""
 	Parses csvs and returns bar and chord seqeunces
 	Args:
@@ -59,7 +57,7 @@ def parse_data(csvfilepath):
 	chord_sequences = []
 	for csvfile in glob.glob(os.path.join(directories.PROCESSED_CHORDS, '*')):
 		print('file:', csvfile)
-		data = sequence_vectors(csvfile)
+		data = sequence_vectors(csvfile, padding)
 		bar_sequences.append(data[0])
 		chord_sequences.append(data[1])
 

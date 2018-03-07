@@ -1,0 +1,1 @@
+MAX_NOTES = 15
