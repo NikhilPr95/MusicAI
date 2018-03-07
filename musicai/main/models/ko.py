@@ -4,24 +4,15 @@ from musicai.main.models.knn import KNN
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data
 from musicai.main.constants.values import MAX_NOTES
 
+
 class KO(Base):
     def __init__(self):
         Base.__init__(self)
         self.knn = KNN()
         self.omm = OMM()
 
-    def fit(self, train , y=None):
-        data = parse_data(train, padding=15)
-        X = data[0]
-        y = data[1]
-        self.knn.fit(X, y)
-        print(X)
-        # omm
-        chord_sequences = []
-        for file_name in train:
-            data = sequence_vectors(file_name)
-            chord_sequences.append(data[1])
-
+    def fit(self, bar_sequences, chord_sequences):
+        self.knn.fit(bar_sequences, chord_sequences)
         self.omm.fit(chord_sequences)
 
     def predict(self, bar_sequence):

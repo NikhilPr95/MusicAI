@@ -8,6 +8,7 @@ from pickle import load, dump
 from musicai.main.constants.directories import *
 from musicai.main.lib.markov import transition_matrices
 
+
 class OMM(Base):
 
     def __init__(self):
