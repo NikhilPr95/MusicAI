@@ -4,32 +4,40 @@ from musicai.main.models.ko import KO
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data
 from musicai.tests.metrics import percentage
 from musicai.utils.general import *
-import os
+import os,time
+from musicai.main.constants.values import *
+from musicai.main.constants.directories import *
 def splitData():
  
-	musicFiles = glob.glob(os.path.join(directories.PROCESSED_CHORDS,"*"))
+	musicFiles_ = glob.glob(os.path.join(directories.PROCESSED_CHORDS,"*"))
+	random.shuffle(musicFiles_)
+	musicFiles = [f for f in musicFiles_ if len(open(f).readlines()) > BAR_THRESHOLD]
 	length = len(musicFiles)
 	
-	random.shuffle(musicFiles)
-	trainData = musicFiles[:int(0.6*length)]
-	valData = musicFiles[int(0.6 * length):int(0.8 * length)]
+	trainData = musicFiles[:int(0.8*length)]+list(set(musicFiles_) - set(musicFiles))
+	valData = []#musicFiles[int(0.6 * length):int(0.8 * length)]
 	testData = musicFiles[int(0.8 * length):]
 	
+	print("------")
+	print(len(trainData),len(testData))
+	print("-----")
 	return trainData, valData, testData
 
 def fitModel(option, train):
 	obj = None
 	'''
-	data = sequence_vectors(train, padding=15)
+	data = sequence_vectors(train, padding= 15)
 	X = data[0]
 	y = data[1]
 	X = flatten(X)
 	y = flatten(y)
 	lengths = [len(x) for x in y]
 	'''
+	os.remove(PICKLES+"knn.pkl")
+	os.remove(PICKLES + "omm.pkl")
 	if option == 1:
 		obj = KO()
-		bar_sequences,chord_sequences = parse_data(train, padding=15)
+		bar_sequences,chord_sequences = parse_data(train, padding=MAX_NOTES)
 		obj.fit(bar_sequences,chord_sequences)
 	
 	elif option == 2:
@@ -41,7 +49,7 @@ def fitModel(option, train):
 	
 	return obj
 
-def testModel():
+def checkModel():
 	print("Your options for the model : ")
 	print(" 1) KNN and OMM")
 	print(" 2) HMM ")
@@ -50,7 +58,7 @@ def testModel():
 	
 	dataset = splitData()
 	test = dataset[2]
-	songs_bar_sequences, songs_chord_sequences = parse_data(test,padding=15)
+	songs_bar_sequences, songs_chord_sequences = parse_data(test,padding=MAX_NOTES)
 	
 	
 	if option == 1:
@@ -65,6 +73,7 @@ def testModel():
 				predicted_omm[-1].append(result[1])
 	
 		#the predicted and song_chord_sequences is for each song, so we have to iterate through the song and combine all values to one list
+		print("Length of test : "+str(len(flatten(predicted_knn))))
 		perc_knn = percentage(flatten(songs_chord_sequences),flatten(predicted_knn))
 		return perc_knn, percentage([chord_sequence for chord_sequences in songs_chord_sequences for chord_sequence in chord_sequences[1:]],flatten(predicted_omm))
 	
@@ -76,4 +85,4 @@ def testModel():
 
 
 if __name__ == "__main__":
-	print(testModel())
+	print(checkModel())
