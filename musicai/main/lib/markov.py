@@ -90,33 +90,23 @@ def hmm_train():
 
 	print(bar_sequences)
 	first_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
-	# for b in bar_sequences:
-	# 	print(b)
-	# print('fn:', first_notes)
-	# print('cs:', chord_sequences)
 	all_chords = flatten(chord_sequences)
 	all_notes = flatten(first_notes)
 	num_chords = len(set(all_chords))
-	print('NUMCHORDS', num_chords)
 
 	model = hmm.MultinomialHMM(num_chords)
 
 	model.startprob, model.transmat = transition_matrices(first_notes)
 	emission_dict = emission_matrix(all_notes, all_chords)
-	print('sp:', model.startprob)
-	print('tm:', model.transmat)
-	print('em:', emission_dict)
 
 	model.emissionprob, notes, chords = make_nparray_from_dict(emission_dict)
 
 	f_note_array = np.concatenate([f for f in first_notes])
 	f_note_lengths = [len(f) for f in first_notes]
-	print('notes:', notes)
-	print('chords:', chords)
 
-	f_note_array = np.array([(f-62) for f in f_note_array])
+	f_note_delta = np.array([(f-min(f_note_array)) for f in f_note_array])
 
-	model.fit(f_note_array.reshape(-1, 1), lengths=f_note_lengths)
+	model.fit(f_note_delta.reshape(-1, 1), lengths=f_note_lengths)
 
 	return model
 
