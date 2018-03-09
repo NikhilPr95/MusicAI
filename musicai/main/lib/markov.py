@@ -86,7 +86,7 @@ def omm_predict(chord):
 
 
 def hmm_train():
-	bar_sequences, chord_sequences = parse_data(directories.PROCESSED_CHORDS)
+	bar_sequences, chord_sequences = parse_data(glob.glob(directories.PROCESSED_CHORDS))
 
 	print(bar_sequences)
 	first_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
@@ -101,22 +101,34 @@ def hmm_train():
 
 	model.emissionprob, notes, chords = make_nparray_from_dict(emission_dict)
 
-	f_note_array = np.concatenate([f for f in first_notes])
-	f_note_lengths = [len(f) for f in first_notes]
+	possible_notes = [i for i in range(62, 96)]
+	possible_note_lengths = [1 for _ in range(62, 96)]
 
-	f_note_delta = np.array([(f-min(f_note_array)) for f in f_note_array])
+	f_note_data = [f for flist in first_notes for f in flist] + possible_notes
+	f_note_array = np.array(f_note_data)
+	f_note_lengths = [len(f) for f in first_notes] + possible_note_lengths
+
+	print('fn:', len(f_note_array))
+	print('sum:', sum(f_note_lengths))
+	# print(f_note_array)
+	minval = 62  # min(f_note_array)
+	f_note_delta = np.array([(f - minval) for f in f_note_array])
+	# print('fnotedelta:', f_note_delta)
+	# print('fnotelengths:', f_note_lengths)
 
 	model.fit(f_note_delta.reshape(-1, 1), lengths=f_note_lengths)
+
+	# self.clf = model
 
 	return model
 
 
 def hmm_predict(notes):
-	if glob.glob(os.path.join(directories.PICKLES, 'hmm.pkl')):
-		model = load(open(os.path.join(directories.PICKLES, 'hmm.pkl'), "rb"))
-	else:
-		model = hmm_train()
-		dump(model, open(os.path.join(directories.PICKLES, 'hmm.pkl'), "wb"))
+	# if glob.glob(os.path.join(directories.PICKLES, 'hmm.pkl')):
+	# 	model = load(open(os.path.join(directories.PICKLES, 'hmm.pkl'), "rb"))
+	# else:
+	model = hmm_train()
+	dump(model, open(os.path.join(directories.PICKLES, 'hmm.pkl'), "wb"))
 
 	logprob, val = model.decode(notes)
 	return logprob, val

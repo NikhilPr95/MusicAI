@@ -14,6 +14,7 @@ class HMM(Base):
 	def __init__(self):
 		Base.__init__(self)
 		self.clf = None
+		self.chords = None
 
 	def fit(self, bar_sequences, chord_sequences):
 		first_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
@@ -27,17 +28,31 @@ class HMM(Base):
 		emission_dict = emission_matrix(all_notes, all_chords)
 
 		model.emissionprob, notes, chords = make_nparray_from_dict(emission_dict)
+		self.chords = chords
+		possible_notes = [i for i in range(62, 97)]
+		possible_note_lengths =[1 for _ in range(62,97)]
 
-		f_note_array = np.concatenate([f for f in first_notes])
-		f_note_lengths = [len(f) for f in first_notes]
+		f_note_data = [f for flist in first_notes for f in flist] + possible_notes
+		f_note_array = np.array(f_note_data)
+		f_note_lengths = [len(f) for f in first_notes] + possible_note_lengths
 
-		f_note_delta = np.array([(f - min(f_note_array)) for f in f_note_array])
+		print('fn:', len(f_note_array))
+		print('sum:', sum(f_note_lengths))
+		# print(f_note_array)
+		minval = 62 # min(f_note_array)
+		f_note_delta = np.array([(f - minval) for f in f_note_array])
+		# print('fnotedelta:', f_note_delta)
+		# print('fnotelengths:', f_note_lengths)
 
 		model.fit(f_note_delta.reshape(-1, 1), lengths=f_note_lengths)
 
 		self.clf = model
 
 	def predict(self, notes):
-
+		print('notes:', notes)
+		notes = np.array([(n-62) for n in notes]).reshape(-1, 1)
 		logprob, val = self.clf.decode(notes)
+		print('val:', val)
+		val = [self.chords[v] for v in val]
+		print('val2:', val)
 		return logprob, val
