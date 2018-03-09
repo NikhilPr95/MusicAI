@@ -38,9 +38,9 @@ def longest_good_run(actual, predicted, fn = str.__eq__):
 				maxlen = count
 		else:
 			count = 0
-	return maxlen/actual
+	return maxlen/len(actual)
 def longest_bad_run(actual, predicted):
 	'''
 	returns fraction of longest sequence for which chord prediction was incorrect
 	'''
-	longest_good_run(actual, predicted, fn = str.__ne__)
+	return longest_good_run(actual, predicted, fn = str.__ne__)

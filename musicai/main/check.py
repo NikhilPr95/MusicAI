@@ -1,3 +1,5 @@
+import glob
+
 import numpy as np
 from musicai.main.constants import directories
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data
@@ -16,23 +18,23 @@ from musicai.main.lib.input_vectors import sequence_vectors, parse_data
 from musicai.main.lib.markov import hmm_train, hmm_predict
 
 #hmm_train()
-bar_sequences, chord_sequences = parse_data(directories.PROCESSED_CHORDS)
+bar_sequences, chord_sequences = parse_data(glob.glob(directories.PROCESSED_CHORDS))
 
 
-for b in bar_sequences:
-	print(b)
-
+# for b in bar_sequences:
+# 	print(b)
+#
 # for bar_sequence in bar_sequences:
 # 	for bar in bar_sequence:
 # 		print(bar)
 # 		x = bar[0]
-#
 
-# f_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
-#
-# for row in zip(f_notes, chord_sequences):
-# 	for r in zip(row[0], row[1]):
-# 		print(r)
+
+f_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
+
+for row in zip(f_notes, chord_sequences):
+	for r in zip(row[0], row[1]):
+		print(r)
 #
 # print(bar_sequences)
 # print(len(bar_sequences))
@@ -72,5 +74,5 @@ hmm_train()
 x = np.array([0,1,2,1,1,1]).reshape(-1,1)
 x = np.array([0,]).reshape(-1,1)
 print(hmm_predict(x))
-# for f in f_notes:
-# 	print(f)
+for f in f_notes:
+	print(f)
