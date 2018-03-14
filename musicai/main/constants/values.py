@@ -1,4 +1,5 @@
 MAX_NOTES = 15
+BAR_THRESHOLD = 20
 
 CHORDS = ['D_M',
           'G_M',

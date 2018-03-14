@@ -13,11 +13,12 @@ class KO(Base):
 	def fit(self, bar_sequences, chord_sequences):
 		bar_sequences_ = flatten(bar_sequences)
 		chord_sequences_ = flatten(chord_sequences)
-		print(len(chord_sequences_),len(bar_sequences_))
+		print(set([len(x) for x in bar_sequences_]))
 		self.knn.fit(bar_sequences_, chord_sequences_)
 		self.omm.fit(chord_sequences)
 
 	def predict(self, bar_sequence):
+		print(bar_sequence)
 		if len(bar_sequence) < MAX_NOTES:
 			bar_sequence += [0] * (MAX_NOTES - len(bar_sequence))  # pad with zeros
 		if len(bar_sequence) > MAX_NOTES:
