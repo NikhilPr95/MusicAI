@@ -44,7 +44,8 @@ def sequence_vectors(csvfilepath, padding = 0):	# padding is the len of the vect
 	return data, labels
 
 
-def parse_data(csvfilepath, padding=0):
+# TODO: change this to take in list of csvs
+def parse_data(csvfiles, padding=0):
 	"""
 	Parses csvs and returns bar and chord seqeunces
 	Args:
@@ -55,7 +56,9 @@ def parse_data(csvfilepath, padding=0):
 	"""
 	bar_sequences = []
 	chord_sequences = []
-	for csvfile in glob.glob(os.path.join(directories.PROCESSED_CHORDS, '*')):
+	# for csvfile in glob.glob(os.path.join(directories.PROCESSED_CHORDS, '*')):
+	print(len(csvfiles))
+	for csvfile in csvfiles:
 		print('file:', csvfile)
 		data = sequence_vectors(csvfile, padding)
 		bar_sequences.append(data[0])

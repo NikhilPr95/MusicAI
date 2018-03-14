@@ -18,7 +18,17 @@ from musicai.utils.general import flatten, make_nparray_from_dict
 def transition_matrices(sequences):
 	start_probs = {}
 	transition_probs = {}
-	
+
+	print('s:', sequences)
+	seq = flatten(sequences)
+	for state in set(seq):
+		transition_probs.setdefault(state, {})
+		for label in set(seq):
+			transition_probs[state].setdefault(label, 0.0)
+
+	for state in set(seq):
+		start_probs.setdefault(state, 0.0)
+
 	for sequence in sequences:
 		if sequence[0] not in start_probs:
 			start_probs[sequence[0]] = 0
@@ -33,7 +43,8 @@ def transition_matrices(sequences):
 	for state in transition_probs:
 		sum_values = sum(transition_probs[state].values())
 		for each_chord in transition_probs[state]:
-			transition_probs[state][each_chord] = transition_probs[state][each_chord] / sum_values
+			transition_probs[state][each_chord] = transition_probs[state][each_chord] / sum_values \
+				if sum_values != 0 else 0
 
 	sum_probs = sum(start_probs.values())
 	for i in start_probs:

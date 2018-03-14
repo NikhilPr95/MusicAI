@@ -24,7 +24,12 @@ class HMM(Base):
 
 		model = hmm.MultinomialHMM(num_chords)
 
-		model.startprob, model.transmat = transition_matrices(first_notes)
+		startprobs, transmat = transition_matrices(first_notes)
+		model.transmat, _, _ = make_nparray_from_dict(transmat)
+		model.startprob, _, _ = make_nparray_from_dict(startprobs)
+
+		# model.startprob, model.transmat = transition_matrices(first_notes)
+
 		emission_dict = emission_matrix(all_notes, all_chords)
 
 		model.emissionprob, notes, chords = make_nparray_from_dict(emission_dict)
@@ -32,12 +37,16 @@ class HMM(Base):
 		possible_notes = [i for i in range(62, 97)]
 		possible_note_lengths =[1 for _ in range(62,97)]
 
+
+		print('s:', model.startprob)
+		print('t:', model.transmat)
+		print('e:', model.emissionprob)
+
 		f_note_data = [f for flist in first_notes for f in flist] + possible_notes
 		f_note_array = np.array(f_note_data)
 		f_note_lengths = [len(f) for f in first_notes] + possible_note_lengths
 
-		print('fn:', len(f_note_array))
-		print('sum:', sum(f_note_lengths))
+
 		# print(f_note_array)
 		minval = 62 # min(f_note_array)
 		f_note_delta = np.array([(f - minval) for f in f_note_array])
@@ -49,10 +58,13 @@ class HMM(Base):
 		self.clf = model
 
 	def predict(self, notes):
-		print('notes:', notes)
+		# print('notes:', notes)
 		notes = np.array([(n-62) for n in notes]).reshape(-1, 1)
+
+		# self.clf.fit(notes)
+
 		logprob, val = self.clf.decode(notes)
-		print('val:', val)
+		# print('val:', val)
 		val = [self.chords[v] for v in val]
-		print('val2:', val)
+		# print('val2:', val)
 		return logprob, val

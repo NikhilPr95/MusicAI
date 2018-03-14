@@ -4,6 +4,7 @@ import glob, random
 from musicai.main.models.hmm import HMM
 from musicai.main.models.ko import KO
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data
+from musicai.main.models.pyhmm import PyHMM
 from musicai.tests.metrics import percentage
 from musicai.utils.general import *
 import os
@@ -37,8 +38,10 @@ def fitModel(option, train):
 		obj.fit(bar_sequences, chord_sequences)
 
 	elif option == 3:
-		pass
-
+		obj = PyHMM()
+		print('train:', train)
+		bar_sequences, chord_sequences = parse_data(train, padding=3)
+		obj.fit(bar_sequences, chord_sequences)
 
 	return obj
 
@@ -53,7 +56,7 @@ def checkModel():
 	dataset = splitData()
 	test = dataset[2]
 	# songs_bar_sequences, songs_chord_sequences = parse_data(test, padding=15)
-	songs_bar_sequences, songs_chord_sequences = parse_data(test)
+	songs_bar_sequences, songs_chord_sequences = parse_data(test, padding=3)
 
 	if option == 1:
 		print('train:', dataset[0])
@@ -95,6 +98,24 @@ def checkModel():
 		return perc
 
 	elif option == 3:
+		print('train:', dataset[0])
+		obj = fitModel(option, dataset[0])
+		predicted_chords = []
+		for bar_sequences in songs_bar_sequences:
+			predicted_chords.append([])
+			for bar_sequence in bar_sequences:
+				pred_chords = obj.predict(bar_sequence)
+				predicted_chords[-1].append(pred_chords)
+
+		print('predicted:', predicted_chords)
+		for pc in predicted_chords:
+			print('pc:', pc)
+
+		predicted_chords = [x[-1] for x in flatten(predicted_chords)]
+		perc = percentage(flatten(songs_chord_sequences), predicted_chords)
+		return perc
+
+	elif option == 4:
 		print("Haha! You thought null pointer, didn't you? \n Coming soon!\n\n\n\n The RNN, not the null pointer")
 
 
