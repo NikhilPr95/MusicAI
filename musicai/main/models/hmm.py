@@ -3,6 +3,7 @@ import glob
 import numpy as np
 from hmmlearn import hmm
 from musicai.main.constants import directories
+from musicai.main.constants.values import CHORDS
 from musicai.main.lib.markov import transition_matrices, emission_matrix
 from musicai.main.models.base import Base
 from musicai.utils.general import flatten, make_nparray_from_dict
@@ -24,13 +25,28 @@ class HMM(Base):
 
 		model = hmm.MultinomialHMM(num_chords)
 
-		startprobs, transmat = transition_matrices(first_notes)
+		startprobs, transmat = transition_matrices(chord_sequences)
+		emission_dict = emission_matrix(all_chords, all_notes)
+
+		for key in CHORDS:
+			startprobs.setdefault(key, 0.0)
+			startprobs[key] += 0.1
+
+		for key in CHORDS:
+			transmat.setdefault(key, {})
+			for val in CHORDS:
+				transmat[key].setdefault(val, 0.0)
+				transmat[key][val] += 0.1
+
+		for key in CHORDS:
+			emission_dict.setdefault(key, {})
+			for val in range(62, 96):
+				emission_dict[key].setdefault(val, 0.0)
+				emission_dict[key][val] += 0.1
+
 		model.transmat, _, _ = make_nparray_from_dict(transmat)
 		model.startprob, _, _ = make_nparray_from_dict(startprobs)
 
-		# model.startprob, model.transmat = transition_matrices(first_notes)
-
-		emission_dict = emission_matrix(all_notes, all_chords)
 
 		model.emissionprob, notes, chords = make_nparray_from_dict(emission_dict)
 		self.chords = chords
