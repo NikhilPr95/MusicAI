@@ -4,9 +4,10 @@ import glob
 import os
 
 from musicai.main.constants import directories
+from musicai.utils.chords import reduce
 
 
-def sequence_vectors(csvfilepath, padding = 0):	# padding is the len of the vector required
+def sequence_vectors(csvfilepath, padding = None, chords=False, octave=False, reduce_chords=False):	# padding is the len of the vector required
 	def getdata(csvfile, data, labels, maxlen):
 		rows = csv.reader(open(csvfile, "r"))
 
@@ -14,13 +15,19 @@ def sequence_vectors(csvfilepath, padding = 0):	# padding is the len of the vect
 			right_note_inputs = row[0].split('-')
 			if right_note_inputs[0] != '':
 				bar = [int(note_val.split('|')[0]) for note_val in right_note_inputs if note_val.split('|')[1] != '0']
+				if octave:
+					bar = [b % 12 for b in bar]
 
 				if len(bar):
 					if len(bar) > maxlen:
 						maxlen = len(bar)
 
 					data.append(bar)
-					labels.append(row[2])
+					label = row[2]
+					if reduce_chords:
+						labels.append(reduce(label))
+					else:
+						labels.append(label)
 
 		return maxlen
 
@@ -38,13 +45,16 @@ def sequence_vectors(csvfilepath, padding = 0):	# padding is the len of the vect
 	if padding:
 		for bar in data:
 			if len(bar) < padding:
-				bar.extend([0]*(padding-len(bar)))
+				if chords:
+					bar.extend([62]*(padding-len(bar)))
+				else:
+					bar.extend([0]*(padding-len(bar)))
 			else:
 				del bar[padding:]
 	return data, labels
 
 
-def parse_data(csvfilepaths, padding=0):
+def parse_data(csvfilepaths, padding=None, chords=False, octave=False, reduce_chords=False):
 	"""
 	Parses csvs and returns bar and chord seqeunces
 	Args:
@@ -57,7 +67,7 @@ def parse_data(csvfilepaths, padding=0):
 	chord_sequences = []
 	for csvfile in csvfilepaths:
 		print('file:', csvfile)
-		data = sequence_vectors(csvfile, padding)
+		data = sequence_vectors(csvfile, padding, chords, octave, reduce_chords)
 		bar_sequences.append(data[0])
 		chord_sequences.append(data[1])
 

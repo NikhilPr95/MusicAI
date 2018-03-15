@@ -1,3 +1,11 @@
+import glob
+
+import os
+from musicai.main.constants import directories
+# from musicai.main.lib.input_vectors import parse_data
+from musicai.utils.general import flatten
+
+
 def get_chord_mapping():
 	chords_dataset = open("musicai/data/chords/chords.data", "r").readlines()[::-1]
 	chords = {}
@@ -18,3 +26,25 @@ def get_notes(chord, chords):
 	
 	return notes
 
+
+def reduce(chord_string):
+	return chord_string[0]
+
+
+def count_chords():
+	musicfiles = glob.glob(os.path.join(directories.PROCESSED_CHORDS, "*"))
+	# _, chord_sequences = parse_data(musicfiles)
+	# chords = flatten(chord_sequences)
+	# print(chords)
+
+	chordDict = dict()
+	for file_name in musicfiles:
+		f = open(file_name)
+		for line in f:
+			chord = line.strip().split(",")[-1]
+			if chord not in chordDict:
+				chordDict[chord] = 0
+			chordDict[chord] += 1
+		f.close()
+
+	return chordDict
