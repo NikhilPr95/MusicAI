@@ -23,7 +23,7 @@ from musicai.main.models.pyhmm import PyHMM
 from musicai.utils.general import flatten
 
 musicfiles = glob.glob(os.path.join(directories.PROCESSED_CHORDS, "*"))
-bar_sequences, chord_sequences = parse_data(musicfiles)
+bar_sequences, chord_sequences = parse_data(musicfiles, reduce_chords=True, octave=True)
 #
 #
 # # for b in bar_sequences:
@@ -80,6 +80,6 @@ print('csnf:', ngram_chord_sequences)
 # ph.predict([72])
 from musicai.utils.chords import count_chords
 
-x = (count_chords())
-print(x)
-print(sum(x.values()))
+# x = (count_chords())
+# print(x)
+# print(sum(x.values()))

@@ -4,6 +4,7 @@ import glob
 import os
 
 from musicai.main.constants import directories
+from musicai.main.constants.values import SIMPLE_CHORDS
 from musicai.utils.chords import reduce
 
 
@@ -58,10 +59,20 @@ def ngram_vector(sequences, n):
 	sequences_ngrams = []
 	for sequence in sequences:
 		sequences_ngrams.append([])
-		for i in range(n, len(sequences) + 1):
+		for i in range(n, len(sequence) + 1):
 			sequences_ngrams[-1].append(sequence[i - n: i])
 
 	return sequences_ngrams
+
+
+def create_ngram_feature_matrix(ngram_f_note_sequences, ngram_chord_sequences):
+	X, y = [], []
+	for f_note_ngram, chord_ngram in zip(ngram_f_note_sequences, ngram_chord_sequences):
+		chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
+		X.append(f_note_ngram + chord_ngram_numbers[:-1])
+		y.append(chord_ngram_numbers[-1])
+
+	return X, y
 
 
 def get_first_note_sequences(bar_sequences):

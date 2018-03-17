@@ -3,7 +3,8 @@ import glob, random
 
 from musicai.main.models.hmm import HMM
 from musicai.main.models.ko import KO
-from musicai.main.lib.input_vectors import sequence_vectors, parse_data
+from musicai.main.lib.input_vectors import sequence_vectors, parse_data, get_first_note_sequences, ngram_vector
+from musicai.main.models.mlp import MLP
 from musicai.tests.metrics import percentage, precision, recall, longest_bad_run, longest_good_run
 from musicai.main.models.pyhmm import PyHMM
 from musicai.tests.metrics import percentage
@@ -60,6 +61,11 @@ def fitModel(option, train):
 		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
 		obj.fit(bar_sequences, chord_sequences)
 
+	elif option == 5:
+		obj = MLP()
+		print('train:', train)
+		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
+		obj.fit(bar_sequences, chord_sequences)
 	return obj
 
 
@@ -71,12 +77,12 @@ def checkModel():
 	print(" 4) PyHMM Ngrams")
 	print(" 5) RNN (Coming soon) :) ")
 	# option = int(input("Enter your choice : "))
-	option = 3
+	option = 5
 
 	dataset = splitData()
 	test = dataset[2]
 
-	bar_sequences, chord_sequences = parse_data(dataset[0], octave=True, reduce_chords=True)
+	bar_sequences, chord_sequences = parse_data(dataset[2], octave=True, reduce_chords=True)
 
 	percs = []
 
@@ -146,37 +152,23 @@ def checkModel():
 		print('train:', dataset[0])
 		obj = fitModel(option, dataset[0])
 		predicted_chords = []
-		actual_chords = []
-		ngram_chords = []
 		print('\n\n\n\n')
 		print(len(bar_sequences))
+		n = obj.ngramlength
 
-		first_note_sequences = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
-		for first_note_sequence, chord_sequence in zip(first_note_sequences, chord_sequences):
-			print('f:', first_note_sequence)
-			print('c:', chord_sequence)
-			print(len(first_note_sequence), len(chord_sequence))
-			predicted_chords.append([])
-			actual_chords.append([])
-			ngram_chords.append([])
-			n = obj.ngramlength
-			for i in range(n, len(first_note_sequence)):
-				input_notes = first_note_sequence[i-n:i]
-				pred_chords = obj.predict(input_notes)
-				predicted_chords[-1].append(pred_chords)
-				actual_chords[-1].append(chord_sequence[i-1])
-				ngram_chords[-1].append(chord_sequence[i-n:i])
+		first_note_sequences = get_first_note_sequences(bar_sequences)
 
-		print('predicted:', predicted_chords)
-		print('ngram chords:', ngram_chords)
-		print('actual:', actual_chords)
+		first_note_sequence_ngrams, \
+		chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
 
-		for pc, nc, ac in zip(predicted_chords, ngram_chords, actual_chords):
-			for p, n, a in zip(pc, nc, ac):
-				print('p n a', p, n, a)
+		ngram_chord_sequences = flatten(chord_sequence_ngrams)
+		ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
 
-		predicted_chords = [x[-1] for x in flatten(predicted_chords)]
+		for f_note_ngram in ngram_f_note_sequences:
+			predicted_chords.append(obj.predict(f_note_ngram))
 
+		predicted_chords = [x[-1] for x in predicted_chords]
+		actual_chords = [x[-1] for x in ngram_chord_sequences]
 
 		perc = percentage(flatten(actual_chords), predicted_chords)
 		percs.append(perc)
@@ -218,7 +210,34 @@ def checkModel():
 
 		perc = percentage(flatten(actual_chords), predicted_chords)
 		percs.append(perc)
+
 	elif option == 5:
+		print('train:', dataset[0])
+		obj = fitModel(option, dataset[0])
+		predicted_chords = []
+		print('\n\n\n\n')
+		print(len(bar_sequences))
+		n = obj.ngramlength
+
+		first_note_sequences = get_first_note_sequences(bar_sequences)
+
+		first_note_sequence_ngrams, \
+		chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
+
+		ngram_chord_sequences = flatten(chord_sequence_ngrams)
+		ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
+
+		for f_note_ngram, chord_ngram in zip(ngram_f_note_sequences, ngram_chord_sequences):
+			chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
+			predicted_chords.append(obj.predict(f_note_ngram + chord_ngram_numbers[:-1]))
+
+		predicted_chords = [x[-1] for x in predicted_chords]
+		actual_chords = [x[-1] for x in ngram_chord_sequences]
+
+		perc = percentage(flatten(actual_chords), predicted_chords)
+		percs.append(perc)
+
+	elif option == 6:
 		print("Haha! You thought null pointer, didn't you? \n Coming soon!\n\n\n\n The RNN, not the null pointer")
 
 	return percs
