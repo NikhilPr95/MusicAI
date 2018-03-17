@@ -11,6 +11,8 @@ from musicai.utils.general import *
 import os,time
 from musicai.main.constants.values import *
 from musicai.main.constants.directories import *
+
+
 def splitData():
 
 	musicFiles_ = glob.glob(os.path.join(directories.PROCESSED_CHORDS,"*"))
