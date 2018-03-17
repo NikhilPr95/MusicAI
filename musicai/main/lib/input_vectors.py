@@ -54,6 +54,20 @@ def sequence_vectors(csvfilepath, padding = None, chords=False, octave=False, re
 	return data, labels
 
 
+def ngram_vector(sequences, n):
+	sequences_ngrams = []
+	for sequence in sequences:
+		sequences_ngrams.append([])
+		for i in range(n, len(sequences) + 1):
+			sequences_ngrams[-1].append(sequence[i - n: i])
+
+	return sequences_ngrams
+
+
+def get_first_note_sequences(bar_sequences):
+	return [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
+
+
 def parse_data(csvfilepaths, padding=None, chords=False, octave=False, reduce_chords=False):
 	"""
 	Parses csvs and returns bar and chord seqeunces
