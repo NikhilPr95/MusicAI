@@ -1,15 +1,21 @@
 import sys, difflib
 from musicai.main.constants.directories import *
 print(PROCESSED + os.path.basename(sys.argv[1]))
-g = open(PROCESSED + os.path.basename(sys.argv[1]), "r")
-new_file = open(PROCESSED_CHORDS+os.path.basename(sys.argv[1]), "w+")
+print(sys.argv)
+if "--time" in sys.argv:
+	path = PROCESSED_CHORDS_TIME
+	read_path = PROCESSED_TIME
+else:
+	path = PROCESSED_CHORDS
+	read_path = PROCESSED
+g = open(read_path + os.path.basename(sys.argv[1]), "r")
+new_file = open(path+os.path.basename(sys.argv[1]), "w+")
 chords_dataset = open(os.path.join(CHORDS,"chords.data"), "r")
 chords = {}
 for chord in chords_dataset:
     chord_arr = chord.split(",")
     chords["".join(list(map(lambda x: "1" if x == "YES" else "0", chord_arr[2:14])))] = chord_arr[-1].strip()
 
-print(sys.argv[1].split("/")[-1])
 g.readline()
 for line in g.readlines():
     try:
