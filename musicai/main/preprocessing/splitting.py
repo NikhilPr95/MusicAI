@@ -6,7 +6,11 @@ tempo = int(f.readline().strip().split(",")[1])
 
 bar_length = (60.0/(tempo/4.0)) * 1000 # in milliseconds
 
-g = open(PROCESSED + os.path.basename(sys.argv[1]) + ".formatted","w")
+if "--time" in sys.argv:
+	path = PROCESSED_TIME
+else:
+	path = PROCESSED
+g = open(path + os.path.basename(sys.argv[1]) + ".formatted","w")
 
 header = "Tempo=" + str(tempo) + ",BarLength=" + str(bar_length)
 g.write("Right Hand Notes, Left Hand Notes," + header + "\n")
@@ -26,7 +30,11 @@ for line in f:
 		left = []
 		right = []
 		for l in bar:
-			note_details = str(l[0]) + "|" + str(l[1]) + "|" + str(l[2]) 
+			if "--time" in sys.argv:
+				time = "|" + str(l[3])
+			else:
+				time = ""
+			note_details = str(l[0]) + "|" + str(l[1]) + "|" + str(l[2]) + time
 			if l[0] < SPLIT_POINT:
 				left.append(note_details)
 			else:
