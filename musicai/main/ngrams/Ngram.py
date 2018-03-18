@@ -1,28 +1,22 @@
 import random
 from nltk.util import ngrams
 from nltk.probability import FreqDist
-
+from musicai.utils.general import *
 
 def get_unigram(gram_dict):
 	return random.choice([key for key in gram_dict.keys()])
 
 
 def get_bigram_from_prefix(gram_dict, prefix):
-	print(gram_dict, prefix)
-	return random.choice([key for key in gram_dict.keys() if key[0] == prefix[1]])
-
-
-def get_bigrams_with_prefix(gram_dict, prefix):
-	print(gram_dict,prefix)
-	return ([key for key in gram_dict.keys() if key[0] == prefix[1]])
+	return random.choice([key for key in gram_dict.keys() if key[0][0] == prefix[1][0]])
 
 
 def get_trigram_from_prefix(gram_dict, prefix):
-	return random.choice([key for key in gram_dict.keys() if key[0:2] == prefix[-2:]])
+	print(prefix)
+	print(gram_dict)
+	print([i[0] for i in prefix[-2:]])
+	return random.choice([key for key in gram_dict.keys() if [i[0] for i in key[0:2]] == [i[0] for i in prefix[-2:]]])
 
-
-def get_trigrams_with_prefix(gram_dict, prefix):
-	return ([key for key in gram_dict.keys() if key[0:2] == prefix[-2:]])
 
 class Text:
 	def __init__(self, doc):
@@ -43,19 +37,24 @@ class Text:
 		self.unigram_probabilities = {}
 		self.bigram_probabilities = {}
 		self.trigram_probabilities = {}
-		
+		self.unigram_notes = (list(ngrams([i[0] for i in self.tokens], 1)))
+		self.bigram_notes = (list(ngrams([i[0] for i in self.tokens], 2)))
+		self.trigram_notes = (list(ngrams([i[0] for i in self.tokens], 3)))
+		self.unigram_notes_counts = FreqDist(self.unigram_notes)
+		self.bigram_notes_counts = FreqDist(self.bigram_notes)
+		self.trigram_notes_counts = FreqDist(self.trigram_notes)
 		self.compute_probabilites()
-		self.add_one_smoothing()
+		#self.add_one_smoothing()
 	
 	def compute_probabilites(self):
 		for i in self.unigrams:
-			self.unigram_probabilities[i] = self.unigram_counts[i]+1 / (len(self.unigrams) +  len(self.vocabulary))
+			self.unigram_probabilities[i] = (self.unigram_notes_counts[(i[0][0],)]+1) / (len(self.unigram_notes) +  len(self.vocabulary))
 		for i in self.bigrams:
-			self.bigram_probabilities[i] = self.bigram_counts[i]+1 / (self.unigram_counts[(i[0],)] + len(self.vocabulary) - 1)
+			self.bigram_probabilities[i] = (self.bigram_notes_counts[(i[0][0],i[1][0])]+1) / (self.unigram_notes_counts[(i[0][0],)] + len(self.vocabulary) - 1)
 		for i in self.trigrams:
-			self.trigram_probabilities[i] = self.trigram_counts[i]+1/ (self.bigram_counts[(i[0], i[1])] + len(self.vocabulary) -2)
+			self.trigram_probabilities[i] = (self.trigram_notes_counts[(i[0][0],i[1][0],i[2][0])]+1) / (self.bigram_notes_counts[(i[0][0], i[1][0])] + len(self.vocabulary) -2)
 		
-		print(self.unigram_probabilities)
+		print(self.bigram_probabilities)
 	
 	def set_counts(self, ngrams):
 		counts = dict()
@@ -64,14 +63,6 @@ class Text:
 			counts[ngram] = ngrams.count(ngram)
 		return counts
 	
-	def get_unigram_prob(self, unigram):
-		return self.unigram_counts[unigram] / len(self.unigrams)
-	
-	def get_bigram_prob(self, bigram):
-		return self.bigram_counts[bigram] / self.unigram_counts[(bigram[0],)]
-	
-	def get_trigram_prob(self, trigram):
-		return self.trigram_counts[trigram] / self.bigram_counts[(trigram[0], trigram[1])]
 	
 	def generate_unigram_sequences(self, n):
 		generated_seq = []
@@ -82,23 +73,23 @@ class Text:
 	
 	def generate_bigram_sequences(self, n):
 		generated_seq = []
-		generated_seq.append(get_bigram_from_prefix(self.bigram_counts, random.choice(list(self.bigram_probabilities.keys()))))
+		generated_seq.append(get_bigram_from_prefix(self.bigram_probabilities, random.choice(list(self.bigram_probabilities.keys()))))
 		while (len(generated_seq) < n):
 			try:
-				generated_seq.append(get_bigram_from_prefix(self.bigram_counts, generated_seq[-1]))
+				generated_seq.append(get_bigram_from_prefix(self.bigram_probabilities, generated_seq[-1]))
 			except:
-				generated_seq.append(get_bigram_from_prefix(self.bigram_counts, random.choice(list(self.bigram_counts.keys()))))
+				generated_seq.append(get_bigram_from_prefix(self.bigram_probabilities, random.choice(list(self.bigram_probabilities.keys()))))
 		
 		return generated_seq
 	
 	def generate_trigram_sequences(self, n):
 		generated_seq = []
-		generated_seq.append(get_bigram_from_prefix(self.bigram_counts, random.choice(list(self.bigram_probabilities.keys()))))
+		generated_seq.append(get_trigram_from_prefix(self.trigram_probabilities, random.choice(list(self.trigram_probabilities.keys()))))
 		while (len(generated_seq) < n):
 			try:
-				generated_seq.append(get_trigram_from_prefix(self.trigram_counts, generated_seq[-1]))
+				generated_seq.append(get_trigram_from_prefix(self.trigram_probabilities, generated_seq[-1]))
 			except:
-				generated_seq.append(get_bigram_from_prefix(self.bigram_counts, random.choice(list(self.trigram_counts.keys()))))
+				generated_seq.append(get_bigram_from_prefix(self.trigram_probabilities, random.choice(list(self.trigram_probabilities.keys()))))
 		
 		return generated_seq[1:]
 	

@@ -16,7 +16,7 @@ from musicai.main.constants.directories import *
 
 def splitData():
 
-	musicFiles_ = glob.glob(os.path.join(directories.PROCESSED_CHORDS,"*"))
+	musicFiles_ = glob.glob(os.path.join(directories.PROCESSED_CHORDS_TIME,"*"))
 	random.shuffle(musicFiles_)
 	musicFiles = [f for f in musicFiles_ if len(open(f).readlines()) > BAR_THRESHOLD]
 	length = len(musicFiles)

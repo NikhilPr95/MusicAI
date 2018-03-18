@@ -8,16 +8,17 @@ from musicai.main.constants.values import SIMPLE_CHORDS
 from musicai.utils.chords import reduce
 
 
-def sequence_vectors(csvfilepath, padding = None, chords=False, octave=False, reduce_chords=False):	# padding is the len of the vector required
+def sequence_vectors(csvfilepath, padding = None, chords=False, octave=False, reduce_chords=False, generated=False):	# padding is the len of the vector required
 	def getdata(csvfile, data, labels, maxlen):
 		rows = csv.reader(open(csvfile, "r"))
 
 		for row in rows:
 			right_note_inputs = row[0].split('-')
-			if right_note_inputs[0] != '':
-				bar = [int(note_val.split('|')[0]) for note_val in right_note_inputs if note_val.split('|')[1] != '0']
+			if right_note_inputs[0] != '' and generated:
+				bar = [(int(note_val.split('|')[0]), int(note_val.split('|')[1]), int(note_val.split('|')[3])) for note_val in right_note_inputs if note_val.split('|')[1] != '0']
+				#bar = [(int(note_val.split('|')[0]) ) for note_val in right_note_inputs if note_val.split('|')[1] != '0']
 				if octave:
-					bar = [b % 12 for b in bar]
+					bar = [(b[0] %12 ,b[1],b[2]) for b in bar]
 
 				if len(bar):
 					if len(bar) > maxlen:
@@ -79,7 +80,7 @@ def get_first_note_sequences(bar_sequences):
 	return [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
 
 
-def parse_data(csvfilepaths, padding=None, chords=False, octave=False, reduce_chords=False):
+def parse_data(csvfilepaths, padding=None, chords=False, octave=False, reduce_chords=False, generated=False):
 	"""
 	Parses csvs and returns bar and chord seqeunces
 	Args:
@@ -92,7 +93,7 @@ def parse_data(csvfilepaths, padding=None, chords=False, octave=False, reduce_ch
 	chord_sequences = []
 	for csvfile in csvfilepaths:
 		print('file:', csvfile)
-		data = sequence_vectors(csvfile, padding, chords, octave, reduce_chords)
+		data = sequence_vectors(csvfile, padding, chords, octave, reduce_chords, generated=generated)
 		bar_sequences.append(data[0])
 		chord_sequences.append(data[1])
 
