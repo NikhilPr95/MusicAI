@@ -12,9 +12,9 @@ def get_bigram_from_prefix(gram_dict, prefix):
 
 
 def get_trigram_from_prefix(gram_dict, prefix):
-	print(prefix)
-	print(gram_dict)
-	print([i[0] for i in prefix[-2:]])
+	#print(prefix)
+	#print(gram_dict)
+	#print([i[0] for i in prefix[-2:]])
 	return random.choice([key for key in gram_dict.keys() if [i[0] for i in key[0:2]] == [i[0] for i in prefix[-2:]]])
 
 
@@ -54,11 +54,11 @@ class Text:
 		for i in self.trigrams:
 			self.trigram_probabilities[i] = (self.trigram_notes_counts[(i[0][0],i[1][0],i[2][0])]+1) / (self.bigram_notes_counts[(i[0][0], i[1][0])] + len(self.vocabulary) -2)
 		
-		print(self.bigram_probabilities)
+		#print(self.bigram_probabilities)
 	
 	def set_counts(self, ngrams):
 		counts = dict()
-		print(len(set(ngrams)))
+		#print(len(set(ngrams)))
 		for ngram in set(ngrams):
 			counts[ngram] = ngrams.count(ngram)
 		return counts
