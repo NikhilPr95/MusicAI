@@ -15,15 +15,14 @@ def sendOutput():
 	# puts the output to the keyboard, gives the midi output back after reading from shared memory
 	# poll shared mem
 	# notesToPlay = [[48,100],[48,100],[48,100],[48,100]]
-	while (not (leftHandNotes[0] == -1.0)):
-		for i in range(len(leftHandNotes)):
-			out.note_on(60 + int(rightHandNotes[i][0][0]), velocity=rightHandNotes[i][1])
-			out.note_on(48 + int(rightHandNotes[i]), velocity=rightHandNotes[i][1])
-			# time.sleep((60 / tempo))
-			time.sleep(rightHandNotes[i][0][2])
-			print("OUT")
-			out.note_off(60 + int(rightHandNotes[i][0][0]), velocity=0)
-			out.note_off(48 + int(leftHandNotes[i]), velocity=0)
+	for i in range(len(leftHandNotes)):
+		out.note_on(60 + int(rightHandNotes[i][0][0]), velocity=rightHandNotes[i][1])
+		out.note_on(48 + int(rightHandNotes[i]), velocity=rightHandNotes[i][1])
+		# time.sleep((60 / tempo))
+		time.sleep(rightHandNotes[i][0][2])
+		print("OUT")
+		out.note_off(60 + int(rightHandNotes[i][0][0]), velocity=0)
+		out.note_off(48 + int(leftHandNotes[i]), velocity=0)
 
 if __name__ == "__main__":
 	tempo = 80  # define
