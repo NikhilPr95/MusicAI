@@ -12,9 +12,6 @@ def get_bigram_from_prefix(gram_dict, prefix):
 
 
 def get_trigram_from_prefix(gram_dict, prefix):
-	print(prefix)
-	print(gram_dict)
-	print([i[0] for i in prefix[-2:]])
 	return random.choice([key for key in gram_dict.keys() if [i[0] for i in key[0:2]] == [i[0] for i in prefix[-2:]]])
 
 
@@ -37,9 +34,9 @@ class Text:
 		self.unigram_probabilities = {}
 		self.bigram_probabilities = {}
 		self.trigram_probabilities = {}
-		self.unigram_notes = (list(ngrams([i[0] for i in self.tokens], 1)))
-		self.bigram_notes = (list(ngrams([i[0] for i in self.tokens], 2)))
-		self.trigram_notes = (list(ngrams([i[0] for i in self.tokens], 3)))
+		self.unigram_notes = (list(ngrams([i[0][0] for i in self.tokens], 1)))
+		self.bigram_notes = (list(ngrams([i[0][0] for i in self.tokens], 2)))
+		self.trigram_notes = (list(ngrams([i[0][0] for i in self.tokens], 3)))
 		self.unigram_notes_counts = FreqDist(self.unigram_notes)
 		self.bigram_notes_counts = FreqDist(self.bigram_notes)
 		self.trigram_notes_counts = FreqDist(self.trigram_notes)
@@ -48,11 +45,11 @@ class Text:
 	
 	def compute_probabilites(self):
 		for i in self.unigrams:
-			self.unigram_probabilities[i] = (self.unigram_notes_counts[(i[0][0],)]+1) / (len(self.unigram_notes) +  len(self.vocabulary))
+			self.unigram_probabilities[i] = (self.unigram_notes_counts[(i[0][0][0],)]+1) / (len(self.unigram_notes) +  len(self.vocabulary))
 		for i in self.bigrams:
-			self.bigram_probabilities[i] = (self.bigram_notes_counts[(i[0][0],i[1][0])]+1) / (self.unigram_notes_counts[(i[0][0],)] + len(self.vocabulary) - 1)
+			self.bigram_probabilities[i] = (self.bigram_notes_counts[(i[0][0][0],i[1][0][0])]+1) / (self.unigram_notes_counts[(i[0][0][0],)] + len(self.vocabulary) - 1)
 		for i in self.trigrams:
-			self.trigram_probabilities[i] = (self.trigram_notes_counts[(i[0][0],i[1][0],i[2][0])]+1) / (self.bigram_notes_counts[(i[0][0], i[1][0])] + len(self.vocabulary) -2)
+			self.trigram_probabilities[i] = (self.trigram_notes_counts[(i[0][0][0],i[1][0][0],i[2][0][0])]+1) / (self.bigram_notes_counts[(i[0][0], i[1][0])] + len(self.vocabulary) -2)
 		
 		print(self.bigram_probabilities)
 	
@@ -92,6 +89,7 @@ class Text:
 				generated_seq.append(get_bigram_from_prefix(self.trigram_probabilities, random.choice(list(self.trigram_probabilities.keys()))))
 		
 		return generated_seq[1:]
+	
 	
 	
 	def add_one_smoothing(self):
