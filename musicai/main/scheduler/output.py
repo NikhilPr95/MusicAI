@@ -17,10 +17,17 @@ def sendOutput():
     print(chordsToPlay)
     while (not (chordsToPlay[0] == -1.0)):
         for i in range(len(chordsToPlay)):
-            print(chordsToPlay[i])
+            #print(chordsToPlay[i])
             out.note_on(48 + int(chordsToPlay[i]), velocity=60)
-            time.sleep((60 / tempo))
+            #time.sleep((60 / tempo))
             print("OUT")
+            #out.note_off(48 + int(chordsToPlay[i]), velocity=0)
+        time.sleep((60 / tempo) * 4)
+        for i in range(len(chordsToPlay)):
+            #print(chordsToPlay[i])
+            #out.note_on(48 + int(chordsToPlay[i]), velocity=60)
+            #time.sleep((60 / tempo))
+            #print("OUT")
             out.note_off(48 + int(chordsToPlay[i]), velocity=0)
 	
 if __name__ == "__main__":
