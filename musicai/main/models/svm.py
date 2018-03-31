@@ -1,12 +1,13 @@
+from sklearn import svm
+
 import numpy as np
 from musicai.main.constants.values import SIMPLE_CHORDS
 from musicai.main.lib.input_vectors import get_first_note_sequences, ngram_vector, create_ngram_feature_matrix
 from musicai.main.models.base import Base
 from musicai.utils.general import flatten
-from sklearn.neural_network import MLPClassifier
 
 
-class MLP(Base):
+class SVM(Base):
 	def __init__(self, ngramlength=5, activation='relu'):
 		Base.__init__(self)
 		self.clf = None
@@ -29,7 +30,7 @@ class MLP(Base):
 		X = np.array(X)
 		y = np.array(y)
 
-		self.clf = MLPClassifier(activation=self.activation, max_iter=1000)
+		self.clf = svm.SVC(max_iter=1000)
 		self.clf.fit(X, y)
 		print("X shape Y shape", X.shape, y.shape)
 		print("score:", self.clf.score(X, y))

@@ -69,7 +69,8 @@ def create_ngram_feature_matrix(ngram_f_note_sequences, ngram_chord_sequences):
 	X, y = [], []
 	for f_note_ngram, chord_ngram in zip(ngram_f_note_sequences, ngram_chord_sequences):
 		chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
-		X.append(f_note_ngram + chord_ngram_numbers[:-1])
+		# X.append(f_note_ngram + chord_ngram_numbers[:-1])
+		X.append(f_note_ngram)
 		y.append(chord_ngram_numbers[-1])
 
 	return X, y
