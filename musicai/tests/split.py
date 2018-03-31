@@ -1,3 +1,4 @@
+from musicai.main.models.logreg import LogReg
 from musicai.main.models.svm import SVM
 from sklearn import svm
 
@@ -6,7 +7,8 @@ import glob, random
 
 from musicai.main.models.hmm import HMM
 from musicai.main.models.ko import KO
-from musicai.main.lib.input_vectors import sequence_vectors, parse_data, get_first_note_sequences, ngram_vector
+from musicai.main.lib.input_vectors import sequence_vectors, parse_data, get_first_note_sequences, ngram_vector, \
+	create_classic_feature_matrix
 from musicai.main.models.mlp import MLP
 from musicai.tests.metrics import percentage, precision, recall, longest_bad_run, longest_good_run
 from musicai.main.models.pyhmm import PyHMM
@@ -72,9 +74,33 @@ def fitModel(option, train):
 		obj.fit(bar_sequences, chord_sequences)
 
 	elif option == 6:
-		obj = SVM()
+		obj = SVM(data_type='first_notes')
 		print('train:', train)
 		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
+		obj.fit(bar_sequences, chord_sequences)
+
+	elif option == 7:
+		obj = SVM(data_type='current_bar')
+		print('train:', train)
+		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=10, padval=-1)
+		obj.fit(bar_sequences, chord_sequences)
+
+	elif option == 8:
+		obj = LogReg()
+		print('train:', train)
+		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
+		obj.fit(bar_sequences, chord_sequences)
+
+	elif option == 9:
+		obj = MLP(data_type='current_bar')
+		print('train:', train)
+		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=10, padval=-1)
+		obj.fit(bar_sequences, chord_sequences)
+
+	elif option == 10:
+		obj = LogReg(data_type='current_bar')
+		print('train:', train)
+		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=10, padval=-1)
 		obj.fit(bar_sequences, chord_sequences)
 
 	return obj
@@ -83,24 +109,28 @@ def fitModel(option, train):
 def checkModel():
 	print("Your options for the model : ")
 	print(" 1) KNN and OMM")
-	print(" 2) HMM ")
 	print(" 3) PyHMM ")
 	print(" 4) PyHMM Ngrams")
 	print(" 5) MLP")
-	print(" 6) SVM")
-	print(" 7) RNN (Coming soon) :) ")
+	print(" 6) SVM first notes")
+	print(" 7) SVM current bar")
+	print(" 8) Logreg first notes")
+	print(" 9) MLP current bar")
+	print(" 10) Logreg current bar")
+	print(" 20) RNN (Coming soon) :) ")
 	# option = int(input("Enter your choice : "))
-	option = 6
+	option = 4
 
 	dataset = splitData()
 	test = dataset[2]
 
-	bar_sequences, chord_sequences = parse_data(dataset[2], octave=True, reduce_chords=True)
+	bar_sequences, chord_sequences = parse_data(dataset[2], octave=True, reduce_chords=True, padding=10, padval=-1)
 
 	percs = []
 
 	print('b:', bar_sequences)
 	print('c:', chord_sequences)
+
 	if option == 1:
 		print('train:', dataset[0])
 		obj = fitModel(option, dataset[0])
@@ -127,39 +157,6 @@ def checkModel():
 		longest_good_run1 = longest_good_run(omm_actual, omm_predicted)
 		longest_bad_run1 = longest_bad_run(omm_actual, omm_predicted)
 		return perc_knn, perc_omm,  precision1, recall1, longest_good_run1, longest_bad_run1
-	elif option == 2:
-		print('train:', dataset[0])
-		obj = fitModel(option, dataset[0])
-		predicted_chords = []
-		actual_chords = []
-		print('\n\n\n\n')
-		print(len(bar_sequences))
-
-		first_note_sequences = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
-		for first_note_sequence, chord_sequence in zip(first_note_sequences, chord_sequences):
-			print('f:', first_note_sequence)
-			print('c:', chord_sequence)
-			print(len(first_note_sequence), len(chord_sequence))
-			predicted_chords.append([])
-			actual_chords.append([])
-			for i in range(3, len(first_note_sequence)):
-				input_notes = first_note_sequence[i-3:i]
-				pred_chords = obj.predict(input_notes)
-				predicted_chords[-1].append(pred_chords)
-				actual_chords[-1].append(chord_sequence[i])
-
-		print('predicted:', predicted_chords)
-		print('actual:', actual_chords)
-
-		for pc, ac in zip(predicted_chords, actual_chords):
-			print('pc:', pc)
-			print('ac:', ac)
-			for p, a in zip(pc, ac):
-				print('p a', p, a)
-
-		predicted_chords = [x[-1] for x in flatten(predicted_chords)]
-		perc = percentage(flatten(actual_chords), predicted_chords)
-		return perc
 
 	elif option == 3:
 		print('train:', dataset[0])
@@ -186,45 +183,13 @@ def checkModel():
 		perc = percentage(flatten(actual_chords), predicted_chords)
 		percs.append(perc)
 
-	elif option == 4:
+	elif option in [7, 9, 10]:
 		print('train:', dataset[0])
 		obj = fitModel(option, dataset[0])
-		predicted_chords = []
-		actual_chords = []
-		ngram_chords = []
-		print('\n\n\n\n')
-		print(len(bar_sequences))
+		X, y = create_classic_feature_matrix(bar_sequences, chord_sequences)
+		percs.append(obj.score(X, y))
 
-		first_note_sequences = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
-		for first_note_sequence, chord_sequence in zip(first_note_sequences, chord_sequences):
-			print('f:', first_note_sequence)
-			print('c:', chord_sequence)
-			print(len(first_note_sequence), len(chord_sequence))
-			predicted_chords.append([])
-			actual_chords.append([])
-			ngram_chords.append([])
-			n = obj.ngramlength
-			for i in range(n, len(first_note_sequence)):
-				input_notes = first_note_sequence[i-n:i]
-				pred_chords = obj.predict(input_notes)
-				predicted_chords[-1].append(pred_chords)
-				actual_chords[-1].append(chord_sequence[i-1])
-				ngram_chords[-1].append(chord_sequence[i-n:i])
-
-		print('predicted:', predicted_chords)
-		print('ngram chords:', ngram_chords)
-		print('actual:', actual_chords)
-
-		for pc, nc, ac in zip(predicted_chords, ngram_chords, actual_chords):
-			for p, n, a in zip(pc, nc, ac):
-				print('p n a', p, n, a)
-
-		predicted_chords = [x[-1] for x in flatten(predicted_chords)]
-
-		perc = percentage(flatten(actual_chords), predicted_chords)
-		percs.append(perc)
-
-	elif option == 5:
+	elif option in [4, 5, 6, 8]:
 		print('train:', dataset[0])
 		obj = fitModel(option, dataset[0])
 		predicted_chords = []
@@ -251,34 +216,7 @@ def checkModel():
 		perc = percentage(flatten(actual_chords), predicted_chords)
 		percs.append(perc)
 
-	elif option == 6:
-		print('train:', dataset[0])
-		obj = fitModel(option, dataset[0])
-		predicted_chords = []
-		print('\n\n\n\n')
-		print(len(bar_sequences))
-		n = obj.ngramlength
-
-		first_note_sequences = get_first_note_sequences(bar_sequences)
-
-		first_note_sequence_ngrams, \
-		chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
-
-		ngram_chord_sequences = flatten(chord_sequence_ngrams)
-		ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
-
-		for f_note_ngram, chord_ngram in zip(ngram_f_note_sequences, ngram_chord_sequences):
-			chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
-			# predicted_chords.append(obj.predict(f_note_ngram + chord_ngram_numbers[:-1]))
-			predicted_chords.append(obj.predict(f_note_ngram))
-
-		predicted_chords = [x[-1] for x in predicted_chords]
-		actual_chords = [x[-1] for x in ngram_chord_sequences]
-
-		perc = percentage(flatten(actual_chords), predicted_chords)
-		percs.append(perc)
-
-	elif option == 7:
+	elif option == 8:
 		print("Haha! You thought null pointer, didn't you? \n Coming soon!\n\n\n\n The RNN, not the null pointer")
 
 	return percs

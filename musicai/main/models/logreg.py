@@ -4,11 +4,11 @@ from musicai.main.lib.input_vectors import get_first_note_sequences, ngram_vecto
 	create_classic_feature_matrix
 from musicai.main.models.base import Base
 from musicai.utils.general import flatten
-from sklearn.neural_network import MLPClassifier
+from sklearn.linear_model import LogisticRegression
 
 
-class MLP(Base):
-	def __init__(self, ngramlength=5, activation='relu', data_type='first_notes'):
+class LogReg(Base):
+	def __init__(self, ngramlength=5, activation='relu', data_type='current_bar'):
 		Base.__init__(self)
 		self.clf = None
 		self.activation = activation
@@ -35,7 +35,7 @@ class MLP(Base):
 		X = np.array(X)
 		y = np.array(y)
 
-		self.clf = MLPClassifier(activation=self.activation, max_iter=1000)
+		self.clf = LogisticRegression(max_iter=1000)
 		self.clf.fit(X, y)
 		print("X shape Y shape", X.shape, y.shape)
 		print("score:", self.clf.score(X, y))

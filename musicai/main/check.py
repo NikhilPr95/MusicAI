@@ -23,44 +23,38 @@ from musicai.main.models.pyhmm import PyHMM
 from musicai.utils.general import flatten
 
 musicfiles = glob.glob(os.path.join(directories.PROCESSED_CHORDS, "*"))
-bar_sequences, chord_sequences = parse_data(musicfiles, reduce_chords=True, octave=True)
+bar_sequences, chord_sequences = parse_data(musicfiles, octave=True, reduce_chords=True, padding=15, padval=-1)
+
+print('bs:', bar_sequences)
+for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
+	for bar, chord in zip(bar_sequence, chord_sequence):
+		print('b: c:', bar, chord)
+
+# first_note_sequences = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
+# first_note_sequence_ngrams, chord_sequence_ngrams = [], []
+# for first_note_sequence, chord_sequence in zip(first_note_sequences, chord_sequences):
+# 	first_note_sequence_ngrams.append([])
+# 	chord_sequence_ngrams.append([])
+# 	for i in range(n, len(first_note_sequence) + 1):
+# 		first_note_sequence_ngrams[-1].append(first_note_sequence[i - n: i])
+# 		chord_sequence_ngrams[-1].append(chord_sequence[i - n: i])
 #
+# for row in zip(first_note_sequences, first_note_sequence_ngrams, chord_sequences, chord_sequence_ngrams):
+# 	print(row[0], row[1])
+# 	print(row[2], row[3])
 #
-# # for b in bar_sequences:
-# # 	print(b)
-# #
-# # for bar_sequence in bar_sequences:
-# # 	for bar in bar_sequence:
-# # 		print(bar)
-# # 		x = bar[0]
+# print('csn:', chord_sequence_ngrams)
+# print('cs:', chord_sequences)
 #
+# print('fsn:', first_note_sequence_ngrams)
+# print('fs:', first_note_sequences)
 #
-n = 4
+# ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
+# ngram_chord_sequences = flatten(chord_sequence_ngrams)
+#
+# print('fsnf:', ngram_f_note_sequences)
+# print('csnf:', ngram_chord_sequences)
 
-first_note_sequences = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
-first_note_sequence_ngrams, chord_sequence_ngrams = [], []
-for first_note_sequence, chord_sequence in zip(first_note_sequences, chord_sequences):
-	first_note_sequence_ngrams.append([])
-	chord_sequence_ngrams.append([])
-	for i in range(n, len(first_note_sequence) + 1):
-		first_note_sequence_ngrams[-1].append(first_note_sequence[i - n: i])
-		chord_sequence_ngrams[-1].append(chord_sequence[i - n: i])
-
-for row in zip(first_note_sequences, first_note_sequence_ngrams, chord_sequences, chord_sequence_ngrams):
-	print(row[0], row[1])
-	print(row[2], row[3])
-
-print('csn:', chord_sequence_ngrams)
-print('cs:', chord_sequences)
-
-print('fsn:', first_note_sequence_ngrams)
-print('fs:', first_note_sequences)
-
-ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
-ngram_chord_sequences = flatten(chord_sequence_ngrams)
-
-print('fsnf:', ngram_f_note_sequences)
-print('csnf:', ngram_chord_sequences)
 # #
 # print(len(bar_sequences), len(chord_sequences))
 # print('bs:', bar_sequences)
