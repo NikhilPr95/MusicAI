@@ -1,12 +1,13 @@
 from musicai.main.constants import directories
 import glob, random
 
-from musicai.main.models.hmm import HMM
-from musicai.main.models.ko import KO
+#from musicai.main.models.hmm import HMM
+from musicai.main.models.lstm import LSTM
+#from musicai.main.models.ko import KO
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data, get_first_note_sequences, ngram_vector
-from musicai.main.models.mlp import MLP
+#from musicai.main.models.mlp import MLP
 from musicai.tests.metrics import percentage, precision, recall, longest_bad_run, longest_good_run
-from musicai.main.models.pyhmm import PyHMM
+#from musicai.main.models.pyhmm import PyHMM
 from musicai.tests.metrics import percentage
 from musicai.utils.general import *
 import os,time
@@ -66,6 +67,12 @@ def fitModel(option, train):
 		print('train:', train)
 		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
 		obj.fit(bar_sequences, chord_sequences)
+	elif option == 6:
+		obj = LSTM()
+		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=3, padval=-1)
+		#print("chords :" ,flatten(bar_sequences))
+		#print("chords :" ,flatten(chord_sequences))
+		obj.fit(flatten(bar_sequences), flatten(chord_sequences))
 	return obj
 
 
@@ -77,7 +84,7 @@ def checkModel():
 	print(" 4) PyHMM Ngrams")
 	print(" 5) RNN (Coming soon) :) ")
 	# option = int(input("Enter your choice : "))
-	option = 5
+	option = 6
 
 	dataset = splitData()
 	test = dataset[2]
@@ -86,8 +93,8 @@ def checkModel():
 
 	percs = []
 
-	print('b:', bar_sequences)
-	print('c:', chord_sequences)
+	#print('b:', bar_sequences)
+	#print('c:', chord_sequences)
 	if option == 1:
 		print('train:', dataset[0])
 		obj = fitModel(option, dataset[0])
@@ -238,7 +245,9 @@ def checkModel():
 		percs.append(perc)
 
 	elif option == 6:
-		print("Haha! You thought null pointer, didn't you? \n Coming soon!\n\n\n\n The RNN, not the null pointer")
+		obj = fitModel(option, dataset[0])
+		testData = np.array(dataset[1])
+		print(obj.predict(testData))
 
 	return percs
 
