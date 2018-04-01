@@ -7,6 +7,7 @@ from musicai.main.lib.input_vectors import sequence_vectors, parse_data, get_fir
 from musicai.main.models.mlp import MLP
 from musicai.tests.metrics import percentage, precision, recall, longest_bad_run, longest_good_run
 from musicai.main.models.pyhmm import PyHMM
+from musicai.main.models.omm import *
 from musicai.tests.metrics import percentage
 from musicai.utils.general import *
 import os,time
@@ -16,14 +17,14 @@ from musicai.main.constants.directories import *
 
 def splitData():
 
-	musicFiles_ = glob.glob(os.path.join(directories.PROCESSED_CHORDS,"*"))
+	musicFiles_ = glob.glob(os.path.join(directories.RHYMES,"*"))
 	random.shuffle(musicFiles_)
 	musicFiles = [f for f in musicFiles_ if len(open(f).readlines()) > BAR_THRESHOLD]
 	length = len(musicFiles)
 
-	trainData = musicFiles[:int(0.8*length)]+list(set(musicFiles_) - set(musicFiles))
+	trainData = musicFiles[:int(0.6*length)]+list(set(musicFiles_) - set(musicFiles))
 	valData = []#musicFiles[int(0.6 * length):int(0.8 * length)]
-	testData = musicFiles[int(0.8 * length):]
+	testData = musicFiles[int(0.6 * length):]
 
 	print("------")
 	print(len(trainData),len(testData))
@@ -66,6 +67,13 @@ def fitModel(option, train):
 		print('train:', train)
 		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
 		obj.fit(bar_sequences, chord_sequences)
+		
+	elif option == 6:
+		if os.path.isfile(PICKLES + "omm.pkl"):
+			os.remove(PICKLES + "omm.pkl")
+		obj = OMM()
+		bar_sequences, chord_sequences = parse_data(train, padding=MAX_NOTES, octave=True, reduce_chords=True)
+		obj.fit(chord_sequences)
 	return obj
 
 
@@ -77,7 +85,7 @@ def checkModel():
 	print(" 4) PyHMM Ngrams")
 	print(" 5) RNN (Coming soon) :) ")
 	# option = int(input("Enter your choice : "))
-	option = 5
+	option = 6
 
 	dataset = splitData()
 	test = dataset[2]
@@ -237,7 +245,23 @@ def checkModel():
 		perc = percentage(flatten(actual_chords), predicted_chords)
 		percs.append(perc)
 
-	elif option == 6:
+	elif option -- 6:
+		print("train : ",dataset[0])
+		obj = fitModel(option, dataset[0])
+		predicted_chords = []
+		
+		real_chord_sequences = [chord_sequence[1:] for chord_sequence in chord_sequences]
+		for chord_sequence in chord_sequences:
+			predicted_chords.append([])
+			for i in range(len(chord_sequence) - 1):
+				predicted_chords[-1].append(obj.predict(chord_sequence[i]))
+		
+		print(predicted_chords,real_chord_sequences)
+		perc = percentage(flatten(real_chord_sequences),flatten(predicted_chords))
+		return perc
+		
+			
+	elif option == 7:
 		print("Haha! You thought null pointer, didn't you? \n Coming soon!\n\n\n\n The RNN, not the null pointer")
 
 	return percs

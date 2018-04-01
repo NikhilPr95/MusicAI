@@ -21,15 +21,17 @@ class OMM(Base):
 			self.clf = load(open(os.path.join(directories.PICKLES, 'omm.pkl'), "rb"))
 		else:
 			data = transition_matrices(X)
+			print(data[0].keys())
 			dump(data, open(os.path.join(directories.PICKLES, 'omm.pkl'), "wb"))
 			self.clf = data
 
 	def predict(self, x):
 		max_val = 0
-		key = "X"
-		for each_chord in self.clf[1][x]:
-			if max_val < self.clf[1][x][each_chord]:
-				key = each_chord
-				max_val = self.clf[1][x][each_chord]
+		key = "C"
+		if x in self.clf[1]:
+			for each_chord in self.clf[1][x]:
+				if max_val < self.clf[1][x][each_chord]:
+					key = each_chord
+					max_val = self.clf[1][x][each_chord]
 
 		return key
