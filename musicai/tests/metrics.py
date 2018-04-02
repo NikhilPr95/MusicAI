@@ -3,7 +3,7 @@ def percentage(actual, predicted):
 	returns fraction of chords that match in their corresponding positions
 	higher this value, better the model
 	'''
-	return sum(list(map(lambda x,y : int(x == y),actual, predicted)))/len(actual)
+	return sum(list(map(lambda x,y : int(x == y), actual, predicted)))/len(actual)
 
 def precision(actual, predicted):
 	'''

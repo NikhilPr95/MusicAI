@@ -26,3 +26,10 @@ class KO(Base):
 		# push to shared memory instead of returning here
 		knn_result = self.knn.predict(bar_sequence)[0]
 		return knn_result,self.omm.predict(knn_result)
+
+	def score(self, data, labels):
+		results = [self.predict(d) for d in data]
+		score1 = sum([1 if r[0] == l[0] else 0 for (r, l) in zip(results, labels)]) / len(data)
+		score2 = sum([1 if r[1] == l[1] else 0 for (r, l) in zip(results, labels)]) / len(data)
+
+		return score1, score2

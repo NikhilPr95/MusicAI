@@ -6,6 +6,7 @@ import os
 from musicai.main.constants import directories
 from musicai.main.constants.values import SIMPLE_CHORDS
 from musicai.utils.chords import reduce
+from musicai.utils.general import flatten
 
 
 def sequence_vectors(csvfilepath, padding = None, chords=False, octave=False, reduce_chords=False, padval=0): # padding is the len of the vector required
@@ -65,12 +66,20 @@ def ngram_vector(sequences, n):
 	return sequences_ngrams
 
 
-def create_ngram_feature_matrix(ngram_f_note_sequences, ngram_chord_sequences):
+def create_ngram_feature_matrix(bar_sequences, chord_sequences, n, chords=False):
+	first_note_sequence_ngrams, \
+	chord_sequence_ngrams = ngram_vector(get_first_note_sequences(bar_sequences), n), ngram_vector(chord_sequences, n)
+
+	ngram_chord_sequences = flatten(chord_sequence_ngrams)
+	ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
+
 	X, y = [], []
 	for f_note_ngram, chord_ngram in zip(ngram_f_note_sequences, ngram_chord_sequences):
 		chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
-		# X.append(f_note_ngram + chord_ngram_numbers[:-1])
-		X.append(f_note_ngram)
+		if chords:
+			X.append(f_note_ngram + chord_ngram_numbers[:-1])
+		else:
+			X.append(f_note_ngram)
 		y.append(chord_ngram_numbers[-1])
 
 	return X, y
@@ -82,6 +91,16 @@ def create_classic_feature_matrix(bar_sequences, chord_sequences):
 		for bar, chord in zip(bar_sequence, chord_sequence):
 			X.append(bar)
 			y.append(chord)
+
+	return X, y
+
+
+def create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=0):
+	X, y = [], []
+	for bars, chords in zip(bar_sequences, chord_sequences):
+		for i in range(len(chords) - exclude):
+			X.append(bars[i])
+			y.append(chords[i + delta])
 
 	return X, y
 

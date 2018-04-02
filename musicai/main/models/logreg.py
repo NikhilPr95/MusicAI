@@ -19,16 +19,9 @@ class LogReg(Base):
 		self.data_type = data_type
 
 	def fit(self, bar_sequences, chord_sequences):
+		X, y = [], []
 		if self.data_type == 'first_notes':
-			first_note_sequences = get_first_note_sequences(bar_sequences)
-			n = self.ngramlength
-			first_note_sequence_ngrams, \
-			chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
-
-			ngram_chord_sequences = flatten(chord_sequence_ngrams)
-			ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
-
-			X, y = create_ngram_feature_matrix(ngram_f_note_sequences, ngram_chord_sequences)
+			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength)
 		elif self.data_type == 'current_bar':
 			X, y = create_classic_feature_matrix(bar_sequences, chord_sequences)
 

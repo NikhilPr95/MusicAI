@@ -13,3 +13,6 @@ class Base(ABC):
 	def predict(self, x):
 		pass
 
+	def score(self, x, y):
+		pass
+

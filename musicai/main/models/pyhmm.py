@@ -43,14 +43,12 @@ class PyHMM(Base):
 			chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
 
 			ngram_chord_sequences = flatten(chord_sequence_ngrams)
-			ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
 
 			all_ngram_chords = flatten(ngram_chord_sequences)
-			all_ngram_notes = flatten(ngram_f_note_sequences)
+			all_ngram_notes = flatten(flatten(first_note_sequence_ngrams))
 
-			startprob, transmat = transition_matrices(flatten(chord_sequence_ngrams))
+			startprob, transmat = transition_matrices(ngram_chord_sequences)
 			emission_dict = emission_matrix(all_ngram_chords, all_ngram_notes)
-			startprob, transmat, emission_dict = PyHMM.smooth(startprob, transmat, emission_dict)
 
 		else:
 			all_chords = flatten(chord_sequences)
@@ -58,8 +56,8 @@ class PyHMM(Base):
 
 			startprob, transmat = transition_matrices(chord_sequences)
 			emission_dict = emission_matrix(all_chords, all_notes)
-			startprob, transmat, emission_dict = PyHMM.smooth(startprob, transmat, emission_dict)
 
+		startprob, transmat, emission_dict = PyHMM.smooth(startprob, transmat, emission_dict)
 
 		model = py_hmm.Model(SIMPLE_CHORDS, NOTES, startprob, transmat, emission_dict)
 
@@ -83,4 +81,7 @@ class PyHMM(Base):
 		print('OC:', output_chords)
 		print('prob:', prob)
 
-		return output_chords
+		return SIMPLE_CHORDS.index(output_chords[-1])
+
+	def score(self, data, labels):
+		return sum([1 if self.predict(d) == l else 0 for (d, l) in zip(data, labels)]) / len(data)

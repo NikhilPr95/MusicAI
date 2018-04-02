@@ -8,7 +8,7 @@ import glob, random
 from musicai.main.models.hmm import HMM
 from musicai.main.models.ko import KO
 from musicai.main.lib.input_vectors import sequence_vectors, parse_data, get_first_note_sequences, ngram_vector, \
-	create_classic_feature_matrix
+	create_classic_feature_matrix, create_ngram_feature_matrix, create_note_matrix
 from musicai.main.models.mlp import MLP
 from musicai.tests.metrics import percentage, precision, recall, longest_bad_run, longest_good_run
 from musicai.main.models.pyhmm import PyHMM
@@ -119,7 +119,7 @@ def checkModel():
 	print(" 10) Logreg current bar")
 	print(" 20) RNN (Coming soon) :) ")
 	# option = int(input("Enter your choice : "))
-	option = 4
+	option = 1
 
 	dataset = splitData()
 	test = dataset[2]
@@ -132,103 +132,26 @@ def checkModel():
 	print('c:', chord_sequences)
 
 	if option == 1:
-		print('train:', dataset[0])
 		obj = fitModel(option, dataset[0])
-		predicted_knn, predicted_omm = [], []
-		for bars in bar_sequences:
-			predicted_knn.append([])
-			predicted_omm.append([])
-			for bar in bars[:-1]: #this is required as the previous bar is sent to omm, hence we need to remove the last bar.
-				result = obj.predict(bar)
-				predicted_knn[-1].append(result[0])
-				predicted_omm[-1].append(result[1])
 
-		for pk, po in zip(predicted_knn, predicted_omm):
-			for p, o in zip(pk, po):
-				print('p o:', p, o)
+		bar_notes, knn_labels = create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=0)
+		_, omm_labels = create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=1)
 
-		#the predicted and song_chord_sequences is for each song, so we have to iterate through the song and combine all values to one list
-		print("Length of test : "+str(len(flatten(predicted_knn))))
-		perc_knn = percentage(flatten(chord_sequences),flatten(predicted_knn))
-		omm_actual , omm_predicted = [chord for chords in chord_sequences for chord in chords[1:]], flatten(predicted_omm)
-		perc_omm = percentage(omm_actual, omm_predicted)
-		precision1 = precision(omm_actual, omm_predicted)
-		recall1 = recall(omm_actual, omm_predicted)
-		longest_good_run1 = longest_good_run(omm_actual, omm_predicted)
-		longest_bad_run1 = longest_bad_run(omm_actual, omm_predicted)
-		return perc_knn, perc_omm,  precision1, recall1, longest_good_run1, longest_bad_run1
-
-	elif option == 3:
-		print('train:', dataset[0])
-		obj = fitModel(option, dataset[0])
-		predicted_chords = []
-		print('\n\n\n\n')
-		print(len(bar_sequences))
-		n = obj.ngramlength
-
-		first_note_sequences = get_first_note_sequences(bar_sequences)
-
-		first_note_sequence_ngrams, \
-		chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
-
-		ngram_chord_sequences = flatten(chord_sequence_ngrams)
-		ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
-
-		for f_note_ngram in ngram_f_note_sequences:
-			predicted_chords.append(obj.predict(f_note_ngram))
-
-		predicted_chords = [x[-1] for x in predicted_chords]
-		actual_chords = [x[-1] for x in ngram_chord_sequences]
-
-		perc = percentage(flatten(actual_chords), predicted_chords)
-		percs.append(perc)
+		percs.append(obj.score(bar_notes, list(zip(knn_labels, omm_labels))))
 
 	elif option in [7, 9, 10]:
-		print('train:', dataset[0])
 		obj = fitModel(option, dataset[0])
 		X, y = create_classic_feature_matrix(bar_sequences, chord_sequences)
 		percs.append(obj.score(X, y))
 
-	elif option in [4, 5, 6, 8]:
-		print('train:', dataset[0])
+	elif option in [3, 4, 5, 6, 8]:
 		obj = fitModel(option, dataset[0])
-		predicted_chords = []
-		print('\n\n\n\n')
-		print(len(bar_sequences))
-		n = obj.ngramlength
-
-		first_note_sequences = get_first_note_sequences(bar_sequences)
-
-		first_note_sequence_ngrams, \
-		chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
-
-		ngram_chord_sequences = flatten(chord_sequence_ngrams)
-		ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
-
-		for f_note_ngram, chord_ngram in zip(ngram_f_note_sequences, ngram_chord_sequences):
-			chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
-			# predicted_chords.append(obj.predict(f_note_ngram + chord_ngram_numbers[:-1]))
-			predicted_chords.append(obj.predict(f_note_ngram))
-
-		predicted_chords = [x[-1] for x in predicted_chords]
-		actual_chords = [x[-1] for x in ngram_chord_sequences]
-
-		perc = percentage(flatten(actual_chords), predicted_chords)
-		percs.append(perc)
-
-	elif option == 8:
-		print("Haha! You thought null pointer, didn't you? \n Coming soon!\n\n\n\n The RNN, not the null pointer")
+		X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=obj.ngramlength, chords=False)
+		percs.append(obj.score(X, y))
 
 	return percs
 
 
 if __name__ == "__main__":
-	# print(testModel())
 	results = checkModel()
 	print('results:', results)
-	# print("Accuracy of KNN : ", str(results[0]))
-	# print("Accuracy of OMM : ", str(results[1]))
-	# print("Precision : ", str(results[2]))
-	# print("Recall : ", str(results[3]))
-	# print("Longest good run : ", str(results[4]))
-	# print("Longest bad run : ", str(results[5]))
