@@ -41,5 +41,12 @@ class MLP(Base):
 		# print('ch:', chord)
 		return SIMPLE_CHORDS[chord[0]]
 
-	def score(self, X, y):
+	def score(self, bar_sequences, chord_sequences):
+		if self.data_type == 'current_bar':
+			X, y = create_classic_feature_matrix(bar_sequences, chord_sequences)
+		elif self.data_type == 'first_notes':
+			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength, chords=False)
+		else:
+			raise Exception("Model does not support {} data type".format(self.data_type))
+
 		return self.clf.score(X, y)

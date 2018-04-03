@@ -109,7 +109,7 @@ def get_first_note_sequences(bar_sequences):
 	return [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
 
 
-def parse_data(csvfilepaths, padding=None, chords=False, octave=False, reduce_chords=False, padval=0):
+def parse_data(csvfilepaths, octave=True, reduce_chords=True, chords=False, padding=None, padval=0):
 	"""
 	Parses csvs and returns bar and chord seqeunces
 	Args:

@@ -1,22 +1,16 @@
-from musicai.main.models.logreg import LogReg
-from musicai.main.models.svm import SVM
-from sklearn import svm
+import glob
+import random
 
 from musicai.main.constants import directories
-import glob, random
-
-from musicai.main.models.hmm import HMM
-from musicai.main.models.ko import KO
-from musicai.main.lib.input_vectors import sequence_vectors, parse_data, get_first_note_sequences, ngram_vector, \
-	create_classic_feature_matrix, create_ngram_feature_matrix, create_note_matrix
-from musicai.main.models.mlp import MLP
-from musicai.tests.metrics import percentage, precision, recall, longest_bad_run, longest_good_run
-from musicai.main.models.pyhmm import PyHMM
-from musicai.tests.metrics import percentage
-from musicai.utils.general import *
-import os,time
-from musicai.main.constants.values import *
 from musicai.main.constants.directories import *
+from musicai.main.constants.values import *
+from musicai.main.lib.input_vectors import parse_data, \
+	create_classic_feature_matrix, create_ngram_feature_matrix, create_note_matrix
+from musicai.main.models.ko import KO
+from musicai.main.models.logreg import LogReg
+from musicai.main.models.mlp import MLP
+from musicai.main.models.pyhmm import PyHMM
+from musicai.main.models.svm import SVM
 
 
 def splitData():
@@ -37,71 +31,21 @@ def splitData():
 	return trainData, valData, testData
 
 
-def fitModel(option, train):
-	obj = None
-
-	if option == 1:
+def fitModel(train, model=None, data_type=None, padding=None, padval=0):
+	if model == KO:
 		if os.path.isfile(PICKLES + "knn.pkl"):
 			os.remove(PICKLES + "knn.pkl")
 		if os.path.isfile(PICKLES + "omm.pkl"):
 			os.remove(PICKLES + "omm.pkl")
-		obj = KO()
-		bar_sequences,chord_sequences = parse_data(train, padding=MAX_NOTES, octave=True, reduce_chords=True)
-		obj.fit(bar_sequences,chord_sequences)
+		padding = MAX_NOTES if padding is None else padding
 
-	elif option == 2:
-		obj = HMM()
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train)
-		obj.fit(bar_sequences, chord_sequences)
+	if data_type == 'current_bar':
+		padding = 10 if padding is None else padding
+		padval = -1 if padval is None else padval
 
-	elif option == 3:
-		obj = PyHMM(ngrams=False)
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
-		obj.fit(bar_sequences, chord_sequences)
-
-	elif option == 4:
-		obj = PyHMM(ngrams=True)
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
-		obj.fit(bar_sequences, chord_sequences)
-
-	elif option == 5:
-		obj = MLP()
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
-		obj.fit(bar_sequences, chord_sequences)
-
-	elif option == 6:
-		obj = SVM(data_type='first_notes')
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
-		obj.fit(bar_sequences, chord_sequences)
-
-	elif option == 7:
-		obj = SVM(data_type='current_bar')
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=10, padval=-1)
-		obj.fit(bar_sequences, chord_sequences)
-
-	elif option == 8:
-		obj = LogReg()
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True)
-		obj.fit(bar_sequences, chord_sequences)
-
-	elif option == 9:
-		obj = MLP(data_type='current_bar')
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=10, padval=-1)
-		obj.fit(bar_sequences, chord_sequences)
-
-	elif option == 10:
-		obj = LogReg(data_type='current_bar')
-		print('train:', train)
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=10, padval=-1)
-		obj.fit(bar_sequences, chord_sequences)
+	obj = model(data_type=data_type)
+	bar_sequences_train, chord_sequences_train = parse_data(train, padding=padding, padval=padval)
+	obj.fit(bar_sequences_train, chord_sequences_train)
 
 	return obj
 
@@ -118,13 +62,13 @@ def checkModel():
 	print(" 9) MLP current bar")
 	print(" 10) Logreg current bar")
 	print(" 20) RNN (Coming soon) :) ")
-	# option = int(input("Enter your choice : "))
-	option = 1
+
+	option = 9
 
 	dataset = splitData()
 	test = dataset[2]
 
-	bar_sequences, chord_sequences = parse_data(dataset[2], octave=True, reduce_chords=True, padding=10, padval=-1)
+	bar_sequences, chord_sequences = parse_data(test, octave=True, reduce_chords=True, padding=10, padval=-1)
 
 	percs = []
 
@@ -132,22 +76,54 @@ def checkModel():
 	print('c:', chord_sequences)
 
 	if option == 1:
-		obj = fitModel(option, dataset[0])
+		model = KO
+		obj = fitModel(dataset[0], model=model)
 
-		bar_notes, knn_labels = create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=0)
-		_, omm_labels = create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=1)
+		bar_sequences, chord_sequences = parse_data(test, octave=True, reduce_chords=True, padding=MAX_NOTES, padval=0)
 
-		percs.append(obj.score(bar_notes, list(zip(knn_labels, omm_labels))))
-
+		percs.append(obj.score(bar_sequences, chord_sequences))
 	elif option in [7, 9, 10]:
-		obj = fitModel(option, dataset[0])
-		X, y = create_classic_feature_matrix(bar_sequences, chord_sequences)
-		percs.append(obj.score(X, y))
+		model = None
+		if option == 7:
+			model = SVM
+
+		elif option == 9:
+			model = MLP
+
+		elif option == 10:
+			model = LogReg
+
+		data_type = 'current_bar'
+
+		obj = fitModel(dataset[0], model=model, data_type=data_type)
+
+		percs.append(obj.score(bar_sequences, chord_sequences))
 
 	elif option in [3, 4, 5, 6, 8]:
-		obj = fitModel(option, dataset[0])
-		X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=obj.ngramlength, chords=False)
-		percs.append(obj.score(X, y))
+		model, data_type = None, None
+		if option == 3:
+			model = PyHMM
+			data_type = 'sequence'
+
+		elif option == 4:
+			model = PyHMM
+			data_type = 'ngram'
+
+		elif option == 5:
+			model = MLP
+			data_type = 'first_notes'
+
+		elif option == 6:
+			model = SVM
+			data_type = 'first_notes'
+
+		elif option == 8:
+			model = LogReg
+			data_type = 'first_notes'
+
+		obj = fitModel(dataset[0], model=model, data_type=data_type)
+
+		percs.append(obj.score(bar_sequences, chord_sequences))
 
 	return percs
 
