@@ -54,9 +54,9 @@ class HMM(Base):
 		possible_note_lengths =[1 for _ in range(62,97)]
 
 
-		print('s:', model.startprob)
-		print('t:', model.transmat)
-		print('e:', model.emissionprob)
+		# print('s:', model.startprob)
+		# print('t:', model.transmat)
+		# print('e:', model.emissionprob)
 
 		f_note_data = [f for flist in first_notes for f in flist] + possible_notes
 		f_note_array = np.array(f_note_data)

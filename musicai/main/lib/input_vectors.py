@@ -66,7 +66,7 @@ def ngram_vector(sequences, n):
 	return sequences_ngrams
 
 
-def create_ngram_feature_matrix(bar_sequences, chord_sequences, n, chords=False):
+def create_ngram_feature_matrix(bar_sequences, chord_sequences, n, chords_in_ngram=False):
 	first_note_sequence_ngrams, \
 	chord_sequence_ngrams = ngram_vector(get_first_note_sequences(bar_sequences), n), ngram_vector(chord_sequences, n)
 
@@ -76,7 +76,7 @@ def create_ngram_feature_matrix(bar_sequences, chord_sequences, n, chords=False)
 	X, y = [], []
 	for f_note_ngram, chord_ngram in zip(ngram_f_note_sequences, ngram_chord_sequences):
 		chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
-		if chords:
+		if chords_in_ngram:
 			X.append(f_note_ngram + chord_ngram_numbers[:-1])
 		else:
 			X.append(f_note_ngram)
@@ -121,7 +121,7 @@ def parse_data(csvfilepaths, octave=True, reduce_chords=True, chords=False, padd
 	bar_sequences = []
 	chord_sequences = []
 	for csvfile in csvfilepaths:
-		print('file:', csvfile)
+		# print('file:', csvfile)
 		data = sequence_vectors(csvfile, padding, chords, octave, reduce_chords, padval)
 		bar_sequences.append(data[0])
 		chord_sequences.append(data[1])

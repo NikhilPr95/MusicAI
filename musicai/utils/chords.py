@@ -18,7 +18,7 @@ def get_chord_mapping():
 def get_notes(chord, chords):
 	import random
 	notes = chords[chord]
-	print(notes)
+	# print(notes)
 	notes = [i for i in range(len(notes)) if notes[i] == "1"] # starting with c
 	#apply broken chords logic
 

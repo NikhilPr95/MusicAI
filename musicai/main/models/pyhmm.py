@@ -9,12 +9,15 @@ import py_hmm
 
 
 class PyHMM(Base):
-	def __init__(self, data_type='sequence'):
+	def __init__(self, data_type='sequence', activation=None, kernel=None, ngramlength=4, chords_in_ngram=False):
 		Base.__init__(self)
 		self.clf = None
 		self.chords = None
 		self.data_type = data_type
-		self.ngramlength = 4
+		self.activation = activation
+		self.kernel = kernel
+		self.ngramlength = ngramlength
+		self.chords_in_ngram = chords_in_ngram
 
 	@staticmethod
 	def smooth(startprob, transmat, emission_dict):
@@ -37,8 +40,14 @@ class PyHMM(Base):
 		return startprob, transmat, emission_dict
 
 	def fit(self, bar_sequences, chord_sequences):
+		if self.activation is not None:
+			raise Exception("Model does not support {} activation".format(self.activation))
+		if self.kernel is not None:
+			raise Exception("Model does not support {} kernel".format(self.kernel))
+		if self.chords_in_ngram is not False:
+			raise Exception("Mode does not support chords in ngram")
+
 		first_note_sequences = get_first_note_sequences(bar_sequences)
-		startprob, transmat, emission_dict = [], [], []
 		if self.data_type == 'ngram':
 			n = self.ngramlength
 			first_note_sequence_ngrams, \
@@ -74,7 +83,7 @@ class PyHMM(Base):
 
 	def score(self, bar_sequences, chord_sequences):
 		if self.data_type in ['sequence', 'ngram']:
-			data, labels = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength, chords=False)
+			data, labels = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength)
 		else:
 			raise Exception("Model does not support {} data type".format(self.data_type))
 

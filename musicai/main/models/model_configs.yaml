@@ -1,0 +1,197 @@
+models:
+  -
+    model: KO
+    padding: 15
+  -
+    model: PyHMM
+    data_type: sequence
+  -
+    model: PyHMM
+    data_type: ngram
+  -
+    model: MLP
+    data_type: first_notes
+    activation: identity
+  -
+    model: MLP
+    data_type: first_notes
+    activation: relu
+  -
+    model: MLP
+    data_type: first_notes
+    activation: logistic
+  -
+    model: MLP
+    data_type: first_notes
+    activation: tanh
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: identity
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: relu
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: logistic
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: tanh
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: rbf
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: linear
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: poly
+    is_enabled: False
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: sigmoid
+    padding: 5
+    padval: -1
+  -
+    model: MLP
+    data_type: first_notes
+    activation: identity
+    chords_in_ngram: True
+  -
+    model: MLP
+    data_type: first_notes
+    activation: relu
+    chords_in_ngram: True
+  -
+    model: MLP
+    data_type: first_notes
+    activation: logistic
+    chords_in_ngram: True
+  -
+    model: MLP
+    data_type: first_notes
+    activation: tanh
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: identity
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: relu
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: logistic
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: first_notes
+    activation: tanh
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: rbf
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: linear
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: poly
+    is_enabled: False
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: first_notes
+    kernel: sigmoid
+    padding: 5
+    padval: -1
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: rbf
+    padding: 5
+    padval: -1
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: linear
+    padding: 5
+    padval: -1
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: poly
+    is_enabled: False
+    padding: 5
+    padval: -1
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: sigmoid
+    padding: 5
+    padval: -1
+  -
+    model: MLP
+    data_type: current_bar
+    activation: identity
+    padding: 5
+    padval: -1
+  -
+    model: MLP
+    data_type: current_bar
+    activation: relu
+    padding: 5
+    padval: -1
+  -
+    model: MLP
+    data_type: current_bar
+    activation: logistic
+    padding: 5
+    padval: -1
+  -
+    model: MLP
+    data_type: current_bar
+    activation: tanh
+    padding: 5
+    padval: -1
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: identity
+    padding: 5
+    padval: -1
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: relu
+    padding: 5
+    padval: -1
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: logistic
+    padding: 5
+    padval: -1
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: tanh
+    padding: 5
+    padval: -1

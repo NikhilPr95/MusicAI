@@ -19,7 +19,7 @@ def transition_matrices(sequences):
 	start_probs = {}
 	transition_probs = {}
 
-	print('s:', sequences)
+	# print('s:', sequences)
 	seq = flatten(sequences)
 	for state in set(seq):
 		transition_probs.setdefault(state, {})
@@ -99,7 +99,7 @@ def omm_predict(chord):
 def hmm_train():
 	bar_sequences, chord_sequences = parse_data(glob.glob(directories.PROCESSED_CHORDS))
 
-	print(bar_sequences)
+	# print(bar_sequences)
 	first_notes = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
 	all_chords = flatten(chord_sequences)
 	all_notes = flatten(first_notes)
@@ -119,8 +119,8 @@ def hmm_train():
 	f_note_array = np.array(f_note_data)
 	f_note_lengths = [len(f) for f in first_notes] + possible_note_lengths
 
-	print('fn:', len(f_note_array))
-	print('sum:', sum(f_note_lengths))
+	# print('fn:', len(f_note_array))
+	# print('sum:', sum(f_note_lengths))
 	# print(f_note_array)
 	minval = 62  # min(f_note_array)
 	f_note_delta = np.array([(f - minval) for f in f_note_array])

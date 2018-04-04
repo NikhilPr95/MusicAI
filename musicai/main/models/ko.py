@@ -7,24 +7,32 @@ from musicai.utils.general import *
 
 
 class KO(Base):
-	def __init__(self, data_type):
+	def __init__(self, data_type, activation=None, kernel=None, ngramlength=None, chords_in_ngram=False):
 		Base.__init__(self)
 		self.knn = KNN()
 		self.omm = OMM()
 		self.data_type = data_type
+		self.activation = activation
+		self.kernel = kernel
+		self.ngramlength = ngramlength
+		self.chords_in_ngram = chords_in_ngram
 
 	def fit(self, bar_sequences, chord_sequences):
 		if self.data_type is not None:
 			raise Exception("Model does not support {} data type".format(self.data_type))
+		if self.activation is not None:
+			raise Exception("Model does not support {} activation".format(self.activation))
+		if self.kernel is not None:
+			raise Exception("Model does not support {} kernel".format(self.kernel))
 
 		bar_sequences_ = flatten(bar_sequences)
 		chord_sequences_ = flatten(chord_sequences)
-		print(set([len(x) for x in bar_sequences_]))
+		# print(set([len(x) for x in bar_sequences_]))
 		self.knn.fit(bar_sequences_, chord_sequences_)
 		self.omm.fit(chord_sequences)
 
 	def predict(self, bar_sequence):
-		print(bar_sequence)
+		# print(bar_sequence)
 		if len(bar_sequence) < MAX_NOTES:
 			bar_sequence += [0] * (MAX_NOTES - len(bar_sequence))  # pad with zeros
 		if len(bar_sequence) > MAX_NOTES:
