@@ -25,10 +25,10 @@ from musicai.utils.general import flatten
 musicfiles = glob.glob(os.path.join(directories.PROCESSED_CHORDS, "*"))
 bar_sequences, chord_sequences = parse_data(musicfiles, octave=True, reduce_chords=True, padding=15, padval=-1)
 
-print('bs:', bar_sequences)
-for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
-	for bar, chord in zip(bar_sequence, chord_sequence):
-		print('b: c:', bar, chord)
+# print('bs:', bar_sequences)
+# for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
+# 	for bar, chord in zip(bar_sequence, chord_sequence):
+# 		print('b: c:', bar, chord)
 
 # first_note_sequences = [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
 # first_note_sequence_ngrams, chord_sequence_ngrams = [], []
@@ -74,6 +74,6 @@ for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
 # ph.predict([72])
 from musicai.utils.chords import count_chords
 
-# x = (count_chords())
-# print(x)
-# print(sum(x.values()))
+x = (count_chords())
+print(x)
+print(sum(x.values()))

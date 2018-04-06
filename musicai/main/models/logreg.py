@@ -32,7 +32,8 @@ class LogReg(Base):
 		X = np.array(X)
 		y = np.array(y)
 
-		self.clf = LogisticRegression(max_iter=1000)
+		self.clf = LogisticRegression(max_iter=1000, solver='lbfgs', multi_class='multinomial')
+		# self.clf = LogisticRegression(max_iter=1000)
 		self.clf.fit(X, y)
 		# print("score:", self.clf.score(X, y))
 
