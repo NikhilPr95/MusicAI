@@ -1,6 +1,6 @@
 from musicai.main.constants.values import CHORDS, NOTES, SIMPLE_CHORDS
-from musicai.main.lib.input_vectors import ngram_vector, get_first_note_sequences, create_standard_feature_matrix, \
-	create_ngram_feature_matrix
+from musicai.main.lib.input_vectors import ngram_vector, create_standard_feature_matrix, \
+	create_ngram_feature_matrix, get_sequences
 from musicai.main.lib.markov import transition_matrices, emission_matrix
 from musicai.main.models.base import Base
 from musicai.utils.general import flatten
@@ -9,7 +9,7 @@ import py_hmm
 
 
 class PyHMM(Base):
-	def __init__(self, data_type='sequence', activation=None, kernel=None, ngramlength=4, chords_in_ngram=False):
+	def __init__(self, data_type='sequence', activation=None, kernel=None, ngramlength=4, chords_in_ngram=False, notes=1):
 		Base.__init__(self)
 		self.clf = None
 		self.chords = None
@@ -18,6 +18,7 @@ class PyHMM(Base):
 		self.kernel = kernel
 		self.ngramlength = ngramlength
 		self.chords_in_ngram = chords_in_ngram
+		self.notes = notes
 
 	@staticmethod
 	def smooth(startprob, transmat, emission_dict):
@@ -47,7 +48,7 @@ class PyHMM(Base):
 		if self.chords_in_ngram is not False:
 			raise Exception("Mode does not support chords in ngram")
 
-		first_note_sequences = get_first_note_sequences(bar_sequences)
+		first_note_sequences = get_sequences(bar_sequences, notes=self.notes)
 		if self.data_type == 'ngram':
 			n = self.ngramlength
 			first_note_sequence_ngrams, \
@@ -83,7 +84,7 @@ class PyHMM(Base):
 
 	def score(self, bar_sequences, chord_sequences):
 		if self.data_type in ['sequence', 'ngram']:
-			data, labels = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength)
+			data, labels = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength, notes=self.notes)
 		else:
 			raise Exception("Model does not support {} data type".format(self.data_type))
 

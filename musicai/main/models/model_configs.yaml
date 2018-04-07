@@ -10,114 +10,102 @@ models:
     data_type: ngram
   -
     model: MLP
-    data_type: first_notes
+    data_type: ngram_notes
     activation: identity
   -
     model: MLP
-    data_type: first_notes
+    data_type: ngram_notes
     activation: relu
   -
     model: MLP
-    data_type: first_notes
+    data_type: ngram_notes
     activation: logistic
   -
     model: MLP
-    data_type: first_notes
+    data_type: ngram_notes
     activation: tanh
   -
-    model: LogReg
-    data_type: first_notes
+    model: MLP
+    data_type: current_bar
     activation: identity
-  -
-    model: LogReg
-    data_type: first_notes
-    activation: relu
-  -
-    model: LogReg
-    data_type: first_notes
-    activation: logistic
-  -
-    model: LogReg
-    data_type: first_notes
-    activation: tanh
-  -
-    model: SVM
-    data_type: first_notes
-    kernel: rbf
-  -
-    model: SVM
-    data_type: first_notes
-    kernel: linear
-  -
-    model: SVM
-    data_type: first_notes
-    kernel: poly
-    is_enabled: False
-  -
-    model: SVM
-    data_type: first_notes
-    kernel: sigmoid
     padding: 5
     padval: -1
   -
     model: MLP
-    data_type: first_notes
-    activation: identity
-    chords_in_ngram: True
-  -
-    model: MLP
-    data_type: first_notes
+    data_type: current_bar
     activation: relu
-    chords_in_ngram: True
+    padding: 5
+    padval: -1
   -
     model: MLP
-    data_type: first_notes
+    data_type: current_bar
     activation: logistic
-    chords_in_ngram: True
+    padding: 5
+    padval: -1
   -
     model: MLP
-    data_type: first_notes
+    data_type: current_bar
     activation: tanh
-    chords_in_ngram: True
+    padding: 5
+    padval: -1
   -
-    model: LogReg
-    data_type: first_notes
+    model: MLP
+    data_type: ngram_notes
     activation: identity
     chords_in_ngram: True
   -
-    model: LogReg
-    data_type: first_notes
+    model: MLP
+    data_type: ngram_notes
     activation: relu
     chords_in_ngram: True
   -
-    model: LogReg
-    data_type: first_notes
+    model: MLP
+    data_type: ngram_notes
     activation: logistic
     chords_in_ngram: True
   -
-    model: LogReg
-    data_type: first_notes
+    model: MLP
+    data_type: ngram_notes
     activation: tanh
     chords_in_ngram: True
   -
     model: SVM
-    data_type: first_notes
+    data_type: ngram_notes
+    kernel: rbf
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: linear
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: poly
+    is_enabled: False
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: sigmoid
+    padding: 5
+    padval: -1
+  -
+    model: SVM
+    data_type: ngram_notes
     kernel: rbf
     chords_in_ngram: True
   -
     model: SVM
-    data_type: first_notes
+    data_type: ngram_notes
     kernel: linear
     chords_in_ngram: True
   -
     model: SVM
-    data_type: first_notes
+    data_type: ngram_notes
     kernel: poly
     is_enabled: False
     chords_in_ngram: True
   -
     model: SVM
-    data_type: first_notes
+    data_type: ngram_notes
     kernel: sigmoid
     padding: 5
     padval: -1
@@ -141,6 +129,7 @@ models:
     is_enabled: False
     padding: 5
     padval: -1
+    current_bar: True
   -
     model: SVM
     data_type: current_bar
@@ -148,29 +137,41 @@ models:
     padding: 5
     padval: -1
   -
-    model: MLP
-    data_type: current_bar
+    model: LogReg
+    data_type: ngram_notes
     activation: identity
-    padding: 5
-    padval: -1
   -
-    model: MLP
-    data_type: current_bar
+    model: LogReg
+    data_type: ngram_notes
     activation: relu
-    padding: 5
-    padval: -1
   -
-    model: MLP
-    data_type: current_bar
+    model: LogReg
+    data_type: ngram_notes
     activation: logistic
-    padding: 5
-    padval: -1
   -
-    model: MLP
-    data_type: current_bar
+    model: LogReg
+    data_type: ngram_notes
     activation: tanh
-    padding: 5
-    padval: -1
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: identity
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: relu
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: tanh
+    chords_in_ngram: True
   -
     model: LogReg
     data_type: current_bar

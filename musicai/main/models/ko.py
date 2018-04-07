@@ -7,7 +7,7 @@ from musicai.utils.general import *
 
 
 class KO(Base):
-	def __init__(self, data_type, activation=None, kernel=None, ngramlength=None, chords_in_ngram=False):
+	def __init__(self, data_type, activation=None, kernel=None, ngramlength=None, chords_in_ngram=False, notes=None):
 		Base.__init__(self)
 		self.knn = KNN()
 		self.omm = OMM()
@@ -16,6 +16,7 @@ class KO(Base):
 		self.kernel = kernel
 		self.ngramlength = ngramlength
 		self.chords_in_ngram = chords_in_ngram
+		self.notes = notes
 
 	def fit(self, bar_sequences, chord_sequences):
 		if self.data_type is not None:
@@ -39,15 +40,19 @@ class KO(Base):
 			bar_sequence = bar_sequence[:MAX_NOTES]  # crop perhaps
 		# push to shared memory instead of returning here
 		knn_result = self.knn.predict(bar_sequence)[0]
-		return knn_result,self.omm.predict(knn_result)
+		# return knn_result, self.omm.predict(knn_result)
+		return self.omm.predict(knn_result)
 
 	def score(self, bar_sequences, chord_sequences):
-		bar_notes, knn_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=0)
-		_, omm_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=1)
+		bar_notes, knn_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=0, notes=self.notes)
+		_, omm_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=1, notes=self.notes)
 		data, labels = bar_notes, list(zip(knn_labels, omm_labels))
 
 		results = [self.predict(d) for d in data]
-		score1 = sum([1 if r[0] == l[0] else 0 for (r, l) in zip(results, labels)]) / len(data)
-		score2 = sum([1 if r[1] == l[1] else 0 for (r, l) in zip(results, labels)]) / len(data)
+		# score1 = sum([1 if r[0] == l[0] else 0 for (r, l) in zip(results, labels)]) / len(data)
+		# score2 = sum([1 if r[1] == l[1] else 0 for (r, l) in zip(results, labels)]) / len(data)
 
-		return score1, score2
+		score2 = sum([1 if r == l[1] else 0 for (r, l) in zip(results, labels)]) / len(data)
+
+		# return score1, score2
+		return score2

@@ -1,6 +1,6 @@
 import numpy as np
 from musicai.main.constants.values import SIMPLE_CHORDS
-from musicai.main.lib.input_vectors import get_first_note_sequences, ngram_vector, create_ngram_feature_matrix, \
+from musicai.main.lib.input_vectors import ngram_vector, create_ngram_feature_matrix, \
 	create_standard_feature_matrix
 from musicai.main.models.base import Base
 from musicai.utils.general import flatten
@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 
 
 class LogReg(Base):
-	def __init__(self, ngramlength=4, activation='relu', data_type='current_bar', kernel=None, chords_in_ngram=False):
+	def __init__(self, ngramlength=4, activation='relu', data_type='current_bar', kernel=None, chords_in_ngram=False, notes=None):
 		Base.__init__(self)
 		self.clf = None
 		self.activation = activation
@@ -16,16 +16,17 @@ class LogReg(Base):
 		self.data_type = data_type
 		self.kernel = kernel
 		self.chords_in_ngram = chords_in_ngram
+		self.notes = notes
 
 	def fit(self, bar_sequences, chord_sequences):
 		if self.kernel is not None:
 			raise Exception("Model does not support {} kernel".format(self.kernel))
-		if self.data_type == 'first_notes':
-			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength, chords_in_ngram=self.chords_in_ngram)
+		if self.data_type == 'ngram_notes':
+			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength, chords_in_ngram=self.chords_in_ngram, notes=self.notes)
 		elif self.data_type == 'current_bar':
 			if self.chords_in_ngram is not False:
 				raise Exception("Model does not support chords in ngram with current bar")
-			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences)
+			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, notes=self.notes)
 		else:
 			raise Exception("Model does not support {} data type".format(self.data_type))
 
@@ -43,9 +44,9 @@ class LogReg(Base):
 
 	def score(self, bar_sequences, chord_sequences):
 		if self.data_type == 'current_bar':
-			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences)
-		elif self.data_type == 'first_notes':
-			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength, chords_in_ngram=self.chords_in_ngram)
+			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, notes=self.notes)
+		elif self.data_type == 'ngram_notes':
+			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength, chords_in_ngram=self.chords_in_ngram, notes=self.notes)
 		else:
 			raise Exception("Model does not support {} data type".format(self.data_type))
 

@@ -8,7 +8,7 @@ from musicai.main.models.base import Base
 
 
 class SVM(Base):
-	def __init__(self, ngramlength=4, data_type='first_notes', activation=None, kernel='rbf', chords_in_ngram=False):
+	def __init__(self, ngramlength=4, data_type='ngram_notes', activation=None, kernel='rbf', chords_in_ngram=False, notes=None):
 		Base.__init__(self)
 		self.clf = None
 		self.ngramlength = ngramlength
@@ -16,17 +16,18 @@ class SVM(Base):
 		self.activation = activation
 		self.kernel = kernel
 		self.chords_in_ngram = chords_in_ngram
+		self.notes = notes
 
 	def fit(self, bar_sequences, chord_sequences):
 		if self.activation is not None:
 			raise Exception("Model does not support {} activation".format(self.activation))
 
-		if self.data_type == 'first_notes':
-			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength, chords_in_ngram=self.chords_in_ngram)
+		if self.data_type == 'ngram_notes':
+			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength, chords_in_ngram=self.chords_in_ngram, notes=self.notes)
 		elif self.data_type == 'current_bar':
 			if self.chords_in_ngram is not False:
 				raise Exception("Model does not support chords in ngram with current bar")
-			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences)
+			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, notes=self.notes)
 		else:
 			raise Exception("Model does not support {} data type".format(self.data_type))
 
@@ -43,9 +44,9 @@ class SVM(Base):
 
 	def score(self, bar_sequences, chord_sequences):
 		if self.data_type == 'current_bar':
-			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences)
-		elif self.data_type == 'first_notes':
-			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, n=self.ngramlength, chords_in_ngram=self.chords_in_ngram)
+			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, notes=self.notes)
+		elif self.data_type == 'ngram_notes':
+			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength, chords_in_ngram=self.chords_in_ngram, notes=self.notes)
 		else:
 			raise Exception("Model does not support {} data type".format(self.data_type))
 

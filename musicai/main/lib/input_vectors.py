@@ -66,9 +66,9 @@ def ngram_vector(sequences, n):
 	return sequences_ngrams
 
 
-def create_ngram_feature_matrix(bar_sequences, chord_sequences, n, chords_in_ngram=False):
+def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, chords_in_ngram=False, notes=1):
 	first_note_sequence_ngrams, \
-	chord_sequence_ngrams = ngram_vector(get_first_note_sequences(bar_sequences), n), ngram_vector(chord_sequences, n)
+	chord_sequence_ngrams = ngram_vector(get_sequences(bar_sequences, notes), ngramlength), ngram_vector(chord_sequences, ngramlength)
 
 	ngram_chord_sequences = flatten(chord_sequence_ngrams)
 	ngram_f_note_sequences = flatten(first_note_sequence_ngrams)
@@ -85,18 +85,18 @@ def create_ngram_feature_matrix(bar_sequences, chord_sequences, n, chords_in_ngr
 	return X, y
 
 
-def create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=0, delta=0):
+def create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=0, delta=0, notes=-1):
 	X, y = [], []
 	for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
 		for i in range(len(chord_sequence) - exclude):
-			X.append(bar_sequence[i])
+			X.append(bar_sequence[i]) if notes else X.append(bar_sequence[i:notes])
 			y.append(chord_sequence[i + delta])
 
 	return X, y
 
 
-def get_first_note_sequences(bar_sequences):
-	return [[bar[0] for bar in bar_sequence] for bar_sequence in bar_sequences]
+def get_sequences(bar_sequences, notes=1):
+	return [flatten([bar[0:notes] for bar in bar_sequence]) for bar_sequence in bar_sequences]
 
 
 def parse_data(csvfilepaths, octave=True, reduce_chords=True, chords=False, padding=None, padval=0):
