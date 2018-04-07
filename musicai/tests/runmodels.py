@@ -83,7 +83,7 @@ def evaluate_models(sort, num_ngram_notes=1, ngramlengthval=4, directory=directo
 			chords_in_ngram = model_dict.get('chords_in_ngram', False)
 			actval = activation if activation else kernel
 
-			if data_type in ['ngram_notes']:
+			if model_name in ['MLP']: #data_type in ['ngram_notes']:
 				scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
 									kernel=kernel,
 									train=train, test=test, padding=padding, padval=padval,

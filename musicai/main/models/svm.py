@@ -34,7 +34,7 @@ class SVM(Base):
 		X = np.array(X)
 		y = np.array(y)
 
-		self.clf = svm.SVC(kernel=self.kernel)
+		self.clf = svm.SVC(kernel=self.kernel, C=0.1, gamma=1)
 		self.clf.fit(X, y)
 		# print("score:", self.clf.score(X, y))
 
