@@ -1,5 +1,5 @@
 from musicai.main.constants.values import CHORDS, NOTES, SIMPLE_CHORDS
-from musicai.main.lib.input_vectors import ngram_vector, get_first_note_sequences, create_classic_feature_matrix, \
+from musicai.main.lib.input_vectors import ngram_vector, get_first_note_sequences, create_standard_feature_matrix, \
 	create_ngram_feature_matrix
 from musicai.main.lib.markov import transition_matrices, emission_matrix
 from musicai.main.models.base import Base

@@ -85,22 +85,12 @@ def create_ngram_feature_matrix(bar_sequences, chord_sequences, n, chords_in_ngr
 	return X, y
 
 
-def create_classic_feature_matrix(bar_sequences, chord_sequences):
+def create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=0, delta=0):
 	X, y = [], []
 	for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
-		for bar, chord in zip(bar_sequence, chord_sequence):
-			X.append(bar)
-			y.append(chord)
-
-	return X, y
-
-
-def create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=0):
-	X, y = [], []
-	for bars, chords in zip(bar_sequences, chord_sequences):
-		for i in range(len(chords) - exclude):
-			X.append(bars[i])
-			y.append(chords[i + delta])
+		for i in range(len(chord_sequence) - exclude):
+			X.append(bar_sequence[i])
+			y.append(chord_sequence[i + delta])
 
 	return X, y
 

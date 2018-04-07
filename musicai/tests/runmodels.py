@@ -19,9 +19,9 @@ def splitData(dir):
 	musicFiles = [f for f in musicFiles_ if len(open(f).readlines()) > BAR_THRESHOLD]
 	length = len(musicFiles)
 
-	trainData = musicFiles[:int(0.8 * length)] + list(set(musicFiles_) - set(musicFiles))
+	trainData = musicFiles[:int(0.4 * length)] + list(set(musicFiles_) - set(musicFiles))
 	valData = []  # musicFiles[int(0.6 * length):int(0.8 * length)]
-	testData = musicFiles[int(0.8 * length):]
+	testData = musicFiles[int(0.4 * length):]
 
 	print("------")
 	print(len(trainData), len(testData))
@@ -75,9 +75,8 @@ if __name__ == "__main__":
 			chords_in_ngram = model_dict.get('chords_in_ngram', False)
 			actval = activation if activation else kernel
 
-			if model_name in ['LogReg']:
-				scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation, kernel=kernel,
-								  train=train, test=test, padding=padding, padval=padval,
-								  ngramlength=ngramlength, chords_in_ngram=chords_in_ngram)
+			scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation, kernel=kernel,
+							  train=train, test=test, padding=padding, padval=padval,
+							  ngramlength=ngramlength, chords_in_ngram=chords_in_ngram)
 
-				print("".join(word.ljust(20) for word in [model_name, str(data_type), str(actval), str(chords_in_ngram), str(scores)]))
+			print("".join(word.ljust(20) for word in [model_name, str(data_type), str(actval), str(chords_in_ngram), str(scores)]))

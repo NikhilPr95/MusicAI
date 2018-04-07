@@ -1,4 +1,4 @@
-from musicai.main.lib.input_vectors import create_note_matrix
+from musicai.main.lib.input_vectors import create_standard_feature_matrix
 from musicai.main.models.base import Base
 from musicai.main.models.omm import OMM
 from musicai.main.models.knn import KNN
@@ -42,8 +42,8 @@ class KO(Base):
 		return knn_result,self.omm.predict(knn_result)
 
 	def score(self, bar_sequences, chord_sequences):
-		bar_notes, knn_labels = create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=0)
-		_, omm_labels = create_note_matrix(bar_sequences, chord_sequences, exclude=1, delta=1)
+		bar_notes, knn_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=0)
+		_, omm_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=1)
 		data, labels = bar_notes, list(zip(knn_labels, omm_labels))
 
 		results = [self.predict(d) for d in data]
