@@ -71,8 +71,11 @@ def fitModel(option, train):
 		obj = LSTM()
 		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=3, padval=-1)
 		#print("chords :" ,flatten(bar_sequences))
-		#print("chords :" ,flatten(chord_sequences))
-		obj.fit(flatten(bar_sequences), flatten(chord_sequences))
+		print("chords :" ,flatten(chord_sequences))
+		
+		chord_sequences = flatten(chord_sequences)
+		chord_sequences = [SIMPLE_CHORDS.index(i) for i in chord_sequences]
+		obj.fit(flatten(bar_sequences), chord_sequences)
 	return obj
 
 
@@ -246,9 +249,15 @@ def checkModel():
 
 	elif option == 6:
 		obj = fitModel(option, dataset[0])
-		testData = np.array(dataset[1])
-		print(obj.predict(testData))
+		predicted_chords = []
+		bar_sequences, chord_sequences = parse_data(dataset[2], octave=True, reduce_chords=True, padding=3, padval=-1)
+		for bar_sequence in flatten(bar_sequences):
+			predicted_chords.append(obj.predict(bar_sequence))
 
+		print(predicted_chords)
+		actual_chords = [SIMPLE_CHORDS.index(i) for i in flatten(chord_sequences)]
+		percs.append(percentage(actual_chords,predicted_chords))
+		print("Test accuracy : ",percs[-1])
 	return percs
 
 
