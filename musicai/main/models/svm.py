@@ -1,3 +1,4 @@
+from musicai.utils.general import get_softmax
 from sklearn import svm
 
 import numpy as np
@@ -8,7 +9,7 @@ from musicai.main.models.base import Base
 
 
 class SVM(Base):
-	def __init__(self, ngramlength=4, data_type='ngram_notes', activation=None, kernel='rbf', chords_in_ngram=False, notes=None):
+	def __init__(self, ngramlength=4, data_type='ngram_notes', activation=None, kernel='rbf', chords_in_ngram=False, notes=None, softmax=False):
 		Base.__init__(self)
 		self.clf = None
 		self.ngramlength = ngramlength
@@ -17,6 +18,7 @@ class SVM(Base):
 		self.kernel = kernel
 		self.chords_in_ngram = chords_in_ngram
 		self.notes = notes
+		self.softmax = softmax
 
 	def fit(self, bar_sequences, chord_sequences):
 		if self.activation is not None:
@@ -30,6 +32,9 @@ class SVM(Base):
 			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, num_notes=self.notes)
 		else:
 			raise Exception("Model does not support {} data type".format(self.data_type))
+
+		if self.softmax:
+			X = get_softmax(X)
 
 		X = np.array(X)
 		y = np.array(y)

@@ -9,7 +9,7 @@ import py_hmm
 
 
 class PyHMM(Base):
-	def __init__(self, data_type='sequence', activation=None, kernel=None, ngramlength=4, chords_in_ngram=False, notes=1):
+	def __init__(self, data_type='sequence', activation=None, kernel=None, ngramlength=4, chords_in_ngram=False, notes=1, softmax=False):
 		Base.__init__(self)
 		self.clf = None
 		self.chords = None
@@ -19,6 +19,7 @@ class PyHMM(Base):
 		self.ngramlength = ngramlength
 		self.chords_in_ngram = chords_in_ngram
 		self.notes = notes
+		self.softmax = softmax
 
 	@staticmethod
 	def smooth(startprob, transmat, emission_dict):
@@ -46,7 +47,9 @@ class PyHMM(Base):
 		if self.kernel is not None:
 			raise Exception("Model does not support {} kernel".format(self.kernel))
 		if self.chords_in_ngram is not False:
-			raise Exception("Mode does not support chords in ngram")
+			raise Exception("Model does not support chords in ngram")
+		if self.softmax is not False:
+			raise Exception("Model does not support softmax")
 
 		first_note_sequences = get_sequences(bar_sequences, notes=self.notes)
 		if self.data_type == 'ngram':
