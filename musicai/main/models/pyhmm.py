@@ -52,7 +52,7 @@ class PyHMM(Base):
 		if self.data_type == 'ngram':
 			n = self.ngramlength
 			first_note_sequence_ngrams, \
-			chord_sequence_ngrams = ngram_vector(first_note_sequences, n), ngram_vector(chord_sequences, n)
+			chord_sequence_ngrams = ngram_vector(bar_sequences, n), ngram_vector(chord_sequences, n)
 
 			ngram_chord_sequences = flatten(chord_sequence_ngrams)
 

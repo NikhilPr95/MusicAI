@@ -20,7 +20,7 @@ bar = []
 for line in f:
 	line = list(map(int,line.strip().split(",")))
 	
-	if(line[2] < bar_count * bar_length):
+	if line[2] < bar_count * bar_length:
 		bar.append(line)
 	else:
 		left = []

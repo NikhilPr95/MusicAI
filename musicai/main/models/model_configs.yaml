@@ -1,13 +1,15 @@
 models:
   -
     model: KO
-    padding: 15
+    num_notes: 15
   -
     model: PyHMM
     data_type: sequence
+    num_notes: 1
   -
     model: PyHMM
     data_type: ngram
+    num_notes: 1
   -
     model: MLP
     data_type: ngram_notes
@@ -28,25 +30,25 @@ models:
     model: MLP
     data_type: current_bar
     activation: identity
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
     data_type: current_bar
     activation: relu
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
     data_type: current_bar
     activation: logistic
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
     data_type: current_bar
     activation: tanh
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
@@ -85,7 +87,7 @@ models:
     model: SVM
     data_type: ngram_notes
     kernel: sigmoid
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: SVM
@@ -107,34 +109,34 @@ models:
     model: SVM
     data_type: ngram_notes
     kernel: sigmoid
-    padding: 5
+    num_notes: 5
     padval: -1
     chords_in_ngram: True
   -
     model: SVM
     data_type: current_bar
     kernel: rbf
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: SVM
     data_type: current_bar
     kernel: linear
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: SVM
     data_type: current_bar
     kernel: poly
     is_enabled: False
-    padding: 5
+    num_notes: 5
     padval: -1
     current_bar: True
   -
     model: SVM
     data_type: current_bar
     kernel: sigmoid
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: LogReg
@@ -176,23 +178,23 @@ models:
     model: LogReg
     data_type: current_bar
     activation: identity
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: LogReg
     data_type: current_bar
     activation: relu
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: LogReg
     data_type: current_bar
     activation: logistic
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: LogReg
     data_type: current_bar
     activation: tanh
-    padding: 5
+    num_notes: 5
     padval: -1

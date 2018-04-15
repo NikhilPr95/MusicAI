@@ -11,7 +11,7 @@ def knn_predict(right_hand_notes):
 	if glob.glob(os.path.join(directories.PICKLES, 'knn.pkl')) :
 		clf = load(open(os.path.join(directories.PICKLES, 'knn.pkl'),"rb"))
 	else:
-		data = sequence_vectors(directories.PROCESSED_CHORDS, padding=15)
+		data = sequence_vectors(directories.PROCESSED_CHORDS, num_notes=15)
 		X = data[0]
 		y = data[1]
 

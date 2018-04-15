@@ -44,8 +44,8 @@ class KO(Base):
 		return self.omm.predict(knn_result)
 
 	def score(self, bar_sequences, chord_sequences):
-		bar_notes, knn_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=0, notes=self.notes)
-		_, omm_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=1, notes=self.notes)
+		bar_notes, knn_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, chord_label_offset=0, num_notes=self.notes)
+		_, omm_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, chord_label_offset=1, num_notes=self.notes)
 		data, labels = bar_notes, list(zip(knn_labels, omm_labels))
 
 		results = [self.predict(d) for d in data]

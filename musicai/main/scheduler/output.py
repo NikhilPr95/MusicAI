@@ -22,7 +22,8 @@ def sendOutput():
             time.sleep((60 / tempo))
             print("OUT")
             out.note_off(48 + int(chordsToPlay[i]), velocity=0)
-	
+
+
 if __name__ == "__main__":
     tempo = 80 #define
     pygame.midi.init()

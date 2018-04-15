@@ -27,13 +27,13 @@ class MLP(Base):
 		elif self.data_type == 'current_bar':
 			if self.chords_in_ngram is not False:
 				raise Exception("Model does not support chords in ngram with current bar")
-			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, notes=self.notes)
+			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, num_notes=self.notes)
 
 		X = np.array(X)
 		y = np.array(y)
 
-		self.clf = MLPClassifier(activation=self.activation, max_iter=1000, hidden_layer_sizes=(100,), solver='lbfgs', alpha=50)
-		# self.clf = MLPClassifier(activation=self.activation, max_iter=1000, hidden_layer_sizes=(100,))
+		self.clf = MLPClassifier(activation=self.activation, max_iter=1000, solver='lbfgs', alpha=50)
+		# self.clf = MLPClassifier(activation=self.activation, max_iter=1000)
 		self.clf.fit(X, y)
 
 	# print("score:", self.clf.score(X, y))
@@ -44,7 +44,7 @@ class MLP(Base):
 
 	def score(self, bar_sequences, chord_sequences):
 		if self.data_type == 'current_bar':
-			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, notes=self.notes)
+			X, y = create_standard_feature_matrix(bar_sequences, chord_sequences, num_notes=self.notes)
 		elif self.data_type == 'ngram_notes':
 			X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength, chords_in_ngram=self.chords_in_ngram, notes=self.notes)
 		else:
