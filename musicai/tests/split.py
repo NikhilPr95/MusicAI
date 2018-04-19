@@ -69,13 +69,20 @@ def fitModel(option, train):
 		obj.fit(bar_sequences, chord_sequences)
 	elif option == 6:
 		obj = LSTM()
-		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=3, padval=-1)
+		bar_sequences, chord_sequences = parse_data(train, octave=True, reduce_chords=True, padding=4, padval=-1)
 		#print("chords :" ,flatten(bar_sequences))
 		print("chords :" ,flatten(chord_sequences))
 		
 		chord_sequences = flatten(chord_sequences)
 		chord_sequences = [SIMPLE_CHORDS.index(i) for i in chord_sequences]
-		obj.fit(flatten(bar_sequences), chord_sequences)
+		numberChords = 4
+		if not numberChords:
+			obj.fit(flatten(bar_sequences), chord_sequences)
+		else:
+			chord_sequences_temp = [0,0,0,0] + chord_sequences #assuming all C chords
+			chord_timesteps = [tuple(chord_sequences_temp[i:i+numberChords]) for i in range(len(chord_sequences_temp))]
+			X = zip(flatten(bar_sequences), chord_timesteps)
+			obj.fit(list(X), chord_sequences)
 	return obj
 
 
@@ -250,13 +257,20 @@ def checkModel():
 	elif option == 6:
 		obj = fitModel(option, dataset[0])
 		predicted_chords = []
-		bar_sequences, chord_sequences = parse_data(dataset[2], octave=True, reduce_chords=True, padding=3, padval=-1)
-		for bar_sequence in flatten(bar_sequences):
-			predicted_chords.append(obj.predict(bar_sequence))
+		bar_sequences, chord_sequences = parse_data(dataset[2], octave=True, reduce_chords=True, padding=4, padval=-1)
+		
+		numberChords = 4
+		chord_sequences = flatten(chord_sequences)
+		actual_chords = [SIMPLE_CHORDS.index(i) for i in chord_sequences]
+		chord_sequences_temp = [0, 0, 0, 0] + actual_chords  # assuming all C chords
+		chord_timesteps = [tuple(chord_sequences_temp[i:i + numberChords]) for i in range(len(chord_sequences_temp))]
+		
+		bar_sequences = flatten(bar_sequences)
+		for i in range(len(bar_sequences)):
+			predicted_chords.append(obj.predict((bar_sequences[i],chord_timesteps[i])))
 
 		print(predicted_chords)
-		actual_chords = [SIMPLE_CHORDS.index(i) for i in flatten(chord_sequences)]
-		percs.append(percentage(actual_chords,predicted_chords))
+		percs.append(percentage(actual_chords, predicted_chords))
 		print("Test accuracy : ",percs[-1])
 	return percs
 
