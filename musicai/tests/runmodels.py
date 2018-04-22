@@ -33,7 +33,7 @@ def splitData(dir):
 
 
 def fitModel(train, test, model=None, data_type=None, activation=None, kernel=None, ngramlength=4, num_notes=None,
-             padval=0, chords_in_ngram=False, notes=None, softmax=False):
+             padval=0, chords_in_ngram=False, notes=None, softmax=False, oversampling=False):
     if model == KO:
         if os.path.isfile(PICKLES + "knn.pkl"):
             os.remove(PICKLES + "knn.pkl")
@@ -44,7 +44,7 @@ def fitModel(train, test, model=None, data_type=None, activation=None, kernel=No
     bar_sequences_test, chord_sequences_test = parse_data(test, num_notes=num_notes, padval=padval)
 
     obj = model(data_type=data_type, activation=activation, kernel=kernel, ngramlength=ngramlength,
-                chords_in_ngram=chords_in_ngram, notes=notes, softmax=softmax)
+                chords_in_ngram=chords_in_ngram, notes=notes, softmax=softmax, oversampling=oversampling)
     obj.fit(bar_sequences_train, chord_sequences_train)
 
     train_score = obj.score(bar_sequences_train, chord_sequences_train)
@@ -64,7 +64,8 @@ def evaluate_models(sort, num_notes_val=4, ngramlength_val=4, directory=director
     train, val, test = splitData(directory)
 
     print("".join(
-        word.ljust(20) for word in ['MODEL', 'DATA_TYPE', 'NOTES', 'ACTIVATION/KERNEL', 'CHORDS_IN_NRGAM', 'SOFTMAX', 'SCORES']))
+        word.ljust(20) for word in
+        ['MODEL', 'DATA_TYPE', 'NOTES', 'NGRAMLENGTHVAL', 'ACTIVATION/KERNEL', 'CHORDS_IN_NRGAM', 'SOFTMAX', 'SMOTE', 'SCORES']))
     model_list = yaml.load(open(os.path.join(MODELS, "model_configs.yaml"), "r"))
     results = []
     for model_dict in model_list.get('models'):
@@ -78,16 +79,32 @@ def evaluate_models(sort, num_notes_val=4, ngramlength_val=4, directory=director
             ngramlength = model_dict.get('ngramlength', ngramlength_val)
             chords_in_ngram = model_dict.get('chords_in_ngram', False)
             softmax = model_dict.get('softmax', False)
+            oversampling = model_dict.get('oversampling', False)
             actval = activation if activation else kernel
 
             if 1:  # model_name in ['MLP']:  # data_type in ['ngram_notes']:
-                scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
-                                  kernel=kernel, train=train, test=test, num_notes=num_notes, padval=padval,
-                                  ngramlength=ngramlength, chords_in_ngram=chords_in_ngram, notes=num_notes, softmax=softmax)
+                if isinstance(oversampling, list):
+                    for o in oversampling:
+                        try:
+                            scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
+                                              kernel=kernel, train=train, test=test, num_notes=num_notes, padval=padval,
+                                              ngramlength=ngramlength, chords_in_ngram=chords_in_ngram, notes=num_notes,
+                                              softmax=softmax, oversampling=o)
 
-                results.append([model_name, data_type, num_notes, actval, chords_in_ngram, softmax, scores])
+                            results.append([model_name, data_type, num_notes, ngramlength, actval, chords_in_ngram, softmax, o, scores])
+                        except:
+                            print("FAILED for ", "".join(word.ljust(20) for word in
+                                                         [str(x) for x in [model_name, data_type, num_notes, actval,
+                                                                           chords_in_ngram, softmax, o]]))
+                else:
+                    scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
+                                      kernel=kernel, train=train, test=test, num_notes=num_notes, padval=padval,
+                                      ngramlength=ngramlength, chords_in_ngram=chords_in_ngram, notes=num_notes,
+                                      softmax=softmax, oversampling=oversampling)
 
-    sorted_results = sorted(results, key=lambda x: x[6]['test'])
+                    results.append([model_name, data_type, num_notes, ngramlength, actval, chords_in_ngram, softmax, oversampling, scores])
+
+    sorted_results = sorted(results, key=lambda x: x[8]['test'])
 
     result_list = sorted_results if sort else results
     for result in result_list:
@@ -98,4 +115,4 @@ def evaluate_models(sort, num_notes_val=4, ngramlength_val=4, directory=director
 
 
 if __name__ == "__main__":
-    evaluate_models(sort=True, num_notes_val=5, ngramlength_val=1, directory=directories.PROCESSED_CHORDS)
+    evaluate_models(sort=True, num_notes_val=4, ngramlength_val=5, directory=directories.PROCESSED_CHORDS)
