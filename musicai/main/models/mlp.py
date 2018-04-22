@@ -7,8 +7,6 @@ from musicai.utils.general import flatten, get_softmax
 from sklearn.neural_network import MLPClassifier
 
 
-
-
 class MLP(Base):
 	def __init__(self, ngramlength=4, activation='relu', data_type='ngram_notes', kernel=None, chords_in_ngram=False, notes=None, softmax=False):
 		Base.__init__(self)

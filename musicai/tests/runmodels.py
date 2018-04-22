@@ -98,4 +98,4 @@ def evaluate_models(sort, num_notes_val=4, ngramlength_val=4, directory=director
 
 
 if __name__ == "__main__":
-    evaluate_models(sort=True, num_notes_val=5, ngramlength_val=4, directory=directories.PROCESSED_CHORDS)
+    evaluate_models(sort=True, num_notes_val=5, ngramlength_val=1, directory=directories.PROCESSED_CHORDS)
