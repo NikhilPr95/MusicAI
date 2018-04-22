@@ -7,7 +7,7 @@ from musicai.utils.general import *
 
 
 class KO(Base):
-	def __init__(self, data_type, activation=None, kernel=None, ngramlength=None, chords_in_ngram=False, notes=None, softmax=False):
+	def __init__(self, data_type, activation=None, kernel=None, ngramlength=None, chords_in_ngram=False, notes=None, softmax=False, oversampling=False):
 		Base.__init__(self)
 		self.knn = KNN()
 		self.omm = OMM()
@@ -18,6 +18,7 @@ class KO(Base):
 		self.chords_in_ngram = chords_in_ngram
 		self.notes = notes
 		self.softmax = softmax
+		self.oversampling = oversampling
 
 	def fit(self, bar_sequences, chord_sequences):
 		if self.data_type is not None:
@@ -28,6 +29,8 @@ class KO(Base):
 			raise Exception("Model does not support {} kernel".format(self.kernel))
 		if self.softmax is not False:
 			raise Exception("Model does not support softmax")
+		if self.oversampling is not False:
+			raise Exception("Model does not support oversampling")
 
 		bar_sequences_ = flatten(bar_sequences)
 		chord_sequences_ = flatten(chord_sequences)

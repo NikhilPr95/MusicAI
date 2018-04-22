@@ -3,6 +3,7 @@ import glob
 
 import os
 
+from imblearn.over_sampling import SMOTE, ADASYN, RandomOverSampler
 from musicai.main.constants import directories
 from musicai.main.constants.values import SIMPLE_CHORDS
 from musicai.utils.chords import reduce
@@ -11,6 +12,7 @@ from musicai.utils.general import flatten
 
 def sequence_vectors(csvfilepath, num_notes=None, chords=False, octave=False, reduce_chords=False,
                      padval=-1):  # num_notes is the len of the vector required
+
 	def getdata(csvfile, data, labels, maxlen):
 		rows = csv.reader(open(csvfile, "r"))
 
@@ -70,7 +72,7 @@ def ngram_vector(sequences, n):
 	return sequence_ngrams
 
 
-def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, chords_in_ngram=False, notes=1):
+def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, chords_in_ngram=False, notes=1, oversampling=False):
 	bar_sequence_ngrams, \
 	chord_sequence_ngrams = ngram_vector(bar_sequences, ngramlength), ngram_vector(
 		chord_sequences, ngramlength)
@@ -87,15 +89,41 @@ def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, cho
 			X.append(bar_ngram)
 		y.append(chord_ngram_numbers[-1])
 
+	if oversampling:
+		if oversampling == 'smote':
+			sampler = SMOTE(random_state=42)
+		elif oversampling == 'adasyn':
+			sampler = ADASYN(random_state=42)
+		elif oversampling == 'random':
+			sampler = RandomOverSampler(random_state=42)
+		else:
+			raise Exception('no oversampler {} '.format(oversampling))
+		X_normalized, y_normalized = sampler.fit_sample(X, y)
+
+		return X_normalized, y_normalized
+
 	return X, y
 
 
-def create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=0, chord_label_offset=0, num_notes=-1):
+def create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=0, chord_label_offset=0, num_notes=-1, oversampling=False):
 	X, y = [], []
 	for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
 		for i in range(len(chord_sequence) - exclude):
 			X.append(bar_sequence[i][:num_notes]) if num_notes else X.append(bar_sequence[i])
 			y.append(chord_sequence[i + chord_label_offset])
+
+	if oversampling:
+		if oversampling == 'smote':
+			sampler = SMOTE(random_state=42)
+		elif oversampling == 'adasyn':
+			sampler = ADASYN(random_state=42)
+		elif oversampling == 'random':
+			sampler = RandomOverSampler(random_state=42)
+		else:
+			raise Exception('no oversampler {} '.format(oversampling))
+		X_normalized, y_normalized = sampler.fit_sample(X, y)
+
+		return X_normalized, y_normalized
 
 	return X, y
 
