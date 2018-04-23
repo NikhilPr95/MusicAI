@@ -9,19 +9,23 @@ import numpy as np
 import sys
 from musicai.main.lib.predict import predict
 from musicai.utils.chords import get_notes, get_chord_mapping
+from musicai.main.gui.main import buttons, App
 
-if sys.argv[1] == "--test":
+if len(sys.argv) > 1 and sys.argv[1] == "--test":
 	print(predict([1,2,3,4,5,6,7]))
 	sys.exit()
 
-if sa.list():
+if bytes('notes','utf-8') in [list(a)[0] for a in sa.list()]:
 	sa.delete("shm://notes")
 queue = sa.create("shm://notes", 4)
 for i in range(0, len(queue)):
 	queue[i] = 0.0
 
-tempo = 80#int(input("Enter the tempo : ").strip())
-input("Enter to start...")
+tempoQueue = sa.attach("shm://tempo")
+while(tempoQueue[0] == 0.0):
+	continue
+tempo = tempoQueue[0]#int(input("Enter the tempo : ").strip())
+print(tempo)
 bar_length = int((4/tempo) * 60)  #bar length in seconds
 print(bar_length)
 
@@ -34,10 +38,21 @@ def push_notes(signum, frame):
 	global notes_of_bar, chords
 	#print("NOTES OF BAR : ", notes_of_bar)
 	prediction = predict(notes_of_bar)
-
+	
 	print(prediction)
 	notes = get_notes(prediction, chords)
 	print(notes)
+	
+	#update the GUI
+	#right hand notes
+	[buttons[36 + (note % 12)].invoke() for note in notes_of_bar]
+	
+	#left hand notes
+	[buttons[note % 12].invoke() for note in notes]
+	
+	App.update()
+	
+	
 	for i in range(len(notes)):
 		queue[i] = notes[i]
 
@@ -55,6 +70,7 @@ pygame.midi.init()
 INPUT_ID = 3
 SILENCE_THRESH = 5000
 inp = pygame.midi.Input( INPUT_ID )
+App.update()
 
 last_event = 0
 while True:

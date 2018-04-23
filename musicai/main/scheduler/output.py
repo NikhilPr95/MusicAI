@@ -6,7 +6,6 @@
 import pygame.midi
 import time, random
 import SharedArray as sa
-from musicai.main.gui.main import App, buttons
 
 def sendOutput():
     # puts the output to the keyboard, gives the midi output back after reading from shared memory
@@ -18,21 +17,21 @@ def sendOutput():
     while (not (chordsToPlay[0] == -1.0)):
         for i in range(len(chordsToPlay)):
             print(chordsToPlay[i])
-            #out.note_on(48 + int(chordsToPlay[i]), velocity=60)
-            buttons[chordsToPlay[i]].invoke()
-            App.update()
+            out.note_on(48 + int(chordsToPlay[i]), velocity=60)
             time.sleep((60 / tempo))
             print("OUT")
-            #out.note_off(48 + int(chordsToPlay[i]), velocity=0)
+            out.note_off(48 + int(chordsToPlay[i]), velocity=0)
 	
 if __name__ == "__main__":
-    tempo = 80 #define
-    #pygame.midi.init()
+    tempoQueue = sa.attach("shm://tempo")
+    while(tempoQueue[0] == 0.0):
+        continue
+    tempo = tempoQueue[0] #define
+    print(tempo)
+    pygame.midi.init()
     print("test")
-    App.update()
-    #chordsToPlay = sa.attach("shm://notes")
-    chordsToPlay = [1,1,1,3,3,3,3,3,3,3,3]
-    #out = pygame.midi.Output(2)
+    chordsToPlay = sa.attach("shm://notes")
+    out = pygame.midi.Output(2)
     sendOutput()
-    #del out
-    #pygame.midi.quit()
+    del out
+    pygame.midi.quit()
