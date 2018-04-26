@@ -7,8 +7,9 @@ def getText():
 	tempo = E1.get()
 	tempo = int(tempo)
 	queueForTempo[0] = tempo
-	AppInitial.withdraw()
-	AppInitial.quit()
+	#AppInitial.withdraw()
+	#AppInitial.quit()
+	AppInitial.destroy()
 	createKeyBoard()
 
 tempo = 0
@@ -24,6 +25,7 @@ App.title("MusicAI")
 App.withdraw()
 
 
+queueForTempo = []
 #create a queue for passing the tempo
 if(bytes('tempo','utf-8') in [list(a)[0] for a in sa.list()]):
 	sa.delete("shm://tempo")
