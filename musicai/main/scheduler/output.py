@@ -11,6 +11,7 @@ def sendOutput():
     # puts the output to the keyboard, gives the midi output back after reading from shared memory
     # poll shared mem
     # notesToPlay = [[48,100],[48,100],[48,100],[48,100]]
+    global buttons, App
     while (chordsToPlay[0] == 0.0):
         continue
     print(chordsToPlay)
@@ -18,18 +19,25 @@ def sendOutput():
         for i in range(len(chordsToPlay)):
             print(chordsToPlay[i])
             out.note_on(48 + int(chordsToPlay[i]), velocity=60)
+            buttons[int(chordsToPlay[i])].invoke()
+            App.update()
             time.sleep((60 / tempo))
             print("OUT")
             out.note_off(48 + int(chordsToPlay[i]), velocity=0)
 	
-if __name__ == "__main__":
-    tempoQueue = sa.attach("shm://tempo")
-    while(tempoQueue[0] == 0.0):
-        continue
-    tempo = tempoQueue[0] #define
+def output(App_parameter,buttons_parameter, tempo_temp):
+    global chordsToPlay , out, tempo, App, buttons
+    #tempoQueue = sa.attach("shm://tempo")
+    #while(tempoQueue[0] == 0.0):
+    #    continue
+    #tempo = tempoQueue[0] #define
+    tempo = tempo_temp
+    App = App_parameter
+    buttons = buttons_parameter
     print(tempo)
     pygame.midi.init()
     print("test")
+    time.sleep(1)
     chordsToPlay = sa.attach("shm://notes")
     out = pygame.midi.Output(2)
     sendOutput()

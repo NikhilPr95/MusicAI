@@ -1,6 +1,11 @@
 from tkinter import *
 import tkinter
 import SharedArray as sa
+import multiprocessing
+from musicai.main.scheduler.input import *
+from musicai.main.scheduler.output import *
+
+
 
 def getText():
 	global tempo,AppInitial
@@ -10,7 +15,8 @@ def getText():
 	#AppInitial.withdraw()
 	#AppInitial.quit()
 	AppInitial.destroy()
-	createKeyBoard()
+	createKeyBoard(tempo)
+	
 
 tempo = 0
 
@@ -50,7 +56,7 @@ keys = [
 
 ]
 
-def createKeyBoard():
+def createKeyBoard(tempo):
 	global App
 	AppInitial.quit()
 	varColumn = 0
@@ -72,6 +78,10 @@ def createKeyBoard():
 	
 	App.deiconify()
 	App.update()
+	p = multiprocessing.Process(target=sendInput, args=(App, buttons, tempo))
+	p.start()
+	p = multiprocessing.Process(target=output, args=(App, buttons, tempo))
+	p.start()
 
 
 def fooForBlackKeys(key):
