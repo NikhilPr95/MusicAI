@@ -17,7 +17,7 @@ from musicai.main.constants.directories import *
 
 def splitData():
 
-	musicFiles_ = glob.glob(os.path.join(directories.PROCESSED_CHORDS,"*"))
+	musicFiles_ = glob.glob(os.path.join(directories.RHYMES,"*"))
 	random.shuffle(musicFiles_)
 	musicFiles = [f for f in musicFiles_ if len(open(f).readlines()) > BAR_THRESHOLD]
 	length = len(musicFiles)
@@ -75,13 +75,18 @@ def fitModel(option, train):
 		
 		chord_sequences = flatten(chord_sequences)
 		chord_sequences = [SIMPLE_CHORDS.index(i) for i in chord_sequences]
-		numberChords = 4
+		numberChords = False
 		if not numberChords:
-			obj.fit(flatten(bar_sequences), chord_sequences)
+			bar_sequences = flatten(bar_sequences)
+			bar_sequences = [[0,0,0,0]] + bar_sequences
+			print(bar_sequences)
+			chord_sequences = chord_sequences + [0]
+			obj.fit(bar_sequences, chord_sequences)
 		else:
 			chord_sequences_temp = [0,0,0,0] + chord_sequences #assuming all C chords
 			chord_timesteps = [tuple(chord_sequences_temp[i:i+numberChords]) for i in range(len(chord_sequences_temp))]
 			X = zip(flatten(bar_sequences), chord_timesteps)
+			chord_sequences = [3] + chord_sequences[:-1]
 			obj.fit(list(X), chord_sequences)
 	return obj
 
@@ -262,12 +267,13 @@ def checkModel():
 		numberChords = 4
 		chord_sequences = flatten(chord_sequences)
 		actual_chords = [SIMPLE_CHORDS.index(i) for i in chord_sequences]
-		chord_sequences_temp = [0, 0, 0, 0] + actual_chords  # assuming all C chords
-		chord_timesteps = [tuple(chord_sequences_temp[i:i + numberChords]) for i in range(len(chord_sequences_temp))]
+		actual_chords = [0] + actual_chords[:-1]
+		#chord_sequences_temp = [0, 0, 0, 0] + actual_chords  # assuming all C chords
+		#chord_timesteps = [tuple(chord_sequences_temp[i:i + numberChords]) for i in range(len(chord_sequences_temp))]
 		
 		bar_sequences = flatten(bar_sequences)
 		for i in range(len(bar_sequences)):
-			predicted_chords.append(obj.predict((bar_sequences[i],chord_timesteps[i])))
+			predicted_chords.append(obj.predict([bar_sequences[i]]))
 
 		print(predicted_chords)
 		percs.append(percentage(actual_chords, predicted_chords))
