@@ -16,10 +16,11 @@ if len(sys.argv) > 1 and sys.argv[1] == "--test":
 	sys.exit()
 '''
 def sendInput(App, buttons, tempo_temp):
-	
+	global notes_of_bar, chords, queue, bar_length
 	queue = []
-	if bytes('notes','utf-8') not in [list(a)[0] for a in sa.list()]:
-		queue = sa.create("shm://notes", 4)
+	if bytes('notes','utf-8') in [list(a)[0] for a in sa.list()]:
+		queue = sa.delete("shm://notes")
+	queue = sa.create("shm://notes", 4)
 	for i in range(0, len(queue)):
 		queue[i] = 0.0
 	
@@ -33,34 +34,6 @@ def sendInput(App, buttons, tempo_temp):
 	print(bar_length)
 	
 	chords = get_chord_mapping()
-	def push_notes(signum, frame):
-		# read midi data of global array
-		# call predict
-		# re-initialize array for next bar
-		# set another alarm
-		global notes_of_bar, chords
-		#print("NOTES OF BAR : ", notes_of_bar)
-		prediction = predict(notes_of_bar)
-		
-		print(prediction)
-		notes = get_notes(prediction, chords)
-		print(notes)
-		
-		#update the GUI
-		#right hand notes
-		[buttons[36 + (note % 12)].invoke() for note in notes_of_bar]
-		
-		#left hand notes
-		[buttons[note % 12].invoke() for note in notes]
-		
-		App.update()
-		
-		
-		for i in range(len(notes)):
-			queue[i] = notes[i]
-	
-		notes_of_bar = []
-		signal.alarm(bar_length)
 	
 	notes_of_bar = []
 	
@@ -73,7 +46,6 @@ def sendInput(App, buttons, tempo_temp):
 	INPUT_ID = 3
 	SILENCE_THRESH = 5000
 	inp = pygame.midi.Input( INPUT_ID )
-	App.update()
 	
 	last_event = 0
 	while True:
@@ -81,8 +53,15 @@ def sendInput(App, buttons, tempo_temp):
 			midi_event = inp.read(1)
 			if midi_event[0][0][0] == 144:
 				last_event = midi_event[0][1]
-				buttons[24+int(midi_event[0][0][1])].invoke()
-				App.update()
+				print(len(buttons))
+				print(24+int(midi_event[0][0][1]))
+				
+				#################
+				#buttons[24+(int(midi_event[0][0][1])%12)].invoke()
+				#lock.acquire()
+				#App.update()
+				#################
+				#lock.release()
 				notes_of_bar.append(midi_event[0][0][1])
 			elif (midi_event[0][1] - last_event) > SILENCE_THRESH:
 				signal.alarm(0)
@@ -95,5 +74,32 @@ def sendInput(App, buttons, tempo_temp):
 	pygame.midi.quit()
 	pygame.quit()
 
+def push_notes(signum, frame):
+	# read midi data of global array
+	# call predict
+	# re-initialize array for next bar
+	# set another alarm
+	global notes_of_bar, chords, queue, bar_length
+	#print("NOTES OF BAR : ", notes_of_bar)
+	prediction = predict(notes_of_bar)
 
+	print(prediction)
+	notes = get_notes(prediction, chords)
+	print(notes)
+
+	#update the GUI
+	#right hand notes
+	#[buttons[36 + (note % 12)].invoke() for note in notes_of_bar]
+
+	#left hand notes
+	#[buttons[note % 12].invoke() for note in notes]
+
+	#App.update()
+
+	
+	for i in range(len(notes)):
+		queue[i] = notes[i]
+
+	notes_of_bar = []
+	signal.alarm(bar_length)
 

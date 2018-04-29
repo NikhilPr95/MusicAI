@@ -2,6 +2,7 @@ from tkinter import *
 import tkinter
 import SharedArray as sa
 import multiprocessing
+from multiprocessing import Lock
 from musicai.main.scheduler.input import *
 from musicai.main.scheduler.output import *
 
@@ -45,6 +46,7 @@ AppInitial.geometry("400x200")
 L1 = Label(AppInitial, text="Enter the tempo",bg="black",fg="white", font=("Helvetica", 16)).pack()
 E1 = Entry(AppInitial, width=40, font = "Calibri 18",justify="center",bg="#1E6FBA",fg="black",disabledbackground="#1E6FBA",disabledforeground="green",highlightbackground="black",highlightcolor="green",highlightthickness=2,bd=0)
 E1.pack()
+E1.focus()
 tkinter.Button(AppInitial, text="Click to start playing!", command=getText,width=15,height=1, activebackground='navy',bg='white',fg='black',bd=8,font=('helvetica', 16, 'italic')).pack()
 buttons = []
 keys = [
@@ -78,7 +80,8 @@ def createKeyBoard(tempo):
 	
 	App.deiconify()
 	App.update()
-	p = multiprocessing.Process(target=sendInput, args=(App, buttons, tempo))
+	#lock = Lock()
+	p = multiprocessing.Process(target=sendInput, args=(App, buttons, tempo ))
 	p.start()
 	p = multiprocessing.Process(target=output, args=(App, buttons, tempo))
 	p.start()
@@ -86,22 +89,25 @@ def createKeyBoard(tempo):
 
 def fooForBlackKeys(key):
 	# highlight for one second the key
+	print("Key is "+str(key))
 	print(buttons[key])
 	buttons[key].config(bg="#00ff00", fg="#000000")
-	App.after(1000*(60/tempo), lambda: buttons[key].config(bg="#000000", fg="#ffffff"))
+	App.after(int(1000*(60/tempo)), lambda: buttons[key].config(bg="#000000", fg="#ffffff"))
 
 
 def fooForWhiteKeys(key):
 	# highlight for one second the key
+	print("White Key is "+str(key))
 	print(buttons[key])
 	buttons[key].config(bg="#00ff00", fg="#ffffff")
-	App.after(1000*(60/tempo), lambda: buttons[key].config(bg="#ffffff", fg="#000000"))
+	App.after(int(1000*(60/tempo)), lambda: buttons[key].config(bg="#ffffff", fg="#000000"))
 '''
 notes = ["C","F","G"]
 for i in notes:
 	buttons[keys.index(i)].invoke()
-'''
 
+App.update()
+'''
 
 
 AppInitial.mainloop()

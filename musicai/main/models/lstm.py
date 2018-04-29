@@ -18,16 +18,15 @@ class LSTM(Base):
 		self.model.add(Dense(7, activation = "softmax"))
 		self.model.compile(loss="sparse_categorical_crossentropy", optimizer="adam", metrics=["accuracy"])
 	def fit(self, x, y ):
-		if glob.glob(os.path.join(directories.PICKLES, 'lstm.pkl')):
-			self.model = load(open(os.path.join(directories.PICKLES, 'lstm.pkl'), "rb"))
-		else:
-			x = np.array(x)
-			x = x.reshape(x.shape[0], x.shape[1], 1)
-			print("After reshape X:",x)
-			self.model.fit(x, y, nb_epoch=100, batch_size=64)
-			scores = self.model.evaluate(x, y, verbose=0)
-			print("Accuracy: %.2f%%" % (scores[1]*100))
-			dump(self.model, open(os.path.join(directories.PICKLES, 'lstm.pkl'), "wb"))
+		x = np.array(x)
+		x = x.reshape(x.shape[0], x.shape[1], 1)
+		print(x)
+		print("After reshape X:",x)
+		self.model.fit(x, y, nb_epoch=100, batch_size=64)
+		scores = self.model.evaluate(x, y, verbose=0)
+		print("Accuracy: %.2f%%" % (scores[1]*100))
+		#dump(self, open(os.path.join(directories.PICKLES, 'lstm.pkl'), "wb"))
+		self.model.save(os.path.join(directories.PICKLES, 'lstm.h5'))
 		
 	def predict(self, y):
 		print(y)

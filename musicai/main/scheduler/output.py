@@ -18,12 +18,23 @@ def sendOutput():
     while (not (chordsToPlay[0] == -1.0)):
         for i in range(len(chordsToPlay)):
             print(chordsToPlay[i])
-            out.note_on(48 + int(chordsToPlay[i]), velocity=60)
+            out.note_on(48 + int(chordsToPlay[i]), velocity=random.randint(45,75))
             buttons[int(chordsToPlay[i])].invoke()
             App.update()
-            time.sleep((60 / tempo))
+            time.sleep((60 / tempo) * 0.5)
             print("OUT")
             out.note_off(48 + int(chordsToPlay[i]), velocity=0)
+
+        for i in range(len(chordsToPlay)):
+            print(chordsToPlay[i])
+            random.shuffle(chordsToPlay)
+            out.note_on(48 + int(chordsToPlay[i]), velocity=random.randint(45,75))
+            buttons[int(chordsToPlay[i])].invoke()
+            App.update()
+            time.sleep((60 / tempo) * 0.5)
+            print("OUT")
+            out.note_off(48 + int(chordsToPlay[i]), velocity=0)
+
 	
 def output(App_parameter,buttons_parameter, tempo_temp):
     global chordsToPlay , out, tempo, App, buttons
