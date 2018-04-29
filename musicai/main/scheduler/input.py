@@ -81,7 +81,7 @@ def push_notes(signum, frame):
 	# set another alarm
 	global notes_of_bar, chords, queue, bar_length
 	#print("NOTES OF BAR : ", notes_of_bar)
-	prediction = predict(notes_of_bar)
+	prediction = predict(notes_of_bar) + "_M"
 
 	print(prediction)
 	notes = get_notes(prediction, chords)
