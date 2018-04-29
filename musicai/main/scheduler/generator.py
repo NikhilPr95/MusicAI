@@ -23,7 +23,7 @@ def sendOutput():
 				out.note_off(l, velocity=0)
 			for note in leftHandNotes[i]:
 				out.note_on(48 + int(note), velocity=rightHandNotes[i][1])	
-		if (rightHandNotes[i][2] > 200 and rightHandNotes[i][2] < 1000):
+		if (rightHandNotes[i][2] > 200 and rightHandNotes[i][2] < 800):
 			out.note_on(60 + int(rightHandNotes[i][0]), velocity=rightHandNotes[i][1])
 		#out.note_on(48 + int(leftHandNotes[i]), velocity=rightHandNotes[i][1])
 		# time.sleep((60 / tempo))

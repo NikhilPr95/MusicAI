@@ -7,7 +7,8 @@ import os.path
 def gen_trigram():
 	train, val, test = splitData()
 	#[os.path.join(PROCESSED_CHORDS_TIME,"baba.csv.formatted")]
-	bar_sequences,chord_sequences = parse_data(train, octave=True,  generated=True)
+	#train
+	bar_sequences,chord_sequences = parse_data([os.path.join(PROCESSED_CHORDS_TIME,"twinkle.csv.formatted")], octave=True,  generated=True)
 	print(len(flatten(bar_sequences)),len(flatten(bar_sequences)))
 	X_train = flatten(flatten(bar_sequences))
 	Y_train = flatten(chord_sequences)
