@@ -8,7 +8,7 @@ from musicai.main.lib.input_vectors import sequence_vectors, parse_data
 # file = directories.PROCESSED_CHORDS
 #
 # data, labels = sequence_vectors(file)
-# # data, labels = sequence_vectors("../data/processed_chords/happy_birthday.csv.formatted")
+# # data, labels = sequence_vectors("../data/processed_chords_multi_octave/happy_birthday.csv.formatted")
 #
 # for row in zip(data, labels):
 #     print(row)
