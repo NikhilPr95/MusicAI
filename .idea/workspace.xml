@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5065b65-098b-406c-871f-bb1ffaaa4420" name="Default" comment="Adds softmax option">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/pickles/knn.pkl" afterPath="$PROJECT_DIR$/musicai/main/pickles/knn.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/pickles/omm.pkl" afterPath="$PROJECT_DIR$/musicai/main/pickles/omm.pkl" />
+    <list default="true" id="f5065b65-098b-406c-871f-bb1ffaaa4420" name="Default" comment="Adds k fold split functions">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/musicai/utils/files.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/lib/input_vectors.py" afterPath="$PROJECT_DIR$/musicai/main/lib/input_vectors.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/models/mlp.py" afterPath="$PROJECT_DIR$/musicai/main/models/mlp.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/tests/runmodels.py" afterPath="$PROJECT_DIR$/musicai/tests/runmodels.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -61,44 +58,8 @@
       <file leaf-file-name="runmodels.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/musicai/tests/runmodels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="83" column="55" lean-forward="false" selection-start-line="83" selection-start-column="55" selection-end-line="83" selection-end-column="55" />
-              <folding>
-                <marker date="1525628066343" expanded="true" signature="632:633" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="input_vectors.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/musicai/main/lib/input_vectors.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
-              <folding>
-                <marker date="1525628066999" expanded="true" signature="4382:4488" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="splitting.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/musicai/main/preprocessing/splitting.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="replicate.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/musicai/main/preprocessing/replicate.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="124">
+              <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
               </folding>
@@ -106,22 +67,56 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="__init__.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/musicai/__init__.py">
+      <file leaf-file-name="general.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/musicai/utils/general.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="216">
+              <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="metrics.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/musicai/tests/metrics.py">
+      <file leaf-file-name="chords.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/musicai/utils/chords.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="314">
+              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="read.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/musicai/utils/read.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="29" column="10" lean-forward="false" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="files.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/musicai/utils/files.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="input_vectors.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/musicai/main/lib/input_vectors.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+              <folding>
+                <marker date="1525628066999" expanded="true" signature="4382:4488" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -177,7 +172,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="ngrambars_fixed" />
+        <entry key="$PROJECT_DIR$" value="multiple_octaves" />
       </map>
     </option>
     <push-targets>
@@ -195,7 +190,6 @@
         <option value="$PROJECT_DIR$/musicai/main/preprocessing/batch_format.py" />
         <option value="$PROJECT_DIR$/musicai/main/lib/omm.py" />
         <option value="$PROJECT_DIR$/musicai/main/lib/predict.py" />
-        <option value="$PROJECT_DIR$/musicai/utils/files.py" />
         <option value="$PROJECT_DIR$/musicai/data/processed_chords/dummy.csv.formatted" />
         <option value="$PROJECT_DIR$/musicai/main/lib/knn.py" />
         <option value="$PROJECT_DIR$/musicai/main/models/omm.py" />
@@ -223,8 +217,9 @@
         <option value="$PROJECT_DIR$/musicai/main/constants/directories.py" />
         <option value="$PROJECT_DIR$/musicai/main/check.py" />
         <option value="$PROJECT_DIR$/musicai/main/models/mlp.py" />
-        <option value="$PROJECT_DIR$/musicai/tests/runmodels.py" />
         <option value="$PROJECT_DIR$/musicai/main/lib/input_vectors.py" />
+        <option value="$PROJECT_DIR$/musicai/utils/files.py" />
+        <option value="$PROJECT_DIR$/musicai/tests/runmodels.py" />
       </list>
     </option>
   </component>
@@ -299,33 +294,7 @@
               <item name="MusicAI" type="b2602c69:ProjectViewProjectNode" />
               <item name="MusicAI" type="462c0819:PsiDirectoryNode" />
               <item name="musicai" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MusicAI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MusicAI" type="462c0819:PsiDirectoryNode" />
-              <item name="musicai" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MusicAI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MusicAI" type="462c0819:PsiDirectoryNode" />
-              <item name="musicai" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="preprocessing" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MusicAI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MusicAI" type="462c0819:PsiDirectoryNode" />
-              <item name="musicai" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="MusicAI" type="b2602c69:ProjectViewProjectNode" />
-              <item name="MusicAI" type="462c0819:PsiDirectoryNode" />
-              <item name="musicai" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="MusicAI" type="b2602c69:ProjectViewProjectNode" />
@@ -778,7 +747,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524405235721</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Adds k fold split functions">
+      <created>1525628183371</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1525628183371</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -799,7 +775,7 @@
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28356606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28356606" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4634434" sideWeight="0.24919441" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.49570355" order="1" side_tool="false" content_ui="tabs" />
@@ -823,7 +799,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adds hmm_train, and hmm_predict; need to update mapping between results aof hmm_predict and chord" />
     <MESSAGE value="Adds parse_data to return bar and chord sequences, passes flattened lists to emission_matrix" />
     <MESSAGE value="Fits the model with multiple sequences in correct manner" />
     <MESSAGE value="Adds PICKLES to directories.constants; Reads right hand notes (fixed bug); Changes raw paths to os.path.join" />
@@ -848,7 +823,8 @@
     <MESSAGE value="Creates new branch for ngram bar bug fix" />
     <MESSAGE value="Adds softmax option" />
     <MESSAGE value="Adds oversampling options" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adds oversampling options" />
+    <MESSAGE value="Adds k fold split functions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Adds k fold split functions" />
   </component>
   <component name="WindowStateProjectService">
     <state width="420" height="584" key="Git.Branch.Popup" />
@@ -898,20 +874,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/musicai/main/scheduler/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/musicai/main/lib/predict.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="8" column="4" lean-forward="false" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python36/Lib/site-packages/pygame/midi.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6390">
@@ -944,13 +906,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="253">
           <caret line="889" column="30" lean-forward="true" selection-start-line="889" selection-start-column="30" selection-end-line="889" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/musicai/utils/general.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
         </state>
       </provider>
     </entry>
@@ -1042,13 +997,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/musicai/utils/chords.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1230,23 +1178,57 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/musicai/tests/runmodels.py">
+    <entry file="file://$PROJECT_DIR$/musicai/main/lib/input_vectors.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="83" column="55" lean-forward="false" selection-start-line="83" selection-start-column="55" selection-end-line="83" selection-end-column="55" />
+        <state relative-caret-position="90">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
           <folding>
-            <marker date="1525628066343" expanded="true" signature="632:633" ph="..." />
+            <marker date="1525628066999" expanded="true" signature="4382:4488" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/musicai/main/lib/input_vectors.py">
+    <entry file="file://$PROJECT_DIR$/musicai/utils/general.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="14" column="4" lean-forward="true" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        <state relative-caret-position="216">
+          <caret line="12" column="8" lean-forward="false" selection-start-line="12" selection-start-column="8" selection-end-line="12" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/musicai/utils/chords.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/musicai/utils/read.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="29" column="10" lean-forward="false" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
           <folding>
-            <marker date="1525628066999" expanded="true" signature="4382:4488" ph="..." />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/musicai/tests/runmodels.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="103" column="0" lean-forward="true" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/musicai/utils/files.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
