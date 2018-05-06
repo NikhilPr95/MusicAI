@@ -39,8 +39,8 @@ class MLP(Base):
         X = np.array(X)
         y = np.array(y)
 
-        # self.clf = MLPClassifier(activation=self.activation, max_iter=1000, solver='lbfgs', alpha=50)
-        self.clf = MLPClassifier(activation=self.activation, max_iter=1000)
+        self.clf = MLPClassifier(activation=self.activation, max_iter=1000, solver='lbfgs', alpha=50)
+        # self.clf = MLPClassifier(activation=self.activation, max_iter=1000)
         self.clf.fit(X, y)
 
     # print("score:", self.clf.score(X, y))

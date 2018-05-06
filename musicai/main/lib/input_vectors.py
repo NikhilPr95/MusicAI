@@ -12,7 +12,6 @@ from musicai.utils.general import flatten
 
 def sequence_vectors(csvfilepath, num_notes=None, chords=False, octave=False, reduce_chords=False,
                      padval=-1):  # num_notes is the len of the vector required
-
 	def getdata(csvfile, data, labels, maxlen):
 		rows = csv.reader(open(csvfile, "r"))
 
@@ -72,7 +71,8 @@ def ngram_vector(sequences, n):
 	return sequence_ngrams
 
 
-def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, chords_in_ngram=False, notes=1, oversampling=False):
+def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, chords_in_ngram=False, notes=1,
+                                oversampling=False):
 	bar_sequence_ngrams, \
 	chord_sequence_ngrams = ngram_vector(bar_sequences, ngramlength), ngram_vector(
 		chord_sequences, ngramlength)
@@ -105,7 +105,8 @@ def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, cho
 	return X, y
 
 
-def create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=0, chord_label_offset=0, num_notes=-1, oversampling=False):
+def create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=0, chord_label_offset=0, num_notes=-1,
+                                   oversampling=False):
 	X, y = [], []
 	for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
 		for i in range(len(chord_sequence) - exclude):
@@ -144,7 +145,6 @@ def parse_data(csvfilepaths, octave=True, reduce_chords=True, chords=False, num_
 	bar_sequences = []
 	chord_sequences = []
 	for csvfile in csvfilepaths:
-		# print('file:', csvfile)
 		data = sequence_vectors(csvfile, num_notes, chords, octave, reduce_chords, padval)
 		bar_sequences.append(data[0])
 		chord_sequences.append(data[1])
