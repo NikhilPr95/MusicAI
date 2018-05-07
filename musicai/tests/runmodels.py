@@ -11,7 +11,7 @@ from musicai.main.models.logreg import LogReg
 from musicai.main.models.mlp import MLP
 from musicai.main.models.pyhmm import PyHMM
 from musicai.main.models.svm import SVM
-from musicai.utils.files import randomSplit
+from musicai.utils.files import randomSplit, num_bars
 
 model_class = {'KO': KO, 'SVM': SVM, 'MLP': MLP, 'LogReg': LogReg, 'PyHMM': PyHMM}
 
@@ -52,8 +52,8 @@ def get_model_info(model_dict, num_notes_val, ngramlength_val):
 	ngramlength = model_dict.get('ngramlength', ngramlength_val)
 	chords_in_ngram = model_dict.get('chords_in_ngram', False)
 	softmax = model_dict.get('softmax', False)
-	# oversampling = model_dict.get('oversampling', False)
-	oversampling = False
+	oversampling = model_dict.get('oversampling', False)
+	# oversampling = False
 	actval = activation if activation else kernel
 
 	return [model_name, data_type, activation, kernel, num_notes, padval, ngramlength, chords_in_ngram,
@@ -61,6 +61,8 @@ def get_model_info(model_dict, num_notes_val, ngramlength_val):
 
 
 def evaluate_models(train, test, num_notes_val=4, ngramlength_val=4):
+	print("".join(word.ljust(20) for word in ['MODEL', 'DATA_TYPE', 'NOTES', 'NGRAMLENGTHVAL', 'ACTIVATION/KERNEL',
+											  'CHORDS_IN_NRGAM', 'SOFTMAX', 'SMOTE', 'SCORES']))
 	model_list = yaml.load(open(os.path.join(MODELS, "model_configs.yaml"), "r"))
 	results = []
 
@@ -70,15 +72,18 @@ def evaluate_models(train, test, num_notes_val=4, ngramlength_val=4):
 			ngramlength, chords_in_ngram, softmax, \
 			oversampling, actval = get_model_info(model_dict, num_notes_val, ngramlength_val)
 
-			scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
-							  kernel=kernel, train=train, test=test, num_notes=num_notes, padval=padval,
-							  ngramlength=ngramlength, chords_in_ngram=chords_in_ngram, notes=num_notes,
-							  softmax=softmax, oversampling=False)
+			if oversampling == False:
 
-			result = [model_name, data_type, num_notes, ngramlength, actval, chords_in_ngram, softmax, oversampling,
-					  scores]
+				scores = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
+								  kernel=kernel, train=train, test=test, num_notes=num_notes, padval=padval,
+								  ngramlength=ngramlength, chords_in_ngram=chords_in_ngram, notes=num_notes,
+								  softmax=softmax, oversampling=False)
 
-			results.append(result)
+				result = [model_name, data_type, num_notes, ngramlength, actval, chords_in_ngram, softmax, oversampling,
+						  scores]
+
+				print("".join(word.ljust(20) for word in [str(x) for x in result]))
+				results.append(result)
 
 	sorted_results = sorted(results, key=lambda x: x[8]['test'])
 
@@ -97,12 +102,16 @@ def print_results(sorted_results):
 	print("".join(word.ljust(20) for word in [str(x) for x in sorted_results[-1]]))
 
 
-def random_split_test(directory):
-	train, test = randomSplit(directory=directory)
+def random_split_test(train, test):
 	sorted_results = evaluate_models(train=train, test=test, num_notes_val=4, ngramlength_val=5)
 	return sorted_results
 
 
 if __name__ == "__main__":
-	sorted_results = random_split_test(directory=directories.PROCESSED_CHORDS_MULTI_OCTAVE)
+	# train, test = randomSplit(directory=directories.PROCESSED_CHORDS_MULTI_OCTAVE)
+	train = glob.glob(os.path.join(directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TRAIN, "*"))
+	test = glob.glob(os.path.join(directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TEST, "*"))
+	print('train ', len(train), num_bars(train), 'test ', len(test), num_bars(test))
+
+	sorted_results = random_split_test(train, test)
 	print_results(sorted_results)

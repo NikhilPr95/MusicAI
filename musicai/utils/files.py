@@ -1,3 +1,13 @@
+import csv
+import glob
+
+import os
+import random
+from copy import copy
+
+from musicai.main.constants.values import BAR_THRESHOLD
+
+
 def num_bars(files):
 	return sum([len(open(f).readlines()) for f in files])
 
@@ -49,3 +59,21 @@ def kfold_split(directory, n):
 
 	return train_files, test_files
 
+
+def intra_song_splits(original_dir, train_dir, test_dir):
+	# Splits songs from the original directory as the first 80 percent in the train dir
+	# and the last 20 percent in the test dir
+
+	for csvfile in os.listdir(original_dir):
+		print(csvfile)
+		rows = csv.reader(open(os.path.join(original_dir, csvfile), "r"))
+		rows = copy(list(rows))
+
+		train_dir_writer = csv.writer(open(os.path.join(train_dir, csvfile), "w"), lineterminator='\n')
+		for row in rows[:int(0.8*len(rows))]:
+			train_dir_writer.writerow(row)
+
+		test_dir_writer = csv.writer(open(os.path.join(test_dir, csvfile), "w"), lineterminator='\n')
+
+		for row in rows[int(0.8*len(rows)):]:
+			test_dir_writer.writerow(row)
