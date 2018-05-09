@@ -1,13 +1,15 @@
 models:
   -
     model: KO
-    padding: 15
+    num_notes: 15
   -
     model: PyHMM
     data_type: sequence
+    num_notes: 1
   -
     model: PyHMM
     data_type: ngram
+    num_notes: 1
   -
     model: MLP
     data_type: ngram_notes
@@ -28,25 +30,25 @@ models:
     model: MLP
     data_type: current_bar
     activation: identity
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
     data_type: current_bar
     activation: relu
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
     data_type: current_bar
     activation: logistic
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
     data_type: current_bar
     activation: tanh
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: MLP
@@ -68,6 +70,74 @@ models:
     data_type: ngram_notes
     activation: tanh
     chords_in_ngram: True
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: identity
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: relu
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: logistic
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: tanh
+  -
+    model: MLP
+    data_type: current_bar
+    activation: identity
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: MLP
+    data_type: current_bar
+    activation: relu
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: MLP
+    data_type: current_bar
+    activation: logistic
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: MLP
+    data_type: current_bar
+    activation: tanh
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+    softmax: True
   -
     model: SVM
     data_type: ngram_notes
@@ -85,7 +155,7 @@ models:
     model: SVM
     data_type: ngram_notes
     kernel: sigmoid
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: SVM
@@ -107,35 +177,115 @@ models:
     model: SVM
     data_type: ngram_notes
     kernel: sigmoid
-    padding: 5
+    num_notes: 5
     padval: -1
     chords_in_ngram: True
   -
     model: SVM
     data_type: current_bar
     kernel: rbf
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: SVM
     data_type: current_bar
     kernel: linear
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: SVM
     data_type: current_bar
     kernel: poly
     is_enabled: False
-    padding: 5
+    num_notes: 5
     padval: -1
     current_bar: True
   -
     model: SVM
     data_type: current_bar
     kernel: sigmoid
-    padding: 5
+    num_notes: 5
     padval: -1
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: rbf
+    softmax: True
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: linear
+    softmax: True
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: poly
+    is_enabled: False
+    softmax: True
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: rbf
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: linear
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: poly
+    is_enabled: False
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: rbf
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: linear
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: poly
+    is_enabled: False
+    num_notes: 5
+    padval: -1
+    current_bar: True
+    softmax: True
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    softmax: True
   -
     model: LogReg
     data_type: ngram_notes
@@ -176,23 +326,647 @@ models:
     model: LogReg
     data_type: current_bar
     activation: identity
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: LogReg
     data_type: current_bar
     activation: relu
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: LogReg
     data_type: current_bar
     activation: logistic
-    padding: 5
+    num_notes: 5
     padval: -1
   -
     model: LogReg
     data_type: current_bar
     activation: tanh
-    padding: 5
+    num_notes: 5
     padval: -1
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: identity
+    softmax: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: relu
+    softmax: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: logistic
+    softmax: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: tanh
+    softmax: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: identity
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: relu
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: logistic
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: tanh
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: identity
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: relu
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: logistic
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: tanh
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: identity
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: relu
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: logistic
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: tanh
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: identity
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: relu
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: logistic
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: tanh
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: identity
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: relu
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: logistic
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: current_bar
+    activation: tanh
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: MLP
+    data_type: ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: rbf
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: linear
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: poly
+    is_enabled: False
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: rbf
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: linear
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: poly
+    is_enabled: False
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: rbf
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: linear
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: poly
+    is_enabled: False
+    num_notes: 5
+    padval: -1
+    current_bar: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: rbf
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: linear
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: poly
+    is_enabled: False
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: rbf
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: linear
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: poly
+    is_enabled: False
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: rbf
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: linear
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: poly
+    is_enabled: False
+    num_notes: 5
+    padval: -1
+    current_bar: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: SVM
+    data_type: current_bar
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: identity
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: relu
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: logistic
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: tanh
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: identity
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: relu
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: logistic
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: tanh
+    num_notes: 5
+    padval: -1
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: identity
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: relu
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: logistic
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: tanh
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: identity
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: relu
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: logistic
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+
+  -
+    model: LogReg
+    data_type: current_bar
+    activation: tanh
+    num_notes: 5
+    padval: -1
+    softmax: True
+    oversampling: [smote, adasyn, random]
+

@@ -8,7 +8,7 @@ from musicai.main.lib.input_vectors import sequence_vectors, parse_data
 # file = directories.PROCESSED_CHORDS
 #
 # data, labels = sequence_vectors(file)
-# # data, labels = sequence_vectors("../data/processed_chords/happy_birthday.csv.formatted")
+# # data, labels = sequence_vectors("../data/processed_chords_multi_octave/happy_birthday.csv.formatted")
 #
 # for row in zip(data, labels):
 #     print(row)
@@ -20,10 +20,11 @@ from musicai.main.lib.markov import hmm_train, hmm_predict
 #hmm_train()
 import os
 from musicai.main.models.pyhmm import PyHMM
+from musicai.utils.files import intra_song_splits
 from musicai.utils.general import flatten
 
 musicfiles = glob.glob(os.path.join(directories.PROCESSED_CHORDS, "*"))
-bar_sequences, chord_sequences = parse_data(musicfiles, octave=True, reduce_chords=True, padding=15, padval=-1)
+bar_sequences, chord_sequences = parse_data(musicfiles, octave=True, reduce_chords=True, num_notes=15, padval=-1)
 
 # print('bs:', bar_sequences)
 # for bar_sequence, chord_sequence in zip(bar_sequences, chord_sequences):
@@ -72,8 +73,15 @@ bar_sequences, chord_sequences = parse_data(musicfiles, octave=True, reduce_chor
 # ph = PyHMM()
 # ph.fit(bar_sequences, chord_sequences)
 # ph.predict([72])
-from musicai.utils.chords import count_chords
+# from musicai.utils.chords import count_chords
+#
+# x = (count_chords())
+# print(x)
+# print(sum(x.values()))
 
-x = (count_chords())
-print(x)
-print(sum(x.values()))
+
+original_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE
+train_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TRAIN
+test_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TEST
+
+intra_song_splits(original_dir, train_dir, test_dir)

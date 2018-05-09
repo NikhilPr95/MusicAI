@@ -72,7 +72,7 @@ def emission_matrix(state_sequence, labels):
 
 def omm_train():
 	chord_sequences = []
-	for file_name in glob.glob("musicai/data/processed_chords/*"):
+	for file_name in glob.glob("musicai/data/processed_chords_multi_octave/*"):
 		data = sequence_vectors(file_name)
 		chord_sequences.append(data[1])
 	

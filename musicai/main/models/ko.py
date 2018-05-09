@@ -7,7 +7,7 @@ from musicai.utils.general import *
 
 
 class KO(Base):
-	def __init__(self, data_type, activation=None, kernel=None, ngramlength=None, chords_in_ngram=False, notes=None):
+	def __init__(self, data_type, activation=None, kernel=None, ngramlength=None, chords_in_ngram=False, notes=None, softmax=False, oversampling=False):
 		Base.__init__(self)
 		self.knn = KNN()
 		self.omm = OMM()
@@ -17,6 +17,8 @@ class KO(Base):
 		self.ngramlength = ngramlength
 		self.chords_in_ngram = chords_in_ngram
 		self.notes = notes
+		self.softmax = softmax
+		self.oversampling = oversampling
 
 	def fit(self, bar_sequences, chord_sequences):
 		if self.data_type is not None:
@@ -25,6 +27,10 @@ class KO(Base):
 			raise Exception("Model does not support {} activation".format(self.activation))
 		if self.kernel is not None:
 			raise Exception("Model does not support {} kernel".format(self.kernel))
+		if self.softmax is not False:
+			raise Exception("Model does not support softmax")
+		if self.oversampling is not False:
+			raise Exception("Model does not support oversampling")
 
 		bar_sequences_ = flatten(bar_sequences)
 		chord_sequences_ = flatten(chord_sequences)
@@ -44,8 +50,8 @@ class KO(Base):
 		return self.omm.predict(knn_result)
 
 	def score(self, bar_sequences, chord_sequences):
-		bar_notes, knn_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=0, notes=self.notes)
-		_, omm_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, delta=1, notes=self.notes)
+		bar_notes, knn_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, chord_label_offset=0, num_notes=self.notes)
+		_, omm_labels = create_standard_feature_matrix(bar_sequences, chord_sequences, exclude=1, chord_label_offset=1, num_notes=self.notes)
 		data, labels = bar_notes, list(zip(knn_labels, omm_labels))
 
 		results = [self.predict(d) for d in data]
