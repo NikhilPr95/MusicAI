@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f5065b65-098b-406c-871f-bb1ffaaa4420" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/pickles/knn.pkl" afterPath="$PROJECT_DIR$/musicai/main/pickles/knn.pkl" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/pickles/omm.pkl" afterPath="$PROJECT_DIR$/musicai/main/pickles/omm.pkl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/check.py" afterPath="$PROJECT_DIR$/musicai/main/check.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/constants/directories.py" afterPath="$PROJECT_DIR$/musicai/main/constants/directories.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/lib/input_vectors.py" afterPath="$PROJECT_DIR$/musicai/main/lib/input_vectors.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/tests/runmodels.py" afterPath="$PROJECT_DIR$/musicai/tests/runmodels.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/utils/files.py" afterPath="$PROJECT_DIR$/musicai/utils/files.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -765,7 +758,14 @@
       <option name="project" value="LOCAL" />
       <updated>1525628448355</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Adds intra song split testing">
+      <created>1525718792262</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1525718792262</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -791,7 +791,7 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32819906" sideWeight="0.49570355" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32900944" sideWeight="0.4935553" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5473934" sideWeight="0.5537057" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4170616" sideWeight="0.75080556" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4170616" sideWeight="0.75080556" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43957347" sideWeight="0.77497315" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
