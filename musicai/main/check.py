@@ -80,8 +80,8 @@ bar_sequences, chord_sequences = parse_data(musicfiles, octave=True, reduce_chor
 # print(sum(x.values()))
 
 
-original_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE
-train_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TRAIN
-test_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TEST
+original_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV
+train_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TRAIN
+test_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TEST
 
 intra_song_splits(original_dir, train_dir, test_dir)
