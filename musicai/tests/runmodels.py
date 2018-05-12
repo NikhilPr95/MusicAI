@@ -1,6 +1,7 @@
 import csv
 import glob
 import random
+from itertools import product
 
 import yaml
 from musicai.main.constants import directories
@@ -62,10 +63,7 @@ def get_model_info(model_dict, num_notes_val, ngramlength_val):
 
 
 def evaluate_models(train_list, test_list, data_list={'sequence', 'ngram', 'ngram_notes', 'current_bar'},
-                    num_notes_val=4, ngramlength_val=1, logfile=None):
-    logcsv = open(logfile.name[:-4] + '.csv', 'w+', newline='')
-    csvwriter = csv.writer(logcsv)
-
+                    num_notes_val=4, ngramlength_val=1, logfile=None, grid_search=False):
     header_list = ['MODEL', 'DATA_TYPE', 'NOTES', 'NGRAMLENGTHVAL', 'ACTIVATION/KERNEL',
                                     'CHORDS_IN_NRGAM', 'SOFTMAX', 'SCORES', 'AVG. SCORE']
     header_string = "".join(
@@ -75,10 +73,9 @@ def evaluate_models(train_list, test_list, data_list={'sequence', 'ngram', 'ngra
     if logfile is not None:
         logfile.write(header_string)
         logfile.write('\n')
-        csvwriter.writerow(header_list)
 
     model_list = yaml.load(open(os.path.join(MODELS, "model_configs.yaml"), "r"))
-    results = []
+    results = {}
 
     for model_dict in model_list.get('models'):
         if model_dict.get('is_enabled', True):
@@ -87,63 +84,83 @@ def evaluate_models(train_list, test_list, data_list={'sequence', 'ngram', 'ngra
             oversampling, actval = get_model_info(model_dict, num_notes_val, ngramlength_val)
 
             if data_type in data_list:
+                if grid_search:
+                    notes_and_bars = list(product(list(range(1,9)), list(range(1,9))))
+                else:
+                    notes_and_bars = [(num_notes, ngramlength)]
 
-                scores = []
-                for train, test in zip(train_list, test_list):
-                    score = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
-                                     kernel=kernel, train=train, test=test, num_notes=num_notes, padval=padval,
-                                     ngramlength=ngramlength, chords_in_ngram=chords_in_ngram, notes=num_notes,
-                                     softmax=softmax, oversampling=False)
-                    scores.append(score)
+                for num_notes, ngramlength in notes_and_bars:
+                    scores = {}
+                    avg_score = {}
+                    for train, test in zip(train_list, test_list):
+                        score = fitModel(model=model_class[model_name], data_type=data_type, activation=activation,
+                                         kernel=kernel, train=train, test=test, num_notes=num_notes, padval=padval,
+                                         ngramlength=ngramlength, chords_in_ngram=chords_in_ngram, notes=num_notes,
+                                         softmax=softmax, oversampling=False)
+                        scores.setdefault('all', []).append(score)
+                        scores.setdefault(model_name, []).append(score)
+                        scores.setdefault(model_name + '_' + str(actval), []).append(score)
 
-                avg_score = {'train': "{0:.4f}".format(sum([float(score['train']) for score in scores]) / len(scores)),
-                             'test': "{0:.4f}".format(sum([float(score['test']) for score in scores]) / len(scores))}
+                    for key in scores:
+                        avg_score[key] = {'train': "{0:.4f}".format(sum([float(score['train']) for score in scores[key]]) / len(scores[key])),
+                                     'test': "{0:.4f}".format(sum([float(score['test']) for score in scores[key]]) / len(scores[key]))}
 
-                result = [model_name, data_type, num_notes, ngramlength, actval, chords_in_ngram, softmax,
-                          [(s['train'], s['test']) for s in scores], (avg_score['train'], avg_score['test'])]
+                        result = [model_name, data_type, num_notes, ngramlength, actval, chords_in_ngram, softmax,
+                                  [(s['train'], s['test']) for s in scores[key]], (avg_score[key]['train'], avg_score[key]['test'])]
 
-                res_string = "".join(word.ljust(20) for word in [str(x) for x in result])
-                print(res_string)
-                if logfile is not None:
-                    logfile.write(res_string)
-                    logfile.write('\n')
-                    csvwriter.writerow([str(x) for x in result])
+                        res_string = "".join(word.ljust(20) for word in [str(x) for x in result])
+                        print(res_string)
+                        if logfile is not None:
+                            logfile.write(res_string)
+                            logfile.write('\n')
 
-                results.append(result)
+                        results.setdefault(key, []).append(result)
 
-    sorted_results = sorted(results, key=lambda x: x[8][1])
-
-    return sorted_results
+    return results
 
 
-def print_results(sorted_results, logfile=None):
-    logcsv = open(logfile.name[:-4] + '_sorted.csv', 'w+', newline='')
-    csvwriter = csv.writer(logcsv)
+def print_results(results, logfile=None):
+    sorted_results = {}
+    for key in results:
+        # print('rkey:', results[key])
+        sorted_results[key] = sorted(results[key], key=lambda x: x[8][1])
 
-    header_list = ['MODEL', 'DATA_TYPE', 'NOTES', 'NGRAMLENGTHVAL', 'ACTIVATION/KERNEL',
-                                    'CHORDS_IN_NRGAM', 'SOFTMAX', 'SCORES', 'AVG. SCORE']
-    header_string = "".join(
-        word.ljust(20) for word in header_list)
-    print(header_string)
-    logfile.write(header_string)
-    logfile.write('\n')
-    csvwriter.writerow(header_list)
+        logcsv = open(logfile.name[:-4] + key + '.csv', 'w+', newline='')
+        sortedlogcsv = open(logfile.name[:-4] + key + '_sorted.csv', 'w+', newline='')
+        csvwriter = csv.writer(logcsv)
+        sortedcsvwriter = csv.writer(sortedlogcsv)
 
-    print('\n\nSORTED:')
-    logfile.write('\n\nSORTED:\n')
-
-    for result in sorted_results:
-        res_string = "".join(word.ljust(20) for word in [str(x) for x in result])
-        print(res_string)
-        logfile.write(res_string)
+        header_list = ['MODEL', 'DATA_TYPE', 'NOTES', 'NGRAMLENGTHVAL', 'ACTIVATION/KERNEL',
+                                        'CHORDS_IN_NRGAM', 'SOFTMAX', 'SCORES', 'AVG. SCORE']
+        header_string = "".join(
+            word.ljust(20) for word in header_list)
+        print(header_string)
+        logfile.write(header_string)
         logfile.write('\n')
-        csvwriter.writerow([str(x) for x in result])
+        sortedcsvwriter.writerow(header_list)
 
-    print('\n\nBEST:\n')
-    logfile.write('\n\nBEST:\n')
-    print("".join(word.ljust(20) for word in [str(x) for x in sorted_results[-1]]))
-    logfile.write("".join(word.ljust(20) for word in [str(x) for x in sorted_results[-1]]))
-    logfile.write('\n')
+        for result in results[key]:
+            res_string = "".join(word.ljust(20) for word in [str(x) for x in result])
+            print(res_string)
+            logfile.write(res_string)
+            logfile.write('\n')
+            csvwriter.writerow([str(x) for x in result])
+
+        print('\n\nSORTED:' + key)
+        logfile.write('\n\nSORTED:'+key+'\n')
+
+        for result in sorted_results[key]:
+            res_string = "".join(word.ljust(20) for word in [str(x) for x in result])
+            print(res_string)
+            logfile.write(res_string)
+            logfile.write('\n')
+            sortedcsvwriter.writerow([str(x) for x in result])
+
+        print('\n\nBEST:' + key)
+        logfile.write('\n\nBEST:'+key+'\n')
+        print("".join(word.ljust(20) for word in [str(x) for x in sorted_results[key][-1]]))
+        logfile.write("".join(word.ljust(20) for word in [str(x) for x in sorted_results[key][-1]]))
+        logfile.write('\n')
 
 
 def random_split_test(train, test):
@@ -151,20 +168,41 @@ def random_split_test(train, test):
     return sorted_results
 
 
-def kfold_split_test(directory, n, data_list=None, logfile=None):
+def kfold_split_test(directory, n, data_list=None, logfile=None, grid_search=False):
     train_file_sets, test_file_sets, ratios = kfold_split(directory, n)
     logfile.write('RATIOS-\n')
     logfile.write(repr(ratios))
     logfile.write('\n\n')
 
     if data_list == None:
-        sorted_results = evaluate_models(train_file_sets, test_file_sets, logfile=logfile)
+        sorted_results = evaluate_models(train_file_sets, test_file_sets, logfile=logfile, grid_search=grid_search)
     else:
-        sorted_results = evaluate_models(train_file_sets, test_file_sets, data_list=data_list, logfile=logfile)
+        sorted_results = evaluate_models(train_file_sets, test_file_sets, data_list=data_list, logfile=logfile, grid_search=grid_search)
     return sorted_results
 
 
 def get_all_results():
+    for dir in [directories.PROCESSED_CHORDS,
+                directories.PROCESSED_CHORDS_RHYMES,
+                directories.PROCESSED_CHORDS_POP,
+                # directories.PROCESSED_CHORDS_IMPROV,
+                directories.PROCESSED_CHORDS_MULTI_OCTAVE,
+                directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES,
+                directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP,
+                directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV]:
+        print('DIR:', dir)
+        for data_type in ['ngram_notes', 'current_bar', 'sequence', 'ngram']:
+            print('DATA_TYPE:', data_type)
+            for k in [5, 10]:
+                print('K:', k)
+                logdir = os.path.join(os.path.basename(dir[:-1]), data_type)
+                print('logdir:', logdir)
+                if not os.path.exists(os.path.join(directories.RESULTS, logdir)):
+                    os.mkdir(os.path.join(directories.RESULTS, logdir))
+                logfile = open(os.path.join(directories.RESULTS, logdir, data_type + str(k) + '.txt'), 'w+')
+                grid_search = True if data_type == 'ngram_notes' else False
+                results = kfold_split_test(dir, k, {data_type}, logfile, grid_search=grid_search)
+                print_results(results, logfile)
 
     for train, test in [
         (directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TRAIN,
@@ -187,36 +225,14 @@ def get_all_results():
         print('DIR:', test)
         for data_type in ['sequence', 'ngram', 'current_bar', 'ngram_notes']:
             print('DATA_TYPE:', data_type)
-            if data_type == 'ngram_notes':
-                pass
-            else:
-                logdir = os.path.basename(test[:-1])
-                if not os.path.exists(os.path.join(directories.RESULTS, logdir)):
-                    os.mkdir(os.path.join(directories.RESULTS, logdir))
-                logfile = open(os.path.join(directories.RESULTS, logdir, data_type + '.txt'), 'w+')
-                sorted_results = evaluate_models([glob.glob(train)], [glob.glob(test)], data_list={data_type}, logfile=logfile)
-                print_results(sorted_results, logfile)
-
-    for dir in [directories.PROCESSED_CHORDS,
-                directories.PROCESSED_CHORDS_RHYMES,
-                directories.PROCESSED_CHORDS_POP,
-                # directories.PROCESSED_CHORDS_IMPROV,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV]:
-        print('DIR:', dir)
-        for data_type in ['current_bar', 'sequence', 'ngram', 'ngram_notes']:
-            print('DATA_TYPE:', data_type)
-            for k in [5, 10]:
-                print('K:', k)
-                if data_type == 'ngram_notes':
-                    pass
-                else:
-                    logdir = os.path.basename(dir[:-1])
-                    logfile = open(os.path.join(directories.RESULTS, logdir, data_type + str(k) + '.txt'), 'w+')
-                    sorted_results = kfold_split_test(dir, k, {data_type}, logfile)
-                    print_results(sorted_results, logfile)
+            logdir = os.path.join(os.path.basename(test[:-1]), data_type)
+            print('logdir:', logdir)
+            if not os.path.exists(os.path.join(directories.RESULTS, logdir)):
+                os.mkdir(os.path.join(directories.RESULTS, logdir))
+            logfile = open(os.path.join(directories.RESULTS, logdir, data_type + '.txt'), 'w+')
+            grid_search = True if data_type == 'ngram_notes' else False
+            results = evaluate_models([glob.glob(train)], [glob.glob(test)], data_list={data_type}, logfile=logfile, grid_search=grid_search)
+            print_results(results, logfile)
 
 
 if __name__ == "__main__":

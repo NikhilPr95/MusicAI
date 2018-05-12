@@ -73,15 +73,17 @@ bar_sequences, chord_sequences = parse_data(musicfiles, octave=True, reduce_chor
 # ph = PyHMM()
 # ph.fit(bar_sequences, chord_sequences)
 # ph.predict([72])
-# from musicai.utils.chords import count_chords
+from musicai.utils.chords import count_chords
 #
-# x = (count_chords())
-# print(x)
-# print(sum(x.values()))
+x, y = (count_chords())
+print(x)
+print(y)
+print(sum(x.values()))
 
 
-original_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV
-train_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TRAIN
-test_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TEST
 
-intra_song_splits(original_dir, train_dir, test_dir)
+# original_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV
+# train_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TRAIN
+# test_dir = directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TEST
+#
+# intra_song_splits(original_dir, train_dir, test_dir)

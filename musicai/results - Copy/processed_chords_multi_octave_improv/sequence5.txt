@@ -1,0 +1,14 @@
+RATIOS-
+[0.19082278481012657, 0.19082278481012657, 0.1879746835443038, 0.19556962025316454, 0.19177215189873417]
+
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               sequence            1                   1                   None                False               False               [('0.254', '0.214'), ('0.324', '0.270'), ('0.286', '0.217'), ('0.297', '0.324'), ('0.300', '0.264')]('0.2922', '0.2578')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+
+
+SORTED:
+PyHMM               sequence            1                   1                   None                False               False               [('0.254', '0.214'), ('0.324', '0.270'), ('0.286', '0.217'), ('0.297', '0.324'), ('0.300', '0.264')]('0.2922', '0.2578')
+
+
+BEST:
+PyHMM               sequence            1                   1                   None                False               False               [('0.254', '0.214'), ('0.324', '0.270'), ('0.286', '0.217'), ('0.297', '0.324'), ('0.300', '0.264')]('0.2922', '0.2578')

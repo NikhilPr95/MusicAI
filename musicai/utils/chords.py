@@ -38,13 +38,16 @@ def count_chords():
 	# print(chords)
 
 	chordDict = dict()
+	simple_chord_dict = dict()
 	for file_name in musicfiles:
 		f = open(file_name)
 		for line in f:
 			chord = line.strip().split(",")[-1]
 			if chord not in chordDict:
 				chordDict[chord] = 0
+				simple_chord_dict[chord[0]] = 0
 			chordDict[chord] += 1
+			simple_chord_dict[chord[0]] += 1
 		f.close()
 
-	return chordDict
+	return chordDict, simple_chord_dict

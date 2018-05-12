@@ -72,22 +72,6 @@ models:
     chords_in_ngram: True
   -
     model: MLP
-    data_type: ngram_notes
-    activation: identity
-  -
-    model: MLP
-    data_type: ngram_notes
-    activation: relu
-  -
-    model: MLP
-    data_type: ngram_notes
-    activation: logistic
-  -
-    model: MLP
-    data_type: ngram_notes
-    activation: tanh
-  -
-    model: MLP
     data_type: current_bar
     activation: identity
     num_notes: 5
