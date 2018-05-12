@@ -63,7 +63,7 @@ def get_model_info(model_dict, num_notes_val, ngramlength_val):
 
 def evaluate_models(train_list, test_list, data_list={'sequence', 'ngram', 'ngram_notes', 'current_bar'},
                     num_notes_val=4, ngramlength_val=1, logfile=None):
-    logcsv = open(logfile.name[:-3] + '.csv', 'w+', newline='')
+    logcsv = open(logfile.name[:-4] + '.csv', 'w+', newline='')
     csvwriter = csv.writer(logcsv)
 
     header_list = ['MODEL', 'DATA_TYPE', 'NOTES', 'NGRAMLENGTHVAL', 'ACTIVATION/KERNEL',
@@ -117,7 +117,7 @@ def evaluate_models(train_list, test_list, data_list={'sequence', 'ngram', 'ngra
 
 
 def print_results(sorted_results, logfile=None):
-    logcsv = open(logfile.name[:-3] + '_sorted.csv', 'w+', newline='')
+    logcsv = open(logfile.name[:-4] + '_sorted.csv', 'w+', newline='')
     csvwriter = csv.writer(logcsv)
 
     header_list = ['MODEL', 'DATA_TYPE', 'NOTES', 'NGRAMLENGTHVAL', 'ACTIVATION/KERNEL',
@@ -165,6 +165,38 @@ def kfold_split_test(directory, n, data_list=None, logfile=None):
 
 
 def get_all_results():
+
+    for train, test in [
+        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TEST),
+        (directories.PROCESSED_CHORDS_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_SONG_SPLIT_TEST),
+        (directories.PROCESSED_CHORDS_RHYMES_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_RHYMES_SONG_SPLIT_TEST),
+        (directories.PROCESSED_CHORDS_POP_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_POP_SONG_SPLIT_TEST),
+        (directories.PROCESSED_CHORDS_IMPROV_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_IMPROV_SONG_SPLIT_TEST),
+        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TEST),
+        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES_SONG_SPLIT_TEST),
+        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP_SONG_SPLIT_TRAIN,
+         directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP_SONG_SPLIT_TEST)
+    ]:
+        print('DIR:', test)
+        for data_type in ['sequence', 'ngram', 'current_bar', 'ngram_notes']:
+            print('DATA_TYPE:', data_type)
+            if data_type == 'ngram_notes':
+                pass
+            else:
+                logdir = os.path.basename(test[:-1])
+                if not os.path.exists(os.path.join(directories.RESULTS, logdir)):
+                    os.mkdir(os.path.join(directories.RESULTS, logdir))
+                logfile = open(os.path.join(directories.RESULTS, logdir, data_type + '.txt'), 'w+')
+                sorted_results = evaluate_models([glob.glob(train)], [glob.glob(test)], data_list={data_type}, logfile=logfile)
+                print_results(sorted_results, logfile)
+
     for dir in [directories.PROCESSED_CHORDS,
                 directories.PROCESSED_CHORDS_RHYMES,
                 directories.PROCESSED_CHORDS_POP,
@@ -185,35 +217,6 @@ def get_all_results():
                     logfile = open(os.path.join(directories.RESULTS, logdir, data_type + str(k) + '.txt'), 'w+')
                     sorted_results = kfold_split_test(dir, k, {data_type}, logfile)
                     print_results(sorted_results, logfile)
-
-    for train, test in [
-        (directories.PROCESSED_CHORDS_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_RHYMES_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_RHYMES_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_POP_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_POP_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_IMPROV_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_IMPROV_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TEST)
-    ]:
-        print('DIR:', test)
-        for data_type in ['sequence', 'ngram', 'current_bar', 'ngram_notes']:
-            print('DATA_TYPE:', data_type)
-            if data_type == 'ngram_notes':
-                pass
-            else:
-                logdir = os.path.basename(test[:-1])
-                logfile = open(os.path.join(directories.RESULTS, logdir, data_type + '.txt'), 'w+')
-                sorted_results = evaluate_models(train, test, data_list={data_type}, logfile=logfile)
-                print_results(sorted_results, logfile)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,2 @@
+MODEL,DATA_TYPE,NOTES,NGRAMLENGTHVAL,ACTIVATION/KERNEL,CHORDS_IN_NRGAM,SOFTMAX,SCORES,AVG. SCORE
+PyHMM,ngram,1,1,None,False,False,"[('0.328', '0.228'), ('0.314', '0.344'), ('0.325', '0.265'), ('0.323', '0.278'), ('0.314', '0.368'), ('0.304', '0.473'), ('0.318', '0.302'), ('0.314', '0.376'), ('0.328', '0.231'), ('0.324', '0.268')]","('0.3192', '0.3133')"
