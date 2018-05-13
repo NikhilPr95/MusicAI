@@ -182,14 +182,14 @@ def kfold_split_test(directory, n, data_list=None, logfile=None, grid_search=Fal
 
 
 def get_all_results():
-    for dir in [directories.PROCESSED_CHORDS,
-                directories.PROCESSED_CHORDS_RHYMES,
-                directories.PROCESSED_CHORDS_POP,
-                # directories.PROCESSED_CHORDS_IMPROV,
+    for dir in [
+                # directories.PROCESSED_CHORDS,
+                # directories.PROCESSED_CHORDS_RHYMES,
+                # directories.PROCESSED_CHORDS_POP,
                 directories.PROCESSED_CHORDS_MULTI_OCTAVE,
                 directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES,
                 directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV]:
+                ]:
         print('DIR:', dir)
         for data_type in ['ngram_notes', 'current_bar', 'sequence', 'ngram']:
             print('DATA_TYPE:', data_type)

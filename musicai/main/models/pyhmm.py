@@ -97,4 +97,7 @@ class PyHMM(Base):
         else:
             raise Exception("Model does not support {} data type".format(self.data_type))
 
-        return sum([1 if self.predict(d) == l else 0 for (d, l) in zip(data, labels)]) / len(data)
+        try:
+            return sum([1 if self.predict(d) == l else 0 for (d, l) in zip(data, labels)]) / len(data)
+        except ZeroDivisionError:
+            return 0.0

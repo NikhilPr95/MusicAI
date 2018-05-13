@@ -58,4 +58,11 @@ class MLP(Base):
         else:
             raise Exception("Model does not support {} data type".format(self.data_type))
 
-        return self.clf.score(X, y)
+        # print('bs:', bar_sequences)
+        # print('cs:', chord_sequences)
+        # print('MLP:', X, y)
+
+        try:
+            return self.clf.score(X, y)
+        except ValueError:
+            return 0.0
