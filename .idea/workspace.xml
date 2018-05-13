@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f5065b65-098b-406c-871f-bb1ffaaa4420" name="Default" comment="Adds new split song data and result files">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/models/logreg.py" afterPath="$PROJECT_DIR$/musicai/main/models/logreg.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/models/mlp.py" afterPath="$PROJECT_DIR$/musicai/main/models/mlp.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/models/pyhmm.py" afterPath="$PROJECT_DIR$/musicai/main/models/pyhmm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/main/models/svm.py" afterPath="$PROJECT_DIR$/musicai/main/models/svm.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/results/processed_chords/ngram_notes/ngram_notes10.txt" afterPath="$PROJECT_DIR$/musicai/results/processed_chords/ngram_notes/ngram_notes10.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/musicai/tests/runmodels.py" afterPath="$PROJECT_DIR$/musicai/tests/runmodels.py" />
-    </list>
+    <list default="true" id="f5065b65-098b-406c-871f-bb1ffaaa4420" name="Default" comment="Adds new split song data and result files" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -22,8 +14,8 @@
       <file leaf-file-name="runmodels.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/musicai/tests/runmodels.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state relative-caret-position="162">
+              <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -222,12 +214,12 @@
         <option value="$PROJECT_DIR$/musicai/utils/chords.py" />
         <option value="$PROJECT_DIR$/musicai/main/check.py" />
         <option value="$PROJECT_DIR$/musicai/main/models/model_configs.yaml" />
-        <option value="$PROJECT_DIR$/musicai/tests/runmodels.py" />
         <option value="$PROJECT_DIR$/musicai/main/lib/input_vectors.py" />
         <option value="$PROJECT_DIR$/musicai/main/models/mlp.py" />
         <option value="$PROJECT_DIR$/musicai/main/models/logreg.py" />
         <option value="$PROJECT_DIR$/musicai/main/models/svm.py" />
         <option value="$PROJECT_DIR$/musicai/main/models/pyhmm.py" />
+        <option value="$PROJECT_DIR$/musicai/tests/runmodels.py" />
       </list>
     </option>
   </component>
@@ -1280,8 +1272,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/musicai/tests/runmodels.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state relative-caret-position="162">
+          <caret line="188" column="0" lean-forward="false" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
