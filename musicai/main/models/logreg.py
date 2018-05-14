@@ -27,6 +27,10 @@ class LogReg(Base):
         if self.data_type == 'ngram_notes':
             X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength,
                                                chords_in_ngram=self.chords_in_ngram, notes=self.notes, oversampling=self.oversampling)
+        elif self.data_type == 'previous_ngram_notes':
+            X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength,
+                                               chords_in_ngram=self.chords_in_ngram, notes=self.notes,
+                                               oversampling=self.oversampling, previous=True)
         elif self.data_type == 'current_bar':
             if self.chords_in_ngram is not False:
                 raise Exception("Model does not support chords in ngram with current bar")
@@ -56,6 +60,10 @@ class LogReg(Base):
         elif self.data_type == 'ngram_notes':
             X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength,
                                                chords_in_ngram=self.chords_in_ngram, notes=self.notes)
+        elif self.data_type == 'previous_ngram_notes':
+            X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength,
+                                               chords_in_ngram=self.chords_in_ngram, notes=self.notes, previous=True)
+
         else:
             raise Exception("Model does not support {} data type".format(self.data_type))
 

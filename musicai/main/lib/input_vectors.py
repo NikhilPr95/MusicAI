@@ -72,7 +72,7 @@ def ngram_vector(sequences, n):
 
 
 def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, chords_in_ngram=False, notes=1,
-                                oversampling=False):
+                                oversampling=False, previous=False):
     bar_sequence_ngrams, \
     chord_sequence_ngrams = ngram_vector(bar_sequences, ngramlength), ngram_vector(
         chord_sequences, ngramlength)
@@ -81,13 +81,23 @@ def create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength, cho
     all_chord_ngrams = flatten(chord_sequence_ngrams)
 
     X, y = [], []
-    for bar_ngram, chord_ngram in zip(all_bar_ngrams, all_chord_ngrams):
-        chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
-        if chords_in_ngram:
-            X.append(bar_ngram + chord_ngram_numbers[:-1])
-        else:
-            X.append(bar_ngram)
-        y.append(chord_ngram_numbers[-1])
+    if previous == True:
+        for bar_ngram, chord_ngram in zip(all_bar_ngrams[:-1], all_chord_ngrams[1:]):
+            chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
+            if chords_in_ngram:
+                X.append(bar_ngram + chord_ngram_numbers)
+            else:
+                X.append(bar_ngram)
+            y.append(chord_ngram_numbers[-1])
+
+    else:
+        for bar_ngram, chord_ngram in zip(all_bar_ngrams, all_chord_ngrams):
+            chord_ngram_numbers = [SIMPLE_CHORDS.index(c) for c in chord_ngram]
+            if chords_in_ngram:
+                X.append(bar_ngram + chord_ngram_numbers[:-1])
+            else:
+                X.append(bar_ngram)
+            y.append(chord_ngram_numbers[-1])
 
     if oversampling:
         if oversampling == 'smote':

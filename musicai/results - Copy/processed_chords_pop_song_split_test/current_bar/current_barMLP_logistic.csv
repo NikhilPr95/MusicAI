@@ -1,0 +1,2 @@
+MLP,current_bar,5,1,logistic,False,False,"[('0.318', '0.298')]","('0.3180', '0.2980')"
+MLP,current_bar,5,1,logistic,False,True,"[('0.300', '0.310')]","('0.3000', '0.3100')"

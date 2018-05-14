@@ -183,15 +183,12 @@ def kfold_split_test(directory, n, data_list=None, logfile=None, grid_search=Fal
 
 def get_all_results():
     for dir in [
-                # directories.PROCESSED_CHORDS,
-                # directories.PROCESSED_CHORDS_RHYMES,
-                # directories.PROCESSED_CHORDS_POP,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES,
-                directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP,
+                directories.PROCESSED_CHORDS,
+                directories.PROCESSED_CHORDS_RHYMES,
+                directories.PROCESSED_CHORDS_POP,
                 ]:
         print('DIR:', dir)
-        for data_type in ['ngram_notes', 'current_bar', 'sequence', 'ngram']:
+        for data_type in ['ko','ngram_notes', 'current_bar', 'previous_ngram_notes', 'sequence', 'ngram']:
             print('DATA_TYPE:', data_type)
             for k in [5, 10]:
                 print('K:', k)
@@ -205,25 +202,15 @@ def get_all_results():
                 print_results(results, logfile)
 
     for train, test in [
-        # (directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TRAIN,
-        #  directories.PROCESSED_CHORDS_MULTI_OCTAVE_IMPROV_SONG_SPLIT_TEST),
         (directories.PROCESSED_CHORDS_SONG_SPLIT_TRAIN,
          directories.PROCESSED_CHORDS_SONG_SPLIT_TEST),
         (directories.PROCESSED_CHORDS_RHYMES_SONG_SPLIT_TRAIN,
          directories.PROCESSED_CHORDS_RHYMES_SONG_SPLIT_TEST),
         (directories.PROCESSED_CHORDS_POP_SONG_SPLIT_TRAIN,
          directories.PROCESSED_CHORDS_POP_SONG_SPLIT_TEST),
-        # (directories.PROCESSED_CHORDS_IMPROV_SONG_SPLIT_TRAIN,
-        #  directories.PROCESSED_CHORDS_IMPROV_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_MULTI_OCTAVE_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_MULTI_OCTAVE_RHYMES_SONG_SPLIT_TEST),
-        (directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP_SONG_SPLIT_TRAIN,
-         directories.PROCESSED_CHORDS_MULTI_OCTAVE_POP_SONG_SPLIT_TEST)
     ]:
         print('DIR:', test)
-        for data_type in ['sequence', 'ngram', 'current_bar', 'ngram_notes']:
+        for data_type in ['sequence', 'ko', 'ngram', 'current_bar', 'ngram_notes', 'previous_ngram_notes']:
             print('DATA_TYPE:', data_type)
             logdir = os.path.join(os.path.basename(test[:-1]), data_type)
             print('logdir:', logdir)

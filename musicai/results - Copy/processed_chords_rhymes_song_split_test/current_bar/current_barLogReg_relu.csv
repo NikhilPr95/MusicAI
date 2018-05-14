@@ -1,0 +1,2 @@
+LogReg,current_bar,5,1,relu,False,False,"[('0.591', '0.333')]","('0.5910', '0.3330')"
+LogReg,current_bar,5,1,relu,False,True,"[('0.394', '0.357')]","('0.3940', '0.3570')"

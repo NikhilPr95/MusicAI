@@ -1,6 +1,7 @@
 models:
   -
     model: KO
+    data_type: ko
     num_notes: 15
   -
     model: PyHMM
@@ -401,4 +402,236 @@ models:
     activation: tanh
     num_notes: 5
     padval: -1
+    softmax: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: identity
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: relu
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: logistic
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: tanh
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: identity
+    chords_in_ngram: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: relu
+    chords_in_ngram: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: MLP
+    data_type: previous_ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: rbf
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: linear
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: poly
+    is_enabled: False
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: rbf
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: linear
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: poly
+    is_enabled: False
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    chords_in_ngram: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: rbf
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: linear
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: poly
+    is_enabled: False
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: rbf
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: linear
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: poly
+    is_enabled: False
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: SVM
+    data_type: previous_ngram_notes
+    kernel: sigmoid
+    num_notes: 5
+    padval: -1
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: identity
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: relu
+  -
+    model: LogReg
+    data_type: previous_previous_ngram_notes
+    activation: logistic
+  -
+    model: LogReg
+    data_type: previous_previous_ngram_notes
+    activation: tanh
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: identity
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: relu
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: tanh
+    chords_in_ngram: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: identity
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: relu
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: logistic
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: tanh
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: identity
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: relu
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: logistic
+    chords_in_ngram: True
+    softmax: True
+  -
+    model: LogReg
+    data_type: previous_ngram_notes
+    activation: tanh
+    chords_in_ngram: True
     softmax: True
