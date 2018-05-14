@@ -1,0 +1,34 @@
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+
+
+SORTED:all
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+
+
+BEST:all
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+
+
+SORTED:KO
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+
+
+BEST:KO
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+
+
+SORTED:KO_None
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')
+
+
+BEST:KO_None
+KO                  ko                  15                  1                   None                False               False               [('0.344', '0.316')]('0.3440', '0.3160')

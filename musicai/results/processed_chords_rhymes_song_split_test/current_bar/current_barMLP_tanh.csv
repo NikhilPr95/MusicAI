@@ -1,0 +1,2 @@
+MLP,current_bar,5,1,tanh,False,False,"[('0.538', '0.357')]","('0.5380', '0.3570')"
+MLP,current_bar,5,1,tanh,False,True,"[('0.538', '0.333')]","('0.5380', '0.3330')"

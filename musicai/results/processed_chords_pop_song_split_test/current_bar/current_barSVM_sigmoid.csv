@@ -1,0 +1,2 @@
+SVM,current_bar,5,1,sigmoid,False,False,"[('0.255', '0.175')]","('0.2550', '0.1750')"
+SVM,current_bar,5,1,sigmoid,False,True,"[('0.300', '0.310')]","('0.3000', '0.3100')"

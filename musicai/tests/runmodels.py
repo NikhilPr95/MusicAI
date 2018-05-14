@@ -188,7 +188,12 @@ def get_all_results():
                 directories.PROCESSED_CHORDS_POP,
                 ]:
         print('DIR:', dir)
-        for data_type in ['ko','ngram_notes', 'current_bar', 'previous_ngram_notes', 'sequence', 'ngram']:
+        for data_type in ['ko',
+                          # 'ngram_notes',
+                          # 'current_bar',
+                          'previous_ngram_notes',
+                          # 'sequence', 'ngram'
+                          ]:
             print('DATA_TYPE:', data_type)
             for k in [5, 10]:
                 print('K:', k)
@@ -210,7 +215,11 @@ def get_all_results():
          directories.PROCESSED_CHORDS_POP_SONG_SPLIT_TEST),
     ]:
         print('DIR:', test)
-        for data_type in ['sequence', 'ko', 'ngram', 'current_bar', 'ngram_notes', 'previous_ngram_notes']:
+        for data_type in ['ko',
+                          # 'sequence',
+                          # 'ngram', 'current_bar', 'ngram_notes',
+                          'previous_ngram_notes'
+                          ]:
             print('DATA_TYPE:', data_type)
             logdir = os.path.join(os.path.basename(test[:-1]), data_type)
             print('logdir:', logdir)

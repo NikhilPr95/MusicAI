@@ -1,0 +1,34 @@
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+
+
+SORTED:all
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+
+
+BEST:all
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+
+
+SORTED:PyHMM
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+
+
+BEST:PyHMM
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+
+
+SORTED:PyHMM_None
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')
+
+
+BEST:PyHMM_None
+PyHMM               ngram               1                   1                   None                False               False               [('0.644', '0.405')]('0.6440', '0.4050')

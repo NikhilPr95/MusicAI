@@ -1,0 +1,37 @@
+RATIOS-
+[0.21069182389937108, 0.19261006289308177, 0.20204402515723272, 0.19811320754716982, 0.18867924528301888]
+
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+
+
+SORTED:all
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+
+
+BEST:all
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+
+
+SORTED:PyHMM
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+
+
+BEST:PyHMM
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+
+
+SORTED:PyHMM_None
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')
+
+
+BEST:PyHMM_None
+PyHMM               sequence            1                   1                   None                False               False               [('0.356', '0.285'), ('0.359', '0.266'), ('0.329', '0.391'), ('0.344', '0.329'), ('0.353', '0.466')]('0.3482', '0.3474')

@@ -29,10 +29,9 @@ class MLP(Base):
             X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength,
                                                chords_in_ngram=self.chords_in_ngram, notes=self.notes, oversampling=self.oversampling)
         elif self.data_type == 'previous_ngram_notes':
-            if self.data_type == 'ngram_notes':
-                X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength,
-                                                   chords_in_ngram=self.chords_in_ngram, notes=self.notes,
-                                                   oversampling=self.oversampling, previous=True)
+            X, y = create_ngram_feature_matrix(bar_sequences, chord_sequences, ngramlength=self.ngramlength,
+                                               chords_in_ngram=self.chords_in_ngram, notes=self.notes,
+                                               oversampling=self.oversampling, previous=True)
         elif self.data_type == 'current_bar':
             if self.chords_in_ngram is not False:
                 raise Exception("Model does not support chords in ngram with current bar")
@@ -46,6 +45,8 @@ class MLP(Base):
 
         self.clf = MLPClassifier(activation=self.activation, max_iter=1000, solver='lbfgs', alpha=50)
         # self.clf = MLPClassifier(activation=self.activation, max_iter=1000)
+        # print('X:', X)
+        # print('y:', y)
         self.clf.fit(X, y)
 
     # print("score:", self.clf.score(X, y))

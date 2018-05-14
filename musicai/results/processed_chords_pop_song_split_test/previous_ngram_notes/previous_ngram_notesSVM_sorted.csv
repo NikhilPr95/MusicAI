@@ -1,0 +1,13 @@
+MODEL,DATA_TYPE,NOTES,NGRAMLENGTHVAL,ACTIVATION/KERNEL,CHORDS_IN_NRGAM,SOFTMAX,SCORES,AVG. SCORE
+SVM,previous_ngram_notes,5,1,sigmoid,False,False,"[('0.258', '0.265')]","('0.2580', '0.2650')"
+SVM,previous_ngram_notes,5,1,sigmoid,True,False,"[('0.312', '0.271')]","('0.3120', '0.2710')"
+SVM,previous_ngram_notes,4,1,linear,False,False,"[('0.313', '0.288')]","('0.3130', '0.2880')"
+SVM,previous_ngram_notes,4,1,rbf,False,False,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,4,1,rbf,True,False,"[('0.312', '0.312')]","('0.3120', '0.3120')"
+SVM,previous_ngram_notes,4,1,rbf,False,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,4,1,linear,False,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,5,1,sigmoid,False,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,4,1,rbf,True,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,4,1,linear,True,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,5,1,sigmoid,True,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,4,1,linear,True,False,"[('0.997', '1.000')]","('0.9970', '1.0000')"

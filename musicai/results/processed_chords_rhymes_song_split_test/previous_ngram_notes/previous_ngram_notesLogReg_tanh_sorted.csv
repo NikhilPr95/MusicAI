@@ -1,0 +1,4 @@
+MODEL,DATA_TYPE,NOTES,NGRAMLENGTHVAL,ACTIVATION/KERNEL,CHORDS_IN_NRGAM,SOFTMAX,SCORES,AVG. SCORE
+LogReg,previous_ngram_notes,4,1,tanh,False,True,"[('0.351', '0.220')]","('0.3510', '0.2200')"
+LogReg,previous_ngram_notes,4,1,tanh,True,True,"[('0.351', '0.220')]","('0.3510', '0.2200')"
+LogReg,previous_ngram_notes,4,1,tanh,True,False,"[('0.977', '0.927')]","('0.9770', '0.9270')"

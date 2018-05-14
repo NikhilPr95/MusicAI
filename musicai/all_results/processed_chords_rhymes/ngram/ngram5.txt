@@ -1,0 +1,37 @@
+RATIOS-
+[0.2784090909090909, 0.2159090909090909, 0.1875, 0.1875, 0.13068181818181818]
+
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+
+
+SORTED:all
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+
+
+BEST:all
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+
+
+SORTED:PyHMM
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+
+
+BEST:PyHMM
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+
+
+SORTED:PyHMM_None
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')
+
+
+BEST:PyHMM_None
+PyHMM               ngram               1                   1                   None                False               False               [('0.540', '0.688'), ('0.662', '0.263'), ('0.606', '0.500'), ('0.582', '0.606'), ('0.563', '0.739')]('0.5906', '0.5592')

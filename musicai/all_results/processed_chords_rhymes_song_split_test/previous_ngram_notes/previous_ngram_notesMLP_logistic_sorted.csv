@@ -1,0 +1,4 @@
+MODEL,DATA_TYPE,NOTES,NGRAMLENGTHVAL,ACTIVATION/KERNEL,CHORDS_IN_NRGAM,SOFTMAX,SCORES,AVG. SCORE
+MLP,previous_ngram_notes,4,1,logistic,False,False,"[('0.534', '0.341')]","('0.5340', '0.3410')"
+MLP,previous_ngram_notes,4,1,logistic,True,False,"[('0.534', '0.341')]","('0.5340', '0.3410')"
+MLP,previous_ngram_notes,4,1,logistic,True,True,"[('0.534', '0.341')]","('0.5340', '0.3410')"

@@ -1,0 +1,5 @@
+MODEL,DATA_TYPE,NOTES,NGRAMLENGTHVAL,ACTIVATION/KERNEL,CHORDS_IN_NRGAM,SOFTMAX,SCORES,AVG. SCORE
+SVM,previous_ngram_notes,5,1,sigmoid,False,False,"[('0.258', '0.265')]","('0.2580', '0.2650')"
+SVM,previous_ngram_notes,5,1,sigmoid,True,False,"[('0.312', '0.271')]","('0.3120', '0.2710')"
+SVM,previous_ngram_notes,5,1,sigmoid,False,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"
+SVM,previous_ngram_notes,5,1,sigmoid,True,True,"[('0.301', '0.312')]","('0.3010', '0.3120')"

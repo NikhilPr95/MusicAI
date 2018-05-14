@@ -1,0 +1,4 @@
+SVM,previous_ngram_notes,4,1,rbf,False,False,"[('0.534', '0.341')]","('0.5340', '0.3410')"
+SVM,previous_ngram_notes,4,1,rbf,True,False,"[('0.534', '0.341')]","('0.5340', '0.3410')"
+SVM,previous_ngram_notes,4,1,rbf,False,True,"[('0.534', '0.341')]","('0.5340', '0.3410')"
+SVM,previous_ngram_notes,4,1,rbf,True,True,"[('0.534', '0.341')]","('0.5340', '0.3410')"

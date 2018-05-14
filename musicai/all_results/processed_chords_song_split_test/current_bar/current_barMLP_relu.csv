@@ -1,0 +1,2 @@
+MLP,current_bar,5,1,relu,False,False,"[('0.398', '0.330')]","('0.3980', '0.3300')"
+MLP,current_bar,5,1,relu,False,True,"[('0.345', '0.326')]","('0.3450', '0.3260')"

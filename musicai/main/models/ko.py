@@ -21,7 +21,7 @@ class KO(Base):
 		self.oversampling = oversampling
 
 	def fit(self, bar_sequences, chord_sequences):
-		if self.data_type is not 'ko':
+		if self.data_type != 'ko':
 			raise Exception("Model does not support {} data type".format(self.data_type))
 		if self.activation is not None:
 			raise Exception("Model does not support {} activation".format(self.activation))

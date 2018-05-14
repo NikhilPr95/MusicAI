@@ -1,0 +1,319 @@
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+SORTED:all
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+BEST:all
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:MLP
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+
+
+BEST:MLP
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:MLP_identity
+MLP                 current_bar         5                   1                   identity            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+
+
+BEST:MLP_identity
+MLP                 current_bar         5                   1                   identity            False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:MLP_relu
+MLP                 current_bar         5                   1                   relu                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+
+
+BEST:MLP_relu
+MLP                 current_bar         5                   1                   relu                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:MLP_logistic
+MLP                 current_bar         5                   1                   logistic            False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+BEST:MLP_logistic
+MLP                 current_bar         5                   1                   logistic            False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:MLP_tanh
+MLP                 current_bar         5                   1                   tanh                False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+
+
+BEST:MLP_tanh
+MLP                 current_bar         5                   1                   tanh                False               False               [('0.538', '0.357')]('0.5380', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:SVM
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+BEST:SVM
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:SVM_rbf
+SVM                 current_bar         5                   1                   rbf                 False               False               [('0.538', '0.333')]('0.5380', '0.3330')
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+BEST:SVM_rbf
+SVM                 current_bar         5                   1                   rbf                 False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:SVM_linear
+SVM                 current_bar         5                   1                   linear              False               False               [('0.606', '0.310')]('0.6060', '0.3100')
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+BEST:SVM_linear
+SVM                 current_bar         5                   1                   linear              False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+SORTED:SVM_sigmoid
+SVM                 current_bar         5                   1                   sigmoid             False               False               [('0.523', '0.333')]('0.5230', '0.3330')
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+
+
+BEST:SVM_sigmoid
+SVM                 current_bar         5                   1                   sigmoid             False               True                [('0.538', '0.333')]('0.5380', '0.3330')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+SORTED:LogReg
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+BEST:LogReg
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+SORTED:LogReg_identity
+LogReg              current_bar         5                   1                   identity            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+BEST:LogReg_identity
+LogReg              current_bar         5                   1                   identity            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+SORTED:LogReg_relu
+LogReg              current_bar         5                   1                   relu                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+BEST:LogReg_relu
+LogReg              current_bar         5                   1                   relu                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+SORTED:LogReg_logistic
+LogReg              current_bar         5                   1                   logistic            False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+BEST:LogReg_logistic
+LogReg              current_bar         5                   1                   logistic            False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+SORTED:LogReg_tanh
+LogReg              current_bar         5                   1                   tanh                False               False               [('0.591', '0.333')]('0.5910', '0.3330')
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')
+
+
+BEST:LogReg_tanh
+LogReg              current_bar         5                   1                   tanh                False               True                [('0.394', '0.357')]('0.3940', '0.3570')

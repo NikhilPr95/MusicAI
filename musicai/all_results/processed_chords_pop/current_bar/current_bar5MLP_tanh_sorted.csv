@@ -1,0 +1,3 @@
+MODEL,DATA_TYPE,NOTES,NGRAMLENGTHVAL,ACTIVATION/KERNEL,CHORDS_IN_NRGAM,SOFTMAX,SCORES,AVG. SCORE
+MLP,current_bar,5,1,tanh,False,False,"[('0.344', '0.318'), ('0.371', '0.247'), ('0.361', '0.192'), ('0.360', '0.206'), ('0.383', '0.154')]","('0.3638', '0.2234')"
+MLP,current_bar,5,1,tanh,False,True,"[('0.289', '0.353'), ('0.311', '0.270'), ('0.299', '0.314'), ('0.319', '0.236'), ('0.320', '0.089')]","('0.3076', '0.2524')"

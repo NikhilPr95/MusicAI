@@ -1,0 +1,463 @@
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+
+
+SORTED:all
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+
+
+BEST:all
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:MLP
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+
+
+BEST:MLP
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:MLP_identity
+MLP                 previous_ngram_notes4                   1                   identity            False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+
+
+BEST:MLP_identity
+MLP                 previous_ngram_notes4                   1                   identity            True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:MLP_relu
+MLP                 previous_ngram_notes4                   1                   relu                False               False               [('0.527', '0.341')]('0.5270', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+
+
+BEST:MLP_relu
+MLP                 previous_ngram_notes4                   1                   relu                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:MLP_logistic
+MLP                 previous_ngram_notes4                   1                   logistic            False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+BEST:MLP_logistic
+MLP                 previous_ngram_notes4                   1                   logistic            True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:MLP_tanh
+MLP                 previous_ngram_notes4                   1                   tanh                False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+
+
+BEST:MLP_tanh
+MLP                 previous_ngram_notes4                   1                   tanh                True                False               [('0.756', '0.561')]('0.7560', '0.5610')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:SVM
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+
+
+BEST:SVM
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:SVM_rbf
+SVM                 previous_ngram_notes4                   1                   rbf                 False               False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                False               [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+BEST:SVM_rbf
+SVM                 previous_ngram_notes4                   1                   rbf                 True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:SVM_linear
+SVM                 previous_ngram_notes4                   1                   linear              False               False               [('0.542', '0.341')]('0.5420', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+
+
+BEST:SVM_linear
+SVM                 previous_ngram_notes4                   1                   linear              True                False               [('0.954', '0.878')]('0.9540', '0.8780')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+
+
+SORTED:SVM_sigmoid
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               False               [('0.496', '0.341')]('0.4960', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             False               True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                True                [('0.534', '0.341')]('0.5340', '0.3410')
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+
+
+BEST:SVM_sigmoid
+SVM                 previous_ngram_notes5                   1                   sigmoid             True                False               [('0.496', '0.366')]('0.4960', '0.3660')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+
+
+SORTED:LogReg
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+
+
+BEST:LogReg
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+
+
+SORTED:LogReg_identity
+LogReg              previous_ngram_notes4                   1                   identity            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   identity            False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+
+
+BEST:LogReg_identity
+LogReg              previous_ngram_notes4                   1                   identity            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+
+
+SORTED:LogReg_relu
+LogReg              previous_ngram_notes4                   1                   relu                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   relu                False               False               [('0.573', '0.317')]('0.5730', '0.3170')
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+
+
+BEST:LogReg_relu
+LogReg              previous_ngram_notes4                   1                   relu                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+
+
+SORTED:LogReg_logistic
+LogReg              previous_ngram_notes4                   1                   logistic            False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+
+
+BEST:LogReg_logistic
+LogReg              previous_ngram_notes4                   1                   logistic            True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+MODEL               DATA_TYPE           NOTES               NGRAMLENGTHVAL      ACTIVATION/KERNEL   CHORDS_IN_NRGAM     SOFTMAX             SCORES              AVG. SCORE          
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+
+
+SORTED:LogReg_tanh
+LogReg              previous_ngram_notes4                   1                   tanh                False               True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                True                [('0.351', '0.220')]('0.3510', '0.2200')
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
+
+
+BEST:LogReg_tanh
+LogReg              previous_ngram_notes4                   1                   tanh                True                False               [('0.977', '0.927')]('0.9770', '0.9270')
